@@ -1,20 +1,23 @@
-import {LitElement, html} from 'lit';
+import { LitElement, html } from 'lit';
 import styles from './login.scss';
 import './import';
 
 export class Login extends LitElement {
-  static get styles() {
-    return styles;
-  }
+    static get styles() {
+        return styles;
+    }
 
-  render() {
-    return html`
-        <h2>Login</h2>
-        <crazy-beach-button-widget
-            label="Jugar"
-        ></crazy-beach-button-widget>
-    `;
-  }
+    render() {
+        return html`
+            <h2>Login</h2>
+            <crazy-beach-button-widget
+                label="Jugar"
+            ></crazy-beach-button-widget>
+            <crazy-beach-input-widget
+                type="text"
+            ></crazy-beach-input-widget>
+        `;
+    }
 }
 
 customElements.define('crazy-beach-login-component', Login);

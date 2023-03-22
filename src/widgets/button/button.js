@@ -1,15 +1,15 @@
-import {LitElement, html} from 'lit';
+import { LitElement, html } from 'lit';
 import styles from './button.scss';
 
 export class Button extends LitElement {
     static get properties() {
-		return {
-			type: { type: String },
+        return {
+            type: { type: String },
             color: { type: String },
             label: { type: String },
             size: { type: String },
             isFullWidth: { type: Boolean, attribute: 'fullwith' },
-        }
+        };
     }
 
     constructor() {
@@ -23,7 +23,11 @@ export class Button extends LitElement {
 
     render() {
         return html`
-            <div class="btn btn-${this.color} ${this.isFullWidth ? 'w100' : ''} btn-${this.size}">
+            <div
+                class="btn btn-${this.color} ${this.isFullWidth
+                    ? 'w100'
+                    : ''} btn-${this.size}"
+            >
                 <button type="button">${this.label}</button>
             </div>
         `;
