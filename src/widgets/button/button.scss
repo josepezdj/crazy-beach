@@ -1,0 +1,32 @@
+@import '../../styles/index.scss';
+
+.btn {
+    transition: all .3s;
+    box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, .2);
+
+    &-normal {
+        button {
+            padding: $md $lg;
+        }
+    }
+
+    button {
+        color: inherit;
+        cursor: pointer;
+        background-color: transparent;
+        display: block;
+        border : none;
+        height: 100%;
+        width: 100%;
+    }
+
+    &-blue {
+        color: $col-white;
+        background-color: $col-blue;
+
+        &:hover {
+            background-color: $col-blue-accent;
+            box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, .7);
+        }
+    }
+}

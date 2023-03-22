@@ -1,1 +1,2 @@
-import './components/my-element';
+import './styles/index.scss';
+import './pages/home/crazy-beach-home-page';
