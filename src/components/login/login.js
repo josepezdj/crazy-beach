@@ -1,10 +1,28 @@
 import { LitElement, html } from 'lit';
+import { Router } from '@vaadin/router';
 import styles from './login.scss';
 import './import';
 
 export class Login extends LitElement {
-    static get styles() {
-        return styles;
+    static get properties() {
+        return {
+            name: { type: String },
+        };
+    }
+
+    constructor() {
+        super();
+        this.user = {
+            name: 'Jose',
+            points: 0,
+        };
+    }
+
+    firstUpdated() {
+        this.addEventListener('button-click', event => {
+            window.sessionStorage.setItem('user', JSON.stringify(this.user));
+            Router.go(`/juego`);
+          });
     }
 
     render() {
@@ -17,6 +35,10 @@ export class Login extends LitElement {
                 type="text"
             ></crazy-beach-input-widget>
         `;
+    }
+
+    static get styles() {
+        return styles;
     }
 }
 

@@ -12,6 +12,7 @@
     "author": "j.b.gonzalez.jimenez",
     "license": "MIT",
     "dependencies": {
+        "@vaadin/router": "^1.7.5",
         "lit": "latest",
         "tslib": "^2.4.0"
     },

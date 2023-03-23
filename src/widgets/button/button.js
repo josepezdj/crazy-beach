@@ -28,10 +28,16 @@ export class Button extends LitElement {
                     ? 'w100'
                     : ''} btn-${this.size}"
             >
-                <button type="button">${this.label}</button>
+                <button @click="${this.handleClick}" type="button">${this.label}</button>
             </div>
         `;
     }
+
+    handleClick() {
+        this.dispatchEvent(
+          new CustomEvent('button-click', { detail: this.color, composed: true })
+        );
+      }
 
     static get styles() {
         return styles;
