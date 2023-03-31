@@ -1,22 +1,33 @@
 @import '../../styles/index.scss';
 
 .btn {
-    transition: all 0.3s;
+    font-family: $font-main;
+    border-radius: $xs;
     box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.2);
+    width: fit-content;
+    z-index: 10;
+    transition: all 0.3s;
 
     &-normal {
         button {
-            padding: $md $lg;
+            font-size: $lg;
+            padding: $md calc($xl * 2);
         }
     }
 
     button {
+        font-family: inherit;
         color: inherit;
-        cursor: pointer;
         background-color: transparent;
-        display: block;
+        text-transform: uppercase;
+        display: inline-block;
         border: none;
         height: 100%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    &--w100 {
         width: 100%;
     }
 
@@ -27,6 +38,15 @@
         &:hover {
             background-color: $col-blue-accent;
             box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.7);
+        }
+    }
+
+    &.invalid {
+        background-color: $col-black;
+        box-shadow: none;
+        
+        button {
+            cursor: auto;
         }
     }
 }
