@@ -1,0 +1,96 @@
+@import '../../styles/index.scss';
+
+.header {
+    color: $col-text-dark;
+    background-color: $col-text-light;
+    font-family: $font-game;
+    height: $header-height;
+    width: 100%;
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
+    0 2px 2px rgba(0,0,0,0.12), 
+    0 4px 4px rgba(0,0,0,0.12), 
+    0 8px 8px rgba(0,0,0,0.12),
+    0 16px 16px rgba(0,0,0,0.12);
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        position: relative;
+    }
+
+    &__icon-app,
+    &__icon-link {
+        color: $col-blue;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        column-gap: $sm;
+        padding: 0 $sm;
+    }
+
+    &__icon-app {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__icon-text {
+        color: $col-black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: $md;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        column-gap: $xs;
+        padding: 0 $sm;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__goback {
+        color: $col-alert;
+        text-transform: uppercase;
+        height: 100%;
+        padding: $lg $sm $sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__account {
+        display: flex;
+        align-items: center;
+        column-gap: $xs;
+        padding: 2px $xs;
+        border-radius: $xxl;
+        box-shadow: 0 2px 1px 1px rgba(0,0,0,0.12);
+
+        & > * {
+            width: 100%;
+            display: inline-flex;
+            color: $col-blue;
+        }
+
+        &--icon {
+        }
+
+        &--name {
+        }
+    }
+}
