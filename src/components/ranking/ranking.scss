@@ -1,0 +1,48 @@
+@import '../../styles/index.scss';
+
+.ranking {
+    font-family: $font-game;
+    border-radius: $xs $xs 0 0;
+    margin-top: $header-height;
+    background-color: $col-orange;
+
+    &__title {
+        font-size: $md;
+        text-align: center;
+        padding-bottom: $xs;
+    }
+
+    &__stats {
+        text-align: center;
+        width: 100%;
+        font-family: $font-main;
+        font-size: $md;
+        font-weight: 500;
+        text-transform: capitalize;
+        display: grid;
+        grid-template-columns: $xxl repeat(2, 1fr);
+        grid-template-rows: auto;
+        padding: $xs 0;
+        background-color: $col-yellow;
+    }
+
+    &__players {
+        font-size: $md;
+        display: grid;
+        grid-template-columns: $xxl repeat(2, 1fr);
+        grid-template-rows: auto;
+
+        &--player {
+            text-align: center;
+            padding: 2px 0;
+        }
+
+        &:nth-child(odd) {
+            background-color: $col-text-light;
+        }
+
+        &:nth-child(even) {
+            background-color: $col-blue-sky;
+        }
+    }
+}
