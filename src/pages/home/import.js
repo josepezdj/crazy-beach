@@ -1,2 +1,3 @@
 import '../../components/header/header';
-import '../../components/login/login';
+import '../../widgets/button/button';
+import '../../widgets/input/input';

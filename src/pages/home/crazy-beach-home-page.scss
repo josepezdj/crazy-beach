@@ -1,0 +1,70 @@
+@import '../../styles/index.scss';
+
+.homepage {
+    text-align: center;
+    max-width: 300px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 $md;
+    background-color: transparent;
+    border-radius: $xs;
+
+    &__logo {
+        padding-top: $xxl;
+        color: $col-blue-black;
+
+        &--text {
+            color: $col-text-light;
+            font-family: $font-game;
+            font-size: calc($xxl * 2);
+            text-transform: capitalize;
+            margin-top: $xl;
+
+            & span:first-child {
+                color: $col-blue-black;
+                text-shadow: 1px 1px 1px $col-blue-sky;
+            }
+
+            & span:last-child {
+                text-shadow: 2px 1px 2px $col-pink;
+            }
+        }
+    }
+}
+
+.login {
+    color: $col-blue-black;
+    font-family: $font-main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: calc($xxl * 3);
+
+    &__title {
+        font-size: calc($xxl * 1.5);
+        font-weight: 300;
+        margin: calc($xxl * 1.5) 0;
+    }
+
+    &__input {
+        width: 100%;
+        margin-top: $xxl;
+
+        &--messages {
+            width: 100%;
+            text-align: center;
+        }
+
+        &--message {
+            margin-top: $md;
+            font-size: $md;
+            font-style: italic;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        margin-top: calc($xl * 2);
+        border-radius: $sm;
+    }
+}
