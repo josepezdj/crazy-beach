@@ -1,10 +1,22 @@
 // Colors
 
-$col-bg-main: #fdf6d3;
 $col-text-light: #f2ede2;
-$col-white: #fffff6;
-$col-blue: #53a8b6;
-$col-blue-accent: #4c9eab;
+$col-text-dark: #0e0c0b;
+$col-white: #ebf8e1;
+$col-black: #03070a;
+
+$col-blue: #33869d;
+$col-blue-accent: #36626a;
+$col-blue-sky: #b1dcec;
+$col-blue-black: #214653;
+$col-pink: #7e3743;
+$col-orange: #fa9b1e;
+$col-yellow: #f5ef32;
+$col-sand: #ecd5b3;
+$col-success: #339175;
+$col-alert: #e15933;
+
+$col-beach-bg: linear-gradient(to bottom, $col-blue-sky 35%, $col-sand 35%, $col-sand 100%);
 
 // Sizes
 
@@ -15,5 +27,18 @@ $md: calc($base-size * 1.5);
 $lg: calc($base-size * 2);
 $xl: calc($base-size * 2.5);
 $xxl: calc($base-size * 3);
+$header-height: 40px;
 
-//
+// Fonts
+
+// $font-main: 'Nunito', sans-serif;
+$font-main: 'Lato', sans-serif;
+$font-game: 'Pacifico', cursive;
+$font-level1: 'Ceviche One', cursive;
+$font-level2: 'Monoton', cursive;
+$font-level3: 'Shrikhand', cursive;
+$font-level4: 'Bungee Shade', cursive;
+$font-level5: 'Black Ops One', cursive;
+$font-bungee: 'Bungee', cursive;
+$font-gravitas: 'Gravitas One', cursive;
+$font-mogra: 'Mogra', cursive;
