@@ -2,11 +2,9 @@
 
 .btn {
     font-family: $font-main;
-    border-radius: $xs;
     box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.2);
     width: fit-content;
     z-index: 10;
-    transition: all 0.3s;
 
     &-normal {
         button {
@@ -18,35 +16,36 @@
     button {
         font-family: inherit;
         color: inherit;
-        background-color: transparent;
         text-transform: uppercase;
         display: inline-block;
         border: none;
         height: 100%;
         width: 100%;
         cursor: pointer;
+        outline: none;
+        transition: all 0.3s;
+        border-radius: $xs;
     }
 
     &--w100 {
         width: 100%;
     }
 
-    &-blue {
+    &-blue button {
         color: $col-white;
         background-color: $col-blue;
 
-        &:hover {
-            background-color: $col-blue-accent;
+        &:hover,
+        &:focus {
+            filter: hue-rotate(10deg);
+            transform: translateY(1px);
             box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.7);
         }
     }
 
-    &.invalid {
+    &.invalid button {
         background-color: $col-black;
         box-shadow: none;
-        
-        button {
-            cursor: auto;
-        }
+        cursor: auto;
     }
 }

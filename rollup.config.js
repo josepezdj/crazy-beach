@@ -24,7 +24,6 @@ export default {
         image(),
         copy({
             targets: [
-              { src: "index.html", dest: "public" },
               { src: "src/assets/*", dest: "lib/assets" }
             ]
           }),

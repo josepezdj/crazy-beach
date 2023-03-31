@@ -31,6 +31,9 @@ Para poder instalar este juego es necesario que tengas instaladas las siguientes
 
 -   `npm run build`
 
+    ó
+-   `npm run build:watch` (para desarrollo)
+
 ### Juego desplegado
 
 -   [TODO](https://crazy-beach/)

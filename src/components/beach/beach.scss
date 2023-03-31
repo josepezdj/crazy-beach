@@ -47,6 +47,16 @@
             z-index: 1;
         }
     }
+
+    &__flash-message {
+        font-size: calc($xxl * 1.5);
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 45%;
+        z-index: 20;
+    }
 }
 
 .level-1 {

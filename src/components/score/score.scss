@@ -3,20 +3,21 @@
 .score {
     font-family: $font-game;
     position: absolute;
-    top: 50%;
-    right: $xs;
+    top: 40%;
+    right: $sm;
     z-index: 20;
 
 
     &__title {
-        font-size: $md;
+        font-size: $lg;
         text-align: center;
-        text-transform: uppercase;
+        text-transform: capitalize;
+        font-weight: normal;
     }
 
     &__number {
-        width: calc($xxl * 3);
-        height: calc($xxl * 3);
+        width: calc($xxl * 2.5);
+        height: calc($xxl * 2.5);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -29,7 +30,7 @@
         0 16px 16px rgba(0,0,0,0.12);
 
         & span {
-            font-size: calc($xxl * 1.5);
+            font-size: $xxl;
             margin-bottom: $sm;
         }
     }
