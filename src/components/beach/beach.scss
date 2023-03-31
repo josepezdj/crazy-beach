@@ -49,13 +49,18 @@
     }
 
     &__flash-message {
-        font-size: calc($xxl * 1.5);
+        font-size: calc($xxl * 2);
+        text-transform: capitalize;
         text-align: center;
         width: 100%;
         position: absolute;
         left: 0;
-        top: 45%;
+        top: 40%;
         z-index: 20;
+
+        &--levelup {
+            color: $col-success;
+        }
     }
 }
 

@@ -12,13 +12,15 @@ class Beach extends LitElement {
             currentLevel: { type: Object },
             currentPlayer: { type: Object },
             flashMessage: { type: String },
+            messageType: { type: String },
         };
     }
 
     firstUpdated() {
         this.currentPlayer = playerService.getCurrentPlayer();
         this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints);
-        this.flashMessage = 'Level Up!';
+        this.flashMessage = '';
+        this.messageType = ''; // levelup / gameover / ranking3 / ranking2 / ranking1
     }
 
     render() {
@@ -38,9 +40,13 @@ class Beach extends LitElement {
                 <crazy-beach-feet-component
                     @cb-feet-click="${this.onFeetClick}"
                 ></crazy-beach-feet-component>
-                <div class="beach__flash-message">
-                    <p>${this.flashMessage}</p>
-                </div>
+                ${this.flashMessage !== ''
+                    ? html`
+                        <div class="beach__flash-message beach__flash-message--${this.messageType}">
+                        <p>${this.flashMessage}</p>
+                    </div>`
+                    : null
+                }
                 <crazy-beach-score-component
                     score="${this.score}"
                 ></crazy-beach-score-component>
