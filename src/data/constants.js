@@ -3,11 +3,13 @@ export const CRAZY_BEACH = {
         TITLE1: 'Crazy',
         TITLE2: 'Beach',
         INSTRUCTIONS: ' Instrucciones',
-        RANKING: 'Ranking',
-        COLOR: {
-            START: 'green',
-            STOP: 'red'
-        }
+        RANKING: {
+            TITLE: 'Ranking',
+            COL_NAME: 'Nombre',
+            COL_POINTS: 'Puntos',
+            COL_MAX_POINTS: "Max. puntos",
+        },
+        PLAYERS: 'Jugadores',
     },
     LOGIN: {
         TITLE: 'Crear jugador',
@@ -17,11 +19,18 @@ export const CRAZY_BEACH = {
         INPUT_MIN_LENGTH: 4,
         ERR_MESSAGES: {
             TOO_SHORT_NAME: 'El nombre debe tener al menos 4 carateres',
-            INVALID_CHARACTERS: 'Sólo se permite el uso de números y letras (mayúsculas y minúsculas)'
+            INVALID_CHARACTERS: 'Sólo se permite el uso de números y letras (mayúsculas y minúsculas)',
         },
         WARN_MESSAGES: {
             NAME_ALREADY_REGISTERED: 'Este jugador ya existe',
-            GAME_CONTIUE: 'Continuar partida?'
+            GAME_CONTINUE: 'Continuar partida?',
+        }
+    },
+    GAME: {
+        BTN_START: {
+            START: 'Empezar',
+            STOP: 'Parar',
+            RESTART: 'Reanudar',
         }
     }
 }

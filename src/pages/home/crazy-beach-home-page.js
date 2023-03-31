@@ -57,7 +57,7 @@ class HomePage extends LitElement {
                             maxLength="${CRAZY_BEACH.LOGIN.INPUT_MAX_LENGTH}"
                             ?isInvalid="${this.isInvalid}"
                             @cb-input-value="${this.onInputValue}"
-                            @cb-input-focusout="${this.onInputValue}"
+                            @cb-input-focusout="${this.onInputFocussout}"
                         ></crazy-beach-input-widget>
                         ${this.messages.length > 0
                             ? html`
@@ -79,7 +79,7 @@ class HomePage extends LitElement {
                         label="${CRAZY_BEACH.LOGIN.ENTER_BTN_TEXT}"
                         fullWidth
                         ?isInvalid="${this.isInvalid}"
-                        @cb-button-click="${this.onclickButton}"
+                        @cb-button-click="${this.onButtonClick}"
                     ></crazy-beach-button-widget>
                 </div>
             </section>
@@ -112,6 +112,10 @@ class HomePage extends LitElement {
         this.validate();
     }
 
+    onInputFocussout() {
+        
+    }
+
     validate() {
         const input = this.shadowRoot.querySelectorAll('#cb-login-input')[0];
         const button = this.shadowRoot.querySelectorAll('#cb-login-button')[0];
@@ -124,7 +128,7 @@ class HomePage extends LitElement {
         }
     }
 
-    onclickButton() {
+    onButtonClick() {
         const state = localstorageService.getStateFromLocalStorage();
         if (state !== -1) {
             const foundPlayer = localstorageService.findPlayerInStatePlayers(this.name);

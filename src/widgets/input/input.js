@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './input.scss';
-import { CRAZY_BEACH } from '../../data/constants';
 
 export class Input extends LitElement {
     static get properties() {
@@ -58,7 +57,6 @@ export class Input extends LitElement {
 
     onInputValue(e) {
         if (e.keyCode == 13) e.preventDefault();
-        console.log(e.data);
         const value = e.target.value;
         if (value !== undefined && value !== null) {
             this.inputValue = value;

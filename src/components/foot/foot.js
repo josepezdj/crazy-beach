@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './foot.scss';
-import { CRAZY_BEACH } from '../../data/constants';
 import left from '../../assets/images/left.png';
 import right from '../../assets/images/right.png';
 

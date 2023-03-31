@@ -1,9 +1,8 @@
 import { LitElement, html } from 'lit';
 import styles from './beach.scss';
+import gradient from '../../assets/images/gradient.png'
 import { getLevelByPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
-import gradient from '../../assets/images/gradient.png'
-import { CRAZY_BEACH } from '../../data/constants';
 import './import';
 
 class Beach extends LitElement {
@@ -13,14 +12,21 @@ class Beach extends LitElement {
             currentPlayer: { type: Object },
             flashMessage: { type: String },
             messageType: { type: String },
+            color: { type: String },
+            score: { type: Number },
         };
     }
 
-    firstUpdated() {
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints);
+    constructor() {
+        super();
         this.flashMessage = '';
         this.messageType = ''; // levelup / gameover / ranking3 / ranking2 / ranking1
+        this.score = 0;
+        this.currentPlayer = playerService.getCurrentPlayer();
+        this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints)
+    }
+
+    firstUpdated() {
     }
 
     render() {
@@ -34,7 +40,7 @@ class Beach extends LitElement {
                     </div>
                 </div>
                 <crazy-beach-boat-component
-                    color=${CRAZY_BEACH.MAIN_APP.COLOR.START}
+                    color=${this.color}
                 >
                 </crazy-beach-boat-component>
                 <crazy-beach-feet-component

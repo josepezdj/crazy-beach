@@ -4,24 +4,30 @@
     font-family: $font-game;
     border-radius: $xs $xs 0 0;
     margin-top: $header-height;
-    background-color: $col-orange;
+    background-color: $col-pink;
+    border-bottom: 1px solid $col-blue;
 
     &__title {
+        font-family: $font-main;
+        color: $col-white;
         font-size: $md;
         text-align: center;
-        padding-bottom: $xs;
+        padding: $sm 0;
         font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: $xs;
     }
 
     &__stats {
+        color: $col-blue-black;
         text-align: center;
         width: 100%;
         font-family: $font-main;
         font-size: $md;
-        font-weight: 500;
+        font-weight: 700;
         text-transform: capitalize;
         display: grid;
-        grid-template-columns: $xxl repeat(2, 1fr);
+        grid-template-columns: $xxl repeat(3, 1fr);
         grid-template-rows: auto;
         padding: $xs 0;
         background-color: $col-yellow;
@@ -30,7 +36,7 @@
     &__players {
         font-size: $md;
         display: grid;
-        grid-template-columns: $xxl repeat(2, 1fr);
+        grid-template-columns: $xxl repeat(3, 1fr);
         grid-template-rows: auto;
 
         &--player {
@@ -43,7 +49,7 @@
         }
 
         &:nth-child(even) {
-            background-color: $col-blue-sky;
+            background-color: $col-green-light;
         }
     }
 }

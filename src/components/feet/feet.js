@@ -1,7 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './feet.scss';
-import { CRAZY_BEACH } from '../../data/constants';
-import logo from '../../assets/images/feet.png';
 import './import';
 
 class Feet extends LitElement {
@@ -14,9 +12,6 @@ class Feet extends LitElement {
     constructor() {
         super();
         this.side = 'left';
-    }
-
-    firstUpdated() {
     }
 
     render() {

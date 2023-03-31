@@ -14,6 +14,8 @@ export class Ranking extends LitElement {
 
     constructor() {
         super();
+        this.currentPlayer = playerService.getCurrentPlayer();
+        this.players = playerService.getAllPlayers();
     }
 
     firstUpdated() {
@@ -24,17 +26,19 @@ export class Ranking extends LitElement {
     render() {
         return html`
             <section class="ranking">
-                <h3 class="ranking__title">${CRAZY_BEACH.MAIN_APP.RANKING}</h3>
+                <h3 class="ranking__title">${CRAZY_BEACH.MAIN_APP.RANKING.TITLE}</h3>
                 <ul class="ranking__stats">
                     <li><fa-icon class="fas fa-trophy" size="1.20em"></fa-icon></li>
-                    <li>Nombre</li>
-                    <li>Max. Puntos</li>
+                    <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_NAME}</li>
+                    <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_POINTS}</li>
+                    <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_MAX_POINTS}</li>
                 </ul>
                     ${this.players?.map((player, i) => {
                         return html`
                             <ul class="ranking__players">
                                 <li class="ranking__players--player">${i + 1}</li>
                                 <li class="ranking__players--player">${player.name}</li>
+                                <li class="ranking__players--player">${player.currentPoints}</li>
                                 <li class="ranking__players--player">${player.maxPoints}</li>
                             </ul>
                         `

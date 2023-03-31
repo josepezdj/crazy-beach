@@ -6,6 +6,7 @@ export const getLevelById = (level_id) => {
 };
 
 export const getLevelByPoints = (level_points) => {
+    if (level_points === 0) return LEVELS[0];
     const foundLevel = LEVELS.find(level => level.points >= level_points);
     return foundLevel;
 };

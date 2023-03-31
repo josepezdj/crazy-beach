@@ -1,9 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './boat.scss';
-import { CRAZY_BEACH } from '../../data/constants';
 import boat from '../../assets/images/boat.png';
 import waves from '../../assets/images/waves.png';
-import './import';
 
 class Boat extends LitElement {
     static get properties() {
@@ -14,10 +12,7 @@ class Boat extends LitElement {
 
     constructor() {
         super();
-        this.color = CRAZY_BEACH.MAIN_APP.COLOR.STOP;
-    }
-
-    firstUpdated() {
+        this.color = 'red';
     }
 
     render() {
@@ -26,8 +21,7 @@ class Boat extends LitElement {
                 <div class="boat__image-container">
                     <figure class="boat__figure boat__figure--${this.color}">
                         <img class="boat__figure--img" src="${boat}" alt="dibujo de un barquito velero">
-                        <span class="boat__flag boat__flag--green" alt=""></span>
-                        <span class="boat__flag boat__flag--red" alt=""></span>
+                        <span class="boat__flag boat__flag--${this.color}" alt=""></span>
                     </figure>
                     <img class="boat__bg" src="${waves}" alt="dubujo de unas olas" >
                 </div>

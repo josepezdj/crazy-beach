@@ -3,40 +3,47 @@ import styles from './crazy-beach-game-page.scss';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { getLevelByPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
+import { CRAZY_BEACH } from '../../data/constants';
 import './import';
 
 export class GamePage extends LitElement {
     static get properties() {
         return {
-            currentLevel: { type:Object },
             currentPlayer: { type: Object },
             currentPoints: { type: Number },
-            currentPlayerMaxPoints: { type: Number },
+            currentMaxPoints: { type: Number },
             players: { type: Array },
+            currentLevel: { type:Object },
             score: { type: Number },
             color: { type: String },
             counter: { type: Function },
-            boat: { type: Object },
+            flashMessage: { type: String },
+            messageType: { type: String },
+            buttonLabel: { type: String },
             isLeftPressed: { type: Boolean },
             isRightPressed: { type: Boolean },
-            messages: { type: Array },
+            isGameOn: { type: Boolean },
         };
     }
 
     constructor() {
         super();
         this.currentPlayer = playerService.getCurrentPlayer();
-        this.currentPlayerCurrentPoints = this.currentPlayer.currentPoints;
-        this.currentPlayerMaxPoints = this.currentPlayer.maxPoints;
+        this.currentPoints = this.currentPlayer.currentPoints;
+        this.currentMaxPoints = this.currentPlayer.maxPoints;
         this.players = playerService.getAllPlayers();
-        this.currentLevel = getLevelByPoints();
+        this.currentLevel = getLevelByPoints(this.currentMaxPoints);
         this.score = 0;
         this.color = 'red';
-        this.messages = [];
+        this.flashMessage = '';
+        this.messageType = '';
+        this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.START;
+        this.isLeftPressed = false;
+        this.isRightPressed = false;
+        this.isGameOn = false;
     }
 
     firstUpdated() {
-        document.addEventListener('cb-color-change', this.onColorChange)
     }
 
     render() {
@@ -50,39 +57,39 @@ export class GamePage extends LitElement {
                     players="${this.players}"
                 ></crazy-beach-ranking-component>
                 <crazy-beach-beach-component
-                    currentLevel="${ifDefined(this.currentLevel)}"
+                    color="${this.color}"
+                    score="${this.score}"
+                    currentLevel="${JSON.stringify(this.currentLevel)}"
                     @cb-feet-click="${this.onFeetClick}"
                 ></crazy-beach-beach-component>
                 <div class="gamepage__button">
                     <crazy-beach-button-widget
                         color="blue"
-                        label="Empezar"
-                        @cb-button-click="${this.onStartButton}"
+                        label="${this.buttonLabel}"
+                        @cb-button-click="${this.onStartButtonClick}"
                     ></crazy-beach-button-widget>
                 </div>
-                <crazy-beach-score-component
-                    score="${this.score}"
-                ></crazy-beach-score-component>
             </section>
         `;
     }
 
-    onColorChange(e) {
-        const color = e.detail;
-        if (color === 'red') {
-            // Stop counter
+    onStartButtonClick() {
+    }
 
-            // Stop motion
+    startGame() {
+        //Start boat movement
+        // Count to 3
+        // Change color to green
+    
+        // Reset points?
 
-            // Call green timer
+        // Start/Reset counter
 
-        } else {
-            // Start counter
+        // Start/Stop music upon color
+    }
 
-            // Start motion
+    stopGame() {
 
-            // Call red timer
-        }
     }
 
     onFeetClick(e) {
@@ -106,30 +113,8 @@ export class GamePage extends LitElement {
         }
     }
 
-    onStartButton() {
-        // If a game is running, ask before reset!
-        console.log('Start button clicked');
-        this._startGame();
-    }
-
-    fireCountdown() {
+    _fireCountdown() {
         
-    }
-
-    _startGame() {
-        //Start boat movement
-        // Count to 3
-        // Change color to green
-    
-        // Reset points?
-
-        // Start/Reset counter
-
-        // Start/Stop music upon color
-    }
-
-    _stopGame() {
-
     }
 
     _changeFlagColor(color) {

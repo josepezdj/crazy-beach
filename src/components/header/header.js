@@ -13,9 +13,6 @@ export class Header extends LitElement {
 
     constructor() {
         super();
-    }
-
-    firstUpdated() {
         this.currentPlayer = playerService.getCurrentPlayer();
     }
 

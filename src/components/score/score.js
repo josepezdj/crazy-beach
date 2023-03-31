@@ -11,11 +11,10 @@ export class Score extends LitElement {
 
     constructor() {
         super();
-        
+        this.score = 0;
     }
 
     firstUpdated() {
-        this.score = 478;
     }
 
     render() {
