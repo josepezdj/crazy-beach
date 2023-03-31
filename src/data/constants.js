@@ -31,6 +31,22 @@ export const CRAZY_BEACH = {
             START: 'Empezar',
             STOP: 'Parar',
             RESTART: 'Reanudar',
+        },
+        FLASH_MESSAGES: {
+            COUNTDOWN: {
+                THREE: '3',
+                TWO: '2',
+                ONE: '1',
+            },
+            RANKING: {
+                THREE: '¡Número 3 del Ranking!',
+                TWO: '¡Número 2 del Ranking!',
+                ONE: '¡¡Eres el número 1!!',
+            },
+            LEVEL_UP: 'NIVEL ##LEVEL##!!',
+            GAME_OVER: 'Juego terminado',
         }
     }
 }
+
+//levelup / gameover / ranking3 / ranking2 / ranking1 / countdown

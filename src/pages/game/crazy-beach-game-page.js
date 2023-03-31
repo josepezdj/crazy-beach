@@ -23,6 +23,8 @@ export class GamePage extends LitElement {
             isLeftPressed: { type: Boolean },
             isRightPressed: { type: Boolean },
             isGameOn: { type: Boolean },
+            isStartButtonDisabled: { type: Boolean },
+            beachAnimation: { type: Boolean },
         };
     }
 
@@ -37,13 +39,19 @@ export class GamePage extends LitElement {
         this.color = 'red';
         this.flashMessage = '';
         this.messageType = '';
-        this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.START;
+        // MessageType Values:
+        // levelup / gameover / ranking3 / ranking2 / ranking1 / countdown
         this.isLeftPressed = false;
         this.isRightPressed = false;
         this.isGameOn = false;
+        this.isStartButtonDisabled = false;
+        this.beachAnimation = false;
     }
 
     firstUpdated() {
+        this.buttonLabel = this.currentPoints !== 0
+        ? CRAZY_BEACH.GAME.BTN_START.RESTART
+        : CRAZY_BEACH.GAME.BTN_START.START;
     }
 
     render() {
@@ -54,11 +62,14 @@ export class GamePage extends LitElement {
                 ></crazy-beach-header-component>
                 <crazy-beach-ranking-component
                     currentPlayer="${ifDefined(this.currentPlayer)}"
-                    players="${this.players}"
+                    players="${JSON.stringify(this.players)}"
                 ></crazy-beach-ranking-component>
                 <crazy-beach-beach-component
                     color="${this.color}"
                     score="${this.score}"
+                    flashMessage="${this.flashMessage}"
+                    messageType="${this.messageType}"
+                    ?beach-animation="${this.beachAnimation}"
                     currentLevel="${JSON.stringify(this.currentLevel)}"
                     @cb-feet-click="${this.onFeetClick}"
                 ></crazy-beach-beach-component>
@@ -66,6 +77,7 @@ export class GamePage extends LitElement {
                     <crazy-beach-button-widget
                         color="blue"
                         label="${this.buttonLabel}"
+                        ?isInvalid="${this.isStartButtonDisabled}"
                         @cb-button-click="${this.onStartButtonClick}"
                     ></crazy-beach-button-widget>
                 </div>
@@ -74,22 +86,27 @@ export class GamePage extends LitElement {
     }
 
     onStartButtonClick() {
+        if (!this.isGameOn) {
+            this.isGameOn = true;
+            this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.STOP;
+            this.startGame();
+        } else {
+            this.isGameOn = false;
+            this.buttonLabel = this.currentPoints !== 0
+                ? CRAZY_BEACH.GAME.BTN_START.RESTART
+                : CRAZY_BEACH.GAME.BTN_START.START;
+            this.stopGame();
+        }
     }
 
     startGame() {
-        //Start boat movement
         // Count to 3
-        // Change color to green
-    
-        // Reset points?
-
-        // Start/Reset counter
-
-        // Start/Stop music upon color
+        this._fireCountdown();
     }
 
     stopGame() {
-
+        this.color = 'red';
+        this._stopCounter();
     }
 
     onFeetClick(e) {
@@ -114,70 +131,45 @@ export class GamePage extends LitElement {
     }
 
     _fireCountdown() {
-        
+        this.isStartButtonDisabled = true;
+        this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE, 'countdown');
+        setTimeout(() => {
+            this._setGreenCounter();
+            this.isStartButtonDisabled = false;
+            this._setMessage('');
+            this.beachAnimation = true;
+        }, 3000);
+        setTimeout(() => {
+            this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.ONE, 'countdown');
+        }, 2000);
+        setTimeout(() => {
+            this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.TWO, 'countdown');
+        }, 1000);
     }
 
-    _changeFlagColor(color) {
-        const boat = this._getBoatElement();
-        if (boat !== null && boat !== undefined) {
-            if (color === 'red') {
-                boat.querySelector('.boat__flag--green').style.visibility = 'hidden';
-                boat.querySelector('.boat__flag--red').style.visibility = 'visible';
-            } else {
-                boat.querySelector('.boat__flag--green').style.visibility = 'visible';
-                boat.querySelector('.boat__flag--red').style.visibility = 'hidden';
-            }
-        }
+    _setMessage(msg, type = 'levelup') {
+        this.flashMessage = msg;
+        this.messageType = type;
     }
 
     _setGreenCounter() {
+        this.color = 'green';
         const time = Math.max(10000 - this.score * 100, 2000) + Math.random(-1500, 1500);
-        clearTimeout(this.counter);
         this.counter = setTimeout(() => {
-            this.color = 'green';
+            this._setRedCounter();
         }, time);
     }
 
     _setRedCounter() {
-        clearTimeout(this.counter);
+        this.color = 'red';
         this.counter = setTimeout(() => {
-            this.color = 'red';
+            this._setGreenCounter();
         }, 3000);
     }
 
-    _sandMovement(mode) {
-        if (mode === 'start') {
-            this._getSandElement().classList.add('sand-scroll');
-        } else this._getSandElement().classList.remove('sand-scroll');
-    }
-
-    _boatMovement(mode) {
-        if (mode === 'start') {
-            this._getBoatElement().classList.add('boat-move');
-        } else this._getBoatElement().classList.remove('boat-move');
-    }
-
-    _wavesMovement(mode) {
-        if (mode === 'start') {
-            this._getWavesElement().classList.add('waves-move');
-        } else this._getWavesElement().classList.remove('waves-move');
-    }
-
-    _getBoatElement() {
-        return this.shadowRoot.querySelector('crazy-beach-beach-component')
-            .shadowRoot.querySelector('crazy-beach-boat-component')
-            .shadowRoot.querySelector('.boat__figure');
-    }
-
-    _getWavesElement() {
-        return this.shadowRoot.querySelector('crazy-beach-beach-component')
-        .shadowRoot.querySelector('crazy-beach-boat-component')
-        .shadowRoot.querySelector('.boat__bg');
-    }
-
-    _getSandElement() {
-        return this.shadowRoot.querySelector('crazy-beach-beach-component')
-        .shadowRoot.querySelector('.beach__background--sand');
+    _stopCounter() {
+        clearTimeout(this.counter);
+        this.beachAnimation = false;
     }
 
     static get styles() {

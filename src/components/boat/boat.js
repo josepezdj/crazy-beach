@@ -7,23 +7,27 @@ class Boat extends LitElement {
     static get properties() {
         return {
             color: { type: String },
+            isMoving: { type: Boolean },
         };
     }
 
     constructor() {
         super();
         this.color = 'red';
+        this.isMoving = false;
     }
 
     render() {
         return html`
             <div class="boat" id="boat">
                 <div class="boat__image-container">
-                    <figure class="boat__figure boat__figure--${this.color}">
+                    <figure
+                        class="boat__figure boat__figure--${this.color} ${this.isMoving ? 'boat-move' : ''}"
+                    >
                         <img class="boat__figure--img" src="${boat}" alt="dibujo de un barquito velero">
                         <span class="boat__flag boat__flag--${this.color}" alt=""></span>
                     </figure>
-                    <img class="boat__bg" src="${waves}" alt="dubujo de unas olas" >
+                    <img class="boat__bg ${this.isMoving ? 'waves-move' : ''}" src="${waves}" alt="dubujo de unas olas" >
                 </div>
             </div>
         `;

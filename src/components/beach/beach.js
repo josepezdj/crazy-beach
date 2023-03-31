@@ -14,16 +14,19 @@ class Beach extends LitElement {
             messageType: { type: String },
             color: { type: String },
             score: { type: Number },
+            beachAnimation: { type: Boolean, attribute: 'beach-animation' },
         };
     }
 
     constructor() {
         super();
         this.flashMessage = '';
-        this.messageType = ''; // levelup / gameover / ranking3 / ranking2 / ranking1
+        this.messageType = '';
         this.score = 0;
         this.currentPlayer = playerService.getCurrentPlayer();
-        this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints)
+        this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints);
+        this.color = 'red';
+        this.beachAnimation = false;
     }
 
     firstUpdated() {
@@ -41,6 +44,7 @@ class Beach extends LitElement {
                 </div>
                 <crazy-beach-boat-component
                     color=${this.color}
+                    ?isMoving="${this.beachAnimation}"
                 >
                 </crazy-beach-boat-component>
                 <crazy-beach-feet-component

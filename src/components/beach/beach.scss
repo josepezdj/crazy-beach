@@ -61,6 +61,27 @@
         &--levelup {
             color: $col-success;
         }
+
+        &--countdown {
+            color: $col-success;
+        }
+
+        &--gameover {
+            color: $col-alert;
+        }
+
+        &--ranking3 {
+            color: $col-success;
+        }
+
+        &--ranking2 {
+            color: $col-orange;
+        }
+
+        &--ranking1 {
+            color: $col-pink-light;
+            text-shadow: 1px 1px 1px $col-black;
+        }
     }
 }
 
