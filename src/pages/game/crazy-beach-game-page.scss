@@ -1,0 +1,22 @@
+@import '../../styles/index.scss';
+
+.gamepage {
+    font-family: $font-main;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    &__button {
+        position: absolute;
+        left: 50%;
+        bottom: 5px;
+        transform: translateX(-50%);
+        display: inline-block;
+        margin: 0 auto;
+        z-index: 10;
+    }
+}
