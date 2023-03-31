@@ -1,9 +1,11 @@
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import litcss from 'rollup-plugin-postcss-lit';
+import image from '@rollup/plugin-image';
+import copy from "rollup-plugin-copy";
 
 export default {
-    input: 'src/index.js',
+    input: 'src/main.js',
     output: [
         {
             dir: 'lib',
@@ -19,5 +21,13 @@ export default {
             minimize: false,
         }),
         litcss(),
+        image(),
+        copy({
+            targets: [
+              { src: "index.html", dest: "public" },
+              { src: "src/assets/*", dest: "lib/assets" }
+            ]
+          }),
     ],
+    preserveEntrySignatures: false,
 };
