@@ -76,7 +76,7 @@
 }
 
 .boat-move {
-    animation: boat-move 2.3s infinite ease-in-out;
+    animation: boat-move 2s infinite ease-in-out;
 }
 
 @keyframes boat-move {
@@ -123,13 +123,13 @@
         top: 25%;
     }
     25% {
-        top: 26%;
+        top: 25.5%;
     }
     50% {
         top: 25%;
     }
     75% {
-        top: 26%;
+        top: 25.5%;
     }
     100% {
         top: 25%;

@@ -38,24 +38,21 @@ export const playerService = (() => {
         let currentPlayer;
         if (state !== -1 && state.currentPlayer !== '') {
             currentPlayer = state.currentPlayer;
-            if (!currentPlayer[prop] === value) {
-                // Update currentPlayer
-                state.currentPlayer[prop] = value;
-                // Update player in players list
-                const foundPlayer =
-                    localstorageService.findPlayerInStatePlayers(
-                        state.currentPlayer.name
-                    );
-                foundPlayer[prop] = value;
-                const playerIndex = state.players
-                    .map((player) => player.name)
-                    .indexOf(foundPlayer.name);
-                state.players.splice(playerIndex, 1, foundPlayer);
-                // Save new state
-                localstorageService.saveStateToLocalStorage(state);
-                // Return player modified
-                return state.currentPlayer;
-            }
+            // Update currentPlayer
+            state.currentPlayer[prop] = value;
+            // Update player in players list
+            const foundPlayer = localstorageService.findPlayerInStatePlayers(
+                state.currentPlayer.name
+            );
+            foundPlayer[prop] = value;
+            const playerIndex = state.players
+                .map((player) => player.name)
+                .indexOf(foundPlayer.name);
+            state.players.splice(playerIndex, 1, foundPlayer);
+            // Save new state
+            localstorageService.saveStateToLocalStorage(state);
+            // Return player modified
+            return state.currentPlayer;
         }
         return -1;
     };

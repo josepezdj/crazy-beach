@@ -9,6 +9,8 @@ export class Ranking extends LitElement {
         return {
             currentPlayer: { type: Object },
             players: { type: Array },
+            currentPoints: { type: Number },
+            currentMaxPoints: { type: Number },
         };
     }
 
@@ -16,6 +18,8 @@ export class Ranking extends LitElement {
         super();
         this.currentPlayer = playerService.getCurrentPlayer();
         this.players = playerService.getAllPlayers();
+        this.currentPoints = 0;
+        this.currentMaxPoints = 0;
     }
 
     firstUpdated() {
@@ -37,24 +41,32 @@ export class Ranking extends LitElement {
                     <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_POINTS}</li>
                     <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_MAX_POINTS}</li>
                 </ul>
-                ${this.players?.map((player, i) => {
-                    return html`
-                        <ul class="ranking__players">
-                            <li class="ranking__players--player">${i + 1}</li>
-                            <li class="ranking__players--player">
-                                ${player.name}
-                            </li>
-                            <li class="ranking__players--player">
-                                ${player.currentPoints}
-                            </li>
-                            <li class="ranking__players--player">
-                                ${player.maxPoints}
-                            </li>
-                        </ul>
-                    `;
-                })}
+                ${this.renderPlayers()}
             </section>
         `;
+    }
+
+    renderPlayers() {
+        this.players = playerService.getAllPlayers();
+        if (this.players !== -1)
+            return html` ${this.players.map((player, i) => {
+                return html`
+                    <ul class="ranking__players">
+                        <li class="ranking__players--player">${i + 1}</li>
+                        <li class="ranking__players--player">${player.name}</li>
+                        <li class="ranking__players--player">
+                            ${player.id === this.currentPlayer.id
+                                ? this.currentPoints
+                                : player.currentPoints}
+                        </li>
+                        <li class="ranking__players--player">
+                            ${player.id === this.currentPlayer.id
+                                ? this.currentMaxPoints
+                                : player.maxPoints}
+                        </li>
+                    </ul>
+                `;
+            })}`;
     }
 
     static get styles() {

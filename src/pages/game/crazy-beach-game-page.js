@@ -50,7 +50,7 @@ export class GamePage extends LitElement {
 
     firstUpdated() {
         this.buttonLabel =
-            this.currentPoints !== 0
+            this.currentPoints > 0
                 ? CRAZY_BEACH.GAME.BTN_START.RESTART
                 : CRAZY_BEACH.GAME.BTN_START.START;
     }
@@ -62,6 +62,8 @@ export class GamePage extends LitElement {
                     currentPlayer="${JSON.stringify(this.currentPlayer)}"
                 ></crazy-beach-header-component>
                 <crazy-beach-ranking-component
+                    currentPoints="${this.currentPoints}"
+                    currentMaxPoints="${this.currentMaxPoints}"
                     currentPlayer="${JSON.stringify(this.currentPlayer)}"
                     players="${JSON.stringify(this.players)}"
                 ></crazy-beach-ranking-component>
@@ -95,7 +97,7 @@ export class GamePage extends LitElement {
         } else {
             this.isGameOn = false;
             this.buttonLabel =
-                this.currentPoints !== 0
+                this.currentPoints > 0
                     ? CRAZY_BEACH.GAME.BTN_START.RESTART
                     : CRAZY_BEACH.GAME.BTN_START.START;
             this.stopGame();
@@ -108,10 +110,11 @@ export class GamePage extends LitElement {
     }
 
     stopGame() {
+        this.isGameOn = false;
         this.color = 'red';
         this.feetDisabled = true;
         this.buttonLabel =
-            this.currentPoints !== 0
+            this.currentPoints > 0
                 ? CRAZY_BEACH.GAME.BTN_START.RESTART
                 : CRAZY_BEACH.GAME.BTN_START.START;
         this._stopCounter();
@@ -145,7 +148,7 @@ export class GamePage extends LitElement {
 
     addPoint() {
         this.currentPoints = this.currentPoints += 1;
-        recordMaxPoints();
+        this.recordMaxPoints();
     }
 
     subtractPoint() {
@@ -154,8 +157,15 @@ export class GamePage extends LitElement {
     }
 
     recordMaxPoints() {
-        if (this.currentPoints > this.maxPoints) {
-            this.maxPoints = this.currentPoints;
+        if (this.currentPoints > this.currentMaxPoints) {
+            this.currentMaxPoints = this.currentPoints;
+            playerService.updateCurrentPlayer(
+                'maxPoints',
+                this.currentMaxPoints
+            );
+            this.dispatchEvent(new CustomEvent('cb-game-maxpoints-up'), {
+                detail: this.currentMaxPoints,
+            });
         }
     }
 

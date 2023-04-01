@@ -31,7 +31,12 @@ class Beach extends LitElement {
         this.beachAnimation = false;
     }
 
-    firstUpdated() {}
+    firstUpdated() {
+        this.currentPlayer = playerService.getCurrentPlayer();
+        if (this.currentPlayer === -1) {
+            this.currentLevel = getLevelByPoints(0);
+        }
+    }
 
     render() {
         return html`
