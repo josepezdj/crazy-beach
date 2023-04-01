@@ -22,12 +22,26 @@ class Boat extends LitElement {
             <div class="boat" id="boat">
                 <div class="boat__image-container">
                     <figure
-                        class="boat__figure boat__figure--${this.color} ${this.isMoving ? 'boat-move' : ''}"
+                        class="boat__figure boat__figure--${this.color} ${this
+                            .isMoving
+                            ? 'boat-move'
+                            : ''}"
                     >
-                        <img class="boat__figure--img" src="${boat}" alt="dibujo de un barquito velero">
-                        <span class="boat__flag boat__flag--${this.color}" alt=""></span>
+                        <img
+                            class="boat__figure--img"
+                            src="${boat}"
+                            alt="dibujo de un barquito velero"
+                        />
+                        <span
+                            class="boat__flag boat__flag--${this.color}"
+                            alt=""
+                        ></span>
                     </figure>
-                    <img class="boat__bg ${this.isMoving ? 'waves-move' : ''}" src="${waves}" alt="dubujo de unas olas" >
+                    <img
+                        class="boat__bg ${this.isMoving ? 'waves-move' : ''}"
+                        src="${waves}"
+                        alt="dubujo de unas olas"
+                    />
                 </div>
             </div>
         `;

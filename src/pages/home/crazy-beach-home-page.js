@@ -29,8 +29,7 @@ class HomePage extends LitElement {
             this.currentPlayer = '';
             this.players = [];
             this.name = '';
-        }
-        else {
+        } else {
             this.currentPlayer = playerService.getCurrentPlayer();
             this.players = playerService.getAllPlayers();
             this.name = this.currentPlayer.name;
@@ -42,10 +41,10 @@ class HomePage extends LitElement {
             <section class="homepage">
                 <div class="homepage__logo">
                     <fa-icon class="fas fa-umbrella-beach" size="5em"></fa-icon>
-                        <div class="homepage__logo--text">
-                            <span>${CRAZY_BEACH.MAIN_APP.TITLE1}</span>
-                            <span>${CRAZY_BEACH.MAIN_APP.TITLE2}</span>
-                        </div>
+                    <div class="homepage__logo--text">
+                        <span>${CRAZY_BEACH.MAIN_APP.TITLE1}</span>
+                        <span>${CRAZY_BEACH.MAIN_APP.TITLE2}</span>
+                    </div>
                 </div>
                 <div class="login">
                     <h2 class="login__title">${CRAZY_BEACH.LOGIN.TITLE}</h2>
@@ -61,16 +60,17 @@ class HomePage extends LitElement {
                         ></crazy-beach-input-widget>
                         ${this.messages.length > 0
                             ? html`
-                                <div class="login__input--messages">
-                                    ${this.messages.map(msg => {
-                                        return html`
-                                            <p class="login__input--message">${msg}</p>
-                                        `
-                                    })}
-                                </div>
-                            `
-                            : null
-                        }
+                                  <div class="login__input--messages">
+                                      ${this.messages.map((msg) => {
+                                          return html`
+                                              <p class="login__input--message">
+                                                  ${msg}
+                                              </p>
+                                          `;
+                                      })}
+                                  </div>
+                              `
+                            : null}
                     </div>
                 </div>
                 <div class="login__button">
@@ -91,37 +91,54 @@ class HomePage extends LitElement {
         const regExp = /^[A-Za-z0-9]*$/;
         const checkCharacters = regExp.test(value);
         if (checkCharacters) {
-            this.messages = this.messages.filter(msg => msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS)
-    
+            this.messages = this.messages.filter(
+                (msg) =>
+                    msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS
+            );
+
             if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
                 this.isInvalid = true;
-                const msgAlreadyDisplaying = this.messages.find(msg => msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME)
-                if (!msgAlreadyDisplaying) this.messages = [...this.messages, CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME];
+                const msgAlreadyDisplaying = this.messages.find(
+                    (msg) =>
+                        msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+                );
+                if (!msgAlreadyDisplaying)
+                    this.messages = [
+                        ...this.messages,
+                        CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME,
+                    ];
             } else {
                 this.isInvalid = false;
-                this.messages = this.messages.filter(msg => msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME)
+                this.messages = this.messages.filter(
+                    (msg) =>
+                        msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+                );
                 this.name = value;
             }
         } else {
             this.isInvalid = true;
-            const msgAlreadyDisplaying = this.messages.find(msg => msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS)
+            const msgAlreadyDisplaying = this.messages.find(
+                (msg) =>
+                    msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS
+            );
             if (!msgAlreadyDisplaying) {
-                this.messages = [...this.messages, CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS];
+                this.messages = [
+                    ...this.messages,
+                    CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS,
+                ];
             }
         }
         this.validate();
     }
 
-    onInputFocussout() {
-        
-    }
+    onInputFocussout() {}
 
     validate() {
         const input = this.shadowRoot.querySelectorAll('#cb-login-input')[0];
         const button = this.shadowRoot.querySelectorAll('#cb-login-button')[0];
         if (this.isInvalid) {
             input.setAttribute('isInvalid', true);
-            button.setAttribute('isInvalid', true)
+            button.setAttribute('isInvalid', true);
         } else {
             input.removeAttribute('isInvalid');
             button.removeAttribute('isInvalid');
@@ -131,7 +148,9 @@ class HomePage extends LitElement {
     onButtonClick() {
         const state = localstorageService.getStateFromLocalStorage();
         if (state !== -1) {
-            const foundPlayer = localstorageService.findPlayerInStatePlayers(this.name);
+            const foundPlayer = localstorageService.findPlayerInStatePlayers(
+                this.name
+            );
             if (foundPlayer !== -1) playerService.setCurrentPlayer(foundPlayer);
             else {
                 const player = playerService.createNewPlayer(this.name);

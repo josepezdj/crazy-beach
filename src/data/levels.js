@@ -33,5 +33,5 @@ export const LEVELS = [
         location: 'Río de Janeiro',
         country: 'Brasil',
         points: 400,
-    }
+    },
 ];

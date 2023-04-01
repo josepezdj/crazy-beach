@@ -1,4 +1,3 @@
-
 *,
 *::after,
 *::before {
@@ -26,14 +25,14 @@ a {
     min-height: 100vh;
     margin: 0 auto;
     background: linear-gradient(
-        150deg, 
-        $col-orange 5%, 
-        $col-yellow 30%, 
+        150deg,
+        $col-orange 5%,
+        $col-yellow 30%,
         $col-text-light 32%,
         $col-text-light 33%,
-        $col-blue 34%, 
+        $col-blue 34%,
         $col-blue 36%,
         $col-blue-sky 55%,
         $col-white
-);
+    );
 }

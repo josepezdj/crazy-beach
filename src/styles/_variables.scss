@@ -18,7 +18,12 @@ $col-sand: #ecd5b3;
 $col-success: #339175;
 $col-alert: #e15933;
 
-$col-beach-bg: linear-gradient(to bottom, $col-blue-sky 35%, $col-sand 35%, $col-sand 100%);
+$col-beach-bg: linear-gradient(
+    to bottom,
+    $col-blue-sky 35%,
+    $col-sand 35%,
+    $col-sand 100%
+);
 
 // Sizes
 

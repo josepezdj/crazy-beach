@@ -7,7 +7,7 @@ export const CRAZY_BEACH = {
             TITLE: 'Ranking',
             COL_NAME: 'Nombre',
             COL_POINTS: 'Puntos',
-            COL_MAX_POINTS: "Max. puntos",
+            COL_MAX_POINTS: 'Max. puntos',
         },
         PLAYERS: 'Jugadores',
     },
@@ -19,12 +19,13 @@ export const CRAZY_BEACH = {
         INPUT_MIN_LENGTH: 4,
         ERR_MESSAGES: {
             TOO_SHORT_NAME: 'El nombre debe tener al menos 4 carateres',
-            INVALID_CHARACTERS: 'Sólo se permite el uso de números y letras (mayúsculas y minúsculas)',
+            INVALID_CHARACTERS:
+                'Sólo se permite el uso de números y letras (mayúsculas y minúsculas)',
         },
         WARN_MESSAGES: {
             NAME_ALREADY_REGISTERED: 'Este jugador ya existe',
             GAME_CONTINUE: 'Continuar partida?',
-        }
+        },
     },
     GAME: {
         BTN_START: {
@@ -45,8 +46,8 @@ export const CRAZY_BEACH = {
             },
             LEVEL_UP: 'NIVEL ##LEVEL##!!',
             GAME_OVER: 'Juego terminado',
-        }
-    }
-}
+        },
+    },
+};
 
 //levelup / gameover / ranking3 / ranking2 / ranking1 / countdown

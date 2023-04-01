@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './beach.scss';
-import gradient from '../../assets/images/gradient.png'
+import { ifDefined } from 'lit/directives/if-defined.js';
+import gradient from '../../assets/images/gradient.png';
 import { getLevelByPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
 import './import';
@@ -15,6 +16,7 @@ class Beach extends LitElement {
             color: { type: String },
             score: { type: Number },
             beachAnimation: { type: Boolean, attribute: 'beach-animation' },
+            feetDisabled: { type: Boolean },
         };
     }
 
@@ -29,15 +31,18 @@ class Beach extends LitElement {
         this.beachAnimation = false;
     }
 
-    firstUpdated() {
-    }
+    firstUpdated() {}
 
     render() {
         return html`
             <section class="beach level-${this.currentLevel?.id}">
                 <h2 class="beach__title">${this.currentLevel?.name}</h2>
                 <div class="beach__background">
-                    <img class="beach__background--gradient" src="${gradient}" alt="">
+                    <img
+                        class="beach__background--gradient"
+                        src="${gradient}"
+                        alt=""
+                    />
                     <div class="beach__background--sand-container">
                         <span class="beach__background--sand"></span>
                     </div>
@@ -48,15 +53,17 @@ class Beach extends LitElement {
                 >
                 </crazy-beach-boat-component>
                 <crazy-beach-feet-component
+                    ?isDisabled="${ifDefined(this.feetDisabled)}"
                     @cb-feet-click="${this.onFeetClick}"
                 ></crazy-beach-feet-component>
                 ${this.flashMessage !== ''
-                    ? html`
-                        <div class="beach__flash-message beach__flash-message--${this.messageType}">
-                        <p>${this.flashMessage}</p>
-                    </div>`
-                    : null
-                }
+                    ? html` <div
+                          class="beach__flash-message beach__flash-message--${this
+                              .messageType}"
+                      >
+                          <p>${this.flashMessage}</p>
+                      </div>`
+                    : null}
                 <crazy-beach-score-component
                     score="${this.score}"
                 ></crazy-beach-score-component>
@@ -66,9 +73,11 @@ class Beach extends LitElement {
 
     onFeetClick(e) {
         const side = e.detail;
-        this.dispatchEvent(new CustomEvent('cb-feet-click'), {
-            detail: side,
-        });
+        this.dispatchEvent(
+            new CustomEvent('cb-beach-feet-click', {
+                detail: side,
+            })
+        );
     }
 
     static get styles() {

@@ -14,9 +14,6 @@ export class Score extends LitElement {
         this.score = 0;
     }
 
-    firstUpdated() {
-    }
-
     render() {
         return html`
             <section class="score">

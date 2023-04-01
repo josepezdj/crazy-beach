@@ -33,10 +33,10 @@ export class Button extends LitElement {
                     : ''} btn-${this.size} ${this.isInvalid ? 'invalid' : ''}"
             >
                 <button
-                id="${this.id}"
-                ?disabled="${this.isInvalid}"
-                @click="${this._handleClick}"
-                type="button"
+                    id="${this.id}"
+                    ?disabled="${this.isInvalid}"
+                    @click="${this._handleClick}"
+                    type="button"
                 >
                     ${this.label}
                 </button>
@@ -46,10 +46,8 @@ export class Button extends LitElement {
 
     _handleClick(e) {
         e.preventDefault();
-        this.dispatchEvent(
-          new CustomEvent('cb-button-click')
-        );
-      }
+        this.dispatchEvent(new CustomEvent('cb-button-click'));
+    }
 
     static get styles() {
         return styles;

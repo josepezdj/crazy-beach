@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import litcss from 'rollup-plugin-postcss-lit';
 import image from '@rollup/plugin-image';
-import copy from "rollup-plugin-copy";
+import copy from 'rollup-plugin-copy';
 
 export default {
     input: 'src/main.js',
@@ -23,10 +23,8 @@ export default {
         litcss(),
         image(),
         copy({
-            targets: [
-              { src: "src/assets/*", dest: "lib/assets" }
-            ]
-          }),
+            targets: [{ src: 'src/assets/*', dest: 'lib/assets' }],
+        }),
     ],
     preserveEntrySignatures: false,
 };

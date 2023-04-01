@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './crazy-beach-game-page.scss';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { getLevelByPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
 import { CRAZY_BEACH } from '../../data/constants';
@@ -13,7 +12,7 @@ export class GamePage extends LitElement {
             currentPoints: { type: Number },
             currentMaxPoints: { type: Number },
             players: { type: Array },
-            currentLevel: { type:Object },
+            currentLevel: { type: Object },
             score: { type: Number },
             color: { type: String },
             counter: { type: Function },
@@ -25,6 +24,7 @@ export class GamePage extends LitElement {
             isGameOn: { type: Boolean },
             isStartButtonDisabled: { type: Boolean },
             beachAnimation: { type: Boolean },
+            feetDisabled: { type: Boolean },
         };
     }
 
@@ -35,7 +35,6 @@ export class GamePage extends LitElement {
         this.currentMaxPoints = this.currentPlayer.maxPoints;
         this.players = playerService.getAllPlayers();
         this.currentLevel = getLevelByPoints(this.currentMaxPoints);
-        this.score = 0;
         this.color = 'red';
         this.flashMessage = '';
         this.messageType = '';
@@ -46,32 +45,35 @@ export class GamePage extends LitElement {
         this.isGameOn = false;
         this.isStartButtonDisabled = false;
         this.beachAnimation = false;
+        this.feetDisabled = true;
     }
 
     firstUpdated() {
-        this.buttonLabel = this.currentPoints !== 0
-        ? CRAZY_BEACH.GAME.BTN_START.RESTART
-        : CRAZY_BEACH.GAME.BTN_START.START;
+        this.buttonLabel =
+            this.currentPoints !== 0
+                ? CRAZY_BEACH.GAME.BTN_START.RESTART
+                : CRAZY_BEACH.GAME.BTN_START.START;
     }
 
     render() {
         return html`
             <section class="gamepage">
                 <crazy-beach-header-component
-                    currentPlayer="${ifDefined(this.currentPlayer)}"
+                    currentPlayer="${JSON.stringify(this.currentPlayer)}"
                 ></crazy-beach-header-component>
                 <crazy-beach-ranking-component
-                    currentPlayer="${ifDefined(this.currentPlayer)}"
+                    currentPlayer="${JSON.stringify(this.currentPlayer)}"
                     players="${JSON.stringify(this.players)}"
                 ></crazy-beach-ranking-component>
                 <crazy-beach-beach-component
                     color="${this.color}"
-                    score="${this.score}"
+                    score="${this.currentPoints}"
                     flashMessage="${this.flashMessage}"
                     messageType="${this.messageType}"
                     ?beach-animation="${this.beachAnimation}"
                     currentLevel="${JSON.stringify(this.currentLevel)}"
-                    @cb-feet-click="${this.onFeetClick}"
+                    ?feetDisabled="${this.feetDisabled}"
+                    @cb-beach-feet-click="${this.onFeetClick}"
                 ></crazy-beach-beach-component>
                 <div class="gamepage__button">
                     <crazy-beach-button-widget
@@ -92,9 +94,10 @@ export class GamePage extends LitElement {
             this.startGame();
         } else {
             this.isGameOn = false;
-            this.buttonLabel = this.currentPoints !== 0
-                ? CRAZY_BEACH.GAME.BTN_START.RESTART
-                : CRAZY_BEACH.GAME.BTN_START.START;
+            this.buttonLabel =
+                this.currentPoints !== 0
+                    ? CRAZY_BEACH.GAME.BTN_START.RESTART
+                    : CRAZY_BEACH.GAME.BTN_START.START;
             this.stopGame();
         }
     }
@@ -106,44 +109,91 @@ export class GamePage extends LitElement {
 
     stopGame() {
         this.color = 'red';
+        this.feetDisabled = true;
+        this.buttonLabel =
+            this.currentPoints !== 0
+                ? CRAZY_BEACH.GAME.BTN_START.RESTART
+                : CRAZY_BEACH.GAME.BTN_START.START;
         this._stopCounter();
     }
 
     onFeetClick(e) {
         const side = e.detail;
-        if (side === 'left') {
-            // Check counter is on
-    
-            // Check color of the flag
 
-            // Check whether the other btn was pressed before or not
-
-            // Add or substract point/s
-
-            // Change score color (green +1 pt / red -1 pt)
-
-            // Update ranking (currentPoints, maxPoints)
-
-            // Messages (level up, ranking up)
-
-            // Game over message
+        if (this.color === 'red') {
+            this.gameOver();
+        } else {
+            if (side === 'left') {
+                if (this.isLeftPressed) {
+                    this.subtractPoint();
+                } else {
+                    this.addPoint();
+                    this.isRightPressed = false;
+                    this.isLeftPressed = true;
+                }
+            } else if (side === 'right') {
+                if (this.isRightPressed) {
+                    this.subtractPoint();
+                } else {
+                    this.addPoint();
+                    this.isLeftPressed = false;
+                    this.isRightPressed = true;
+                }
+            }
         }
+    }
+
+    addPoint() {
+        this.currentPoints = this.currentPoints += 1;
+        recordMaxPoints();
+    }
+
+    subtractPoint() {
+        this.currentPoints =
+            this.currentPoints !== 0 ? (this.currentPoints -= 1) : 0;
+    }
+
+    recordMaxPoints() {
+        if (this.currentPoints > this.maxPoints) {
+            this.maxPoints = this.currentPoints;
+        }
+    }
+
+    gameOver() {
+        // Erase all points
+        this.currentPoints = 0;
+        // Game over flash-message
+
+        // Change score color to 'alert'
+
+        // Stop counter
+        this.stopGame();
     }
 
     _fireCountdown() {
         this.isStartButtonDisabled = true;
-        this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE, 'countdown');
-        setTimeout(() => {
+        this._setMessage(
+            CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE,
+            'countdown'
+        );
+        const countdownTimer = setTimeout(() => {
             this._setGreenCounter();
             this.isStartButtonDisabled = false;
             this._setMessage('');
             this.beachAnimation = true;
+            this.feetDisabled = false;
         }, 3000);
         setTimeout(() => {
-            this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.ONE, 'countdown');
+            this._setMessage(
+                CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.ONE,
+                'countdown'
+            );
         }, 2000);
         setTimeout(() => {
-            this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.TWO, 'countdown');
+            this._setMessage(
+                CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.TWO,
+                'countdown'
+            );
         }, 1000);
     }
 
@@ -154,7 +204,9 @@ export class GamePage extends LitElement {
 
     _setGreenCounter() {
         this.color = 'green';
-        const time = Math.max(10000 - this.score * 100, 2000) + Math.random(-1500, 1500);
+        const time =
+            Math.max(10000 - this.currentPoints * 100, 2000) +
+            Math.random(-1500, 1500);
         this.counter = setTimeout(() => {
             this._setRedCounter();
         }, time);

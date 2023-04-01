@@ -18,7 +18,7 @@ export class Input extends LitElement {
 
     constructor() {
         super();
-        this.id = 'cb-input'
+        this.id = 'cb-input';
         this.type = 'text';
         this.placeholder = '';
         this.isFullWidth = false;
@@ -29,16 +29,19 @@ export class Input extends LitElement {
         // Input config
         this.inputElement = this.shadowRoot.getElementById(`${this.id}`);
         this.inputElement.setAttribute('type', this.type);
-        if (this.maxLength) this.inputElement.setAttribute('maxLength', this.maxLength);
+        if (this.maxLength)
+            this.inputElement.setAttribute('maxLength', this.maxLength);
     }
 
     render() {
         return html`
-            <div
-                class="input"
-            >
-                <fieldset class="input-fieldset${this.isInvalid ? '--invalid' : ''}">
-                    <legend class="input-fieldset__legend" align="left">${this.legend}*</legend>
+            <div class="input">
+                <fieldset
+                    class="input-fieldset${this.isInvalid ? '--invalid' : ''}"
+                >
+                    <legend class="input-fieldset__legend" align="left">
+                        ${this.legend}*
+                    </legend>
                     <input
                         class="input-input"
                         id="${this.id}"
@@ -60,9 +63,11 @@ export class Input extends LitElement {
         const value = e.target.value;
         if (value !== undefined && value !== null) {
             this.inputValue = value;
-            this.dispatchEvent(new CustomEvent('cb-input-value', {
-                detail: e.target.value,
-            }));
+            this.dispatchEvent(
+                new CustomEvent('cb-input-value', {
+                    detail: e.target.value,
+                })
+            );
         }
     }
 
@@ -70,9 +75,11 @@ export class Input extends LitElement {
         const value = e.target.value;
         if (value !== undefined && value !== null) {
             this.inputValue = value;
-            this.dispatchEvent(new CustomEvent('cb-input-focusout', {
-                detail: e.target.value,
-            }));
+            this.dispatchEvent(
+                new CustomEvent('cb-input-focusout', {
+                    detail: e.target.value,
+                })
+            );
         }
     }
 
