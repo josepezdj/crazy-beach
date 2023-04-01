@@ -7,7 +7,7 @@ import { CRAZY_BEACH } from '../../data/constants';
 export class Header extends LitElement {
     static get properties() {
         return {
-            currentPlayer: { type: Object },
+            currentPlayer: { type: Object, reflect: true },
         };
     }
 

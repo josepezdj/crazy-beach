@@ -148,12 +148,17 @@ export class GamePage extends LitElement {
 
     addPoint() {
         this.currentPoints = this.currentPoints += 1;
+        this.recordCurrentPoints();
         this.recordMaxPoints();
     }
 
     subtractPoint() {
         this.currentPoints =
             this.currentPoints !== 0 ? (this.currentPoints -= 1) : 0;
+    }
+
+    recordCurrentPoints() {
+        playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
     }
 
     recordMaxPoints() {
@@ -163,15 +168,13 @@ export class GamePage extends LitElement {
                 'maxPoints',
                 this.currentMaxPoints
             );
-            this.dispatchEvent(new CustomEvent('cb-game-maxpoints-up'), {
-                detail: this.currentMaxPoints,
-            });
         }
     }
 
     gameOver() {
         // Erase all points
         this.currentPoints = 0;
+        playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
         // Game over flash-message
 
         // Change score color to 'alert'
