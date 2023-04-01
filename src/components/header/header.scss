@@ -2,19 +2,17 @@
 
 .header {
     color: $col-text-dark;
-    background-color: $col-text-light;
+    background: $col-yellow;
     font-family: $font-game;
     height: $header-height;
     width: 100%;
+    max-width: $app-max-width;
+    margin: 0 auto;
     position: fixed;
     z-index: 30;
-    top: 0;
-    left: 0;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-    0 2px 2px rgba(0,0,0,0.12), 
-    0 4px 4px rgba(0,0,0,0.12), 
-    0 8px 8px rgba(0,0,0,0.12),
-    0 16px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+        0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+        0 16px 16px rgba(0, 0, 0, 0.12);
 
     &__nav {
         display: flex;
@@ -24,37 +22,43 @@
         position: relative;
     }
 
-    &__icon-app,
-    &__icon-link {
-        color: $col-blue;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        column-gap: $sm;
-        padding: 0 $sm;
-    }
-
     &__icon-app {
         position: absolute;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
+        color: $col-pink;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 $sm;
     }
 
     &__icon-text {
-        color: $col-black;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         font-size: $lg;
+
+        &:first-child {
+            color: $col-blue-black;
+            text-shadow: 1px 1px 1px $col-blue-sky;
+            margin-right: 2px;
+        }
+
+        &:last-child {
+            color: $col-white;
+            text-shadow: 2px 1px 2px $col-pink;
+            margin-left: 2px;
+        }
     }
 
     &__list {
         display: flex;
         align-items: center;
         column-gap: $xs;
-        padding: 0 $sm;
+        // padding: 0 $sm;
     }
 
     &__item {
@@ -64,35 +68,34 @@
     }
 
     &__goback {
-        color: $col-alert;
-        text-transform: uppercase;
-        height: 100%;
-        padding: $lg $sm $sm;
+        color: $col-pink;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: $sm 0 0 $xs;
     }
 
     &__account {
-        background-color: $col-white;
+        font-size: $md;
         display: flex;
         align-items: center;
-        column-gap: $xs;
-        padding: 2px $md;
-        border-radius: $xl;
-        box-shadow: 0 2px 1px 1px rgba(0,0,0,0.12);
+        column-gap: $sm;
+        padding: 1px $xs;
 
         & > * {
             width: 100%;
             display: inline-flex;
-            color: $col-blue;
         }
 
         &--icon {
+            margin-top: $xs;
+            color: $col-pink;
         }
 
         &--name {
+            color: $col-blue-accent;
             text-transform: capitalize;
+            margin-bottom: calc($xs * 0.5);
         }
     }
 }

@@ -157,6 +157,7 @@ export class GamePage extends LitElement {
     subtractPoint() {
         this.currentPoints =
             this.currentPoints !== 0 ? (this.currentPoints -= 1) : 0;
+        this.recordCurrentPoints();
     }
 
     recordCurrentPoints() {

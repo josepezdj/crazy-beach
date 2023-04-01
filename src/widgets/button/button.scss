@@ -25,6 +25,13 @@
         outline: none;
         transition: all 0.3s;
         border-radius: $xs;
+
+        &:hover,
+        &:focus {
+            filter: hue-rotate(-15deg);
+            transform: translateY(-1px);
+            box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.7);
+        }
     }
 
     &--w100 {
@@ -34,13 +41,11 @@
     &-blue button {
         color: $col-white;
         background-color: $col-blue;
+    }
 
-        &:hover,
-        &:focus {
-            filter: hue-rotate(-15deg);
-            transform: translateY(-1px);
-            box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.7);
-        }
+    &-pink button {
+        color: $col-white;
+        background-color: $col-pink;
     }
 
     &.invalid button {

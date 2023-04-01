@@ -17,9 +17,11 @@ export class Score extends LitElement {
     render() {
         return html`
             <section class="score">
-                <h3 class="score__title">Puntos</h3>
-                <div class="score__number">
-                    <span>${this.score}</span>
+                <div class="score__content">
+                    <div class="score__number">
+                        <span>${this.score}</span>
+                    </div>
+                    <h3 class="score__title">Puntos</h3>
                 </div>
             </section>
         `;

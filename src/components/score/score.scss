@@ -2,11 +2,20 @@
 
 .score {
     font-family: $font-game;
+    color: $col-black;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
     position: absolute;
-    top: 40%;
-    right: $sm;
-    z-index: 20;
+    top: 0;
+    left: 0;
+    text-shadow: none;
 
+    &__content {
+        position: absolute;
+        right: $sm;
+        bottom: 27%;
+    }
 
     &__title {
         font-size: $lg;
@@ -23,14 +32,12 @@
         justify-content: center;
         border-radius: 50%;
         border: 6px solid $col-success;
-        box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-        0 2px 2px rgba(0,0,0,0.12), 
-        0 4px 4px rgba(0,0,0,0.12), 
-        0 8px 8px rgba(0,0,0,0.12),
-        0 16px 16px rgba(0,0,0,0.12);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+            0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+            0 16px 16px rgba(0, 0, 0, 0.12);
 
         & span {
-            font-size: $xxl;
+            font-size: calc($xxl * 1.2);
             margin-bottom: $sm;
         }
     }

@@ -76,6 +76,7 @@ class HomePage extends LitElement {
                 <div class="login__button">
                     <crazy-beach-button-widget
                         id="cb-login-button"
+                        color="pink"
                         label="${CRAZY_BEACH.LOGIN.ENTER_BTN_TEXT}"
                         fullWidth
                         ?isInvalid="${this.isInvalid}"

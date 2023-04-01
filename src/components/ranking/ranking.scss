@@ -2,10 +2,14 @@
 
 .ranking {
     font-family: $font-game;
-    border-radius: $xs $xs 0 0;
-    margin-top: $header-height;
+    position: fixed;
+    top: $header-height;
+    height: $ranking-height;
+    width: 100%;
+    max-width: $app-max-width;
+    margin: 0 auto;
     background-color: $col-pink;
-    border-bottom: 1px solid $col-blue;
+    z-index: 1;
 
     &__title {
         font-family: $font-main;
@@ -29,8 +33,8 @@
         display: grid;
         grid-template-columns: $xxl repeat(3, 1fr);
         grid-template-rows: auto;
-        padding: $xs 0;
-        background-color: $col-yellow;
+        padding: 2px 0;
+        background-color: $col-text-light;
     }
 
     &__players {
@@ -41,15 +45,15 @@
 
         &--player {
             text-align: center;
-            padding: 2px 0;
+            padding: 1px 0;
         }
 
         &:nth-child(odd) {
-            background-color: $col-text-light;
+            background-color: $col-green-light;
         }
 
         &:nth-child(even) {
-            background-color: $col-green-light;
+            background-color: $col-text-light;
         }
     }
 }

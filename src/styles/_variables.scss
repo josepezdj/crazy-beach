@@ -13,8 +13,10 @@ $col-green-light: #c4e5dc;
 $col-pink: #9e5b66;
 $col-pink-light: #e38998;
 $col-orange: #fa9b1e;
-$col-yellow: #f5ef32;
+$col-yellow: #e8e344;
 $col-sand: #ecd5b3;
+$col-purple: rgb(113, 69, 113);
+
 $col-success: #339175;
 $col-alert: #e15933;
 
@@ -34,18 +36,24 @@ $md: calc($base-size * 1.5);
 $lg: calc($base-size * 2);
 $xl: calc($base-size * 2.5);
 $xxl: calc($base-size * 3);
+
 $header-height: 40px;
+$ranking-height: 120px;
+$game-page-height: 800px;
+$beach-title-height: 95px;
+$app-max-width: 500px;
 
 // Fonts
 
-// $font-main: 'Nunito', sans-serif;
 $font-main: 'Lato', sans-serif;
 $font-game: 'Pacifico', cursive;
-$font-level1: 'Ceviche One', cursive;
-$font-level2: 'Monoton', cursive;
-$font-level3: 'Shrikhand', cursive;
+$font-level1: 'Slackey', cursive;
+$font-level2: 'Sunshiney', cursive;
+$font-level3: 'ZCOOL KuaiLe', sans-serif;
 $font-level4: 'Bungee Shade', cursive;
-$font-level5: 'Black Ops One', cursive;
+$font-level5: 'Monoton', cursive;
 $font-bungee: 'Bungee', cursive;
 $font-gravitas: 'Gravitas One', cursive;
 $font-mogra: 'Mogra', cursive;
+$font-ceviche: 'Ceviche One', cursive;
+$font-shrikhand: 'Shrikhand', cursive;

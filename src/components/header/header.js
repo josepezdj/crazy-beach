@@ -22,8 +22,8 @@ export class Header extends LitElement {
                 <nav class="header__nav">
                     <a class="header__goback" href="/">
                         <fa-icon
-                            class="fas fa-arrow-circle-left"
-                            size="1.7em"
+                            class="fas fa-arrow-left"
+                            size="1.2em"
                         ></fa-icon>
                     </a>
                     <div class="header__icon-app">
@@ -50,14 +50,16 @@ export class Header extends LitElement {
                             </a>
                         </li> -->
                         <li class="header__item">
-                            <a class="header__account" href="#">
-                                <fa-icon
-                                    class="fas fa-user-circle header__account--icon"
-                                ></fa-icon>
+                            <div class="header__account">
                                 <span class="header__account--name"
                                     >${this.currentPlayer?.name}</span
                                 >
-                            </a>
+                                <a href="#">
+                                    <fa-icon
+                                        class="fas fa-bars header__account--icon"
+                                    ></fa-icon>
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </nav>

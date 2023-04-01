@@ -9,7 +9,7 @@ import './import';
 class Beach extends LitElement {
     static get properties() {
         return {
-            currentLevel: { type: Object },
+            currentLevel: { type: Object, reflect: true },
             currentPlayer: { type: Object },
             flashMessage: { type: String },
             messageType: { type: String },
@@ -43,8 +43,17 @@ class Beach extends LitElement {
 
     render() {
         return html`
-            <section class="beach level-${this.currentLevel?.id}">
-                <h2 class="beach__title">${this.currentLevel?.name}</h2>
+            <section class="beach level-${this.getCurrentLevel().id}">
+                <div class="beach__title--container">
+                    <h2 class="beach__title--text">
+                        ${this.getCurrentLevel().name}
+                    </h2>
+                </div>
+                <crazy-beach-boat-component
+                    color=${this.color}
+                    ?isMoving="${this.beachAnimation}"
+                >
+                </crazy-beach-boat-component>
                 <div class="beach__background">
                     <img
                         class="beach__background--gradient"
@@ -52,16 +61,9 @@ class Beach extends LitElement {
                         alt=""
                     />
                     <div class="beach__background--sand-container">
-                        <span
-                            class="beach__background--sand sand-scroll"
-                        ></span>
+                        <div class="beach__background--sand sand-scroll"></div>
                     </div>
                 </div>
-                <crazy-beach-boat-component
-                    color=${this.color}
-                    ?isMoving="${this.beachAnimation}"
-                >
-                </crazy-beach-boat-component>
                 <crazy-beach-feet-component
                     ?isDisabled="${ifDefined(this.feetDisabled)}"
                     @cb-feet-click="${this.onFeetClick}"
@@ -79,6 +81,10 @@ class Beach extends LitElement {
                 ></crazy-beach-score-component>
             </section>
         `;
+    }
+
+    getCurrentLevel() {
+        return getLevelByPoints(this.score);
     }
 
     onFeetClick(e) {

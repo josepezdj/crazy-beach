@@ -15,7 +15,7 @@ export const CRAZY_BEACH = {
         TITLE: 'Crear jugador',
         ENTER_BTN_TEXT: 'Jugar',
         INPUT_LEGEND: 'Nombre',
-        INPUT_MAX_LENGTH: 9,
+        INPUT_MAX_LENGTH: 8,
         INPUT_MIN_LENGTH: 4,
         ERR_MESSAGES: {
             TOO_SHORT_NAME: 'El nombre debe tener al menos 4 carateres',

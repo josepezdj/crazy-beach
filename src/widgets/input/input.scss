@@ -4,8 +4,8 @@
     width: 100%;
 
     &-fieldset {
-        border-radius: $xs;
-        border: 1px solid $col-black;
+        border-radius: $sm;
+        border: 1px solid $col-blue-accent;
 
         &__legend {
             padding: 0 $sm;
@@ -13,12 +13,14 @@
         }
 
         &--invalid {
-            border: 1px solid $col-alert;
+            border-radius: $sm;
+            border: 1px solid $col-pink;
         }
     }
 
     &-input,
     &-input:active {
+        color: $col-blue-black;
         font-family: inherit;
         font-size: $xl;
         display: block;
@@ -27,6 +29,6 @@
         background-color: transparent;
         width: 100%;
         height: 100%;
-        padding: $sm $md;
+        margin: $sm $md;
     }
 }
