@@ -36,6 +36,9 @@ class Beach extends LitElement {
         if (this.currentPlayer === -1) {
             this.currentLevel = getLevelByPoints(0);
         }
+
+        this.shadowRoot.querySelector('.sand-scroll').style.animationPlayState =
+            'paused';
     }
 
     render() {
@@ -49,7 +52,9 @@ class Beach extends LitElement {
                         alt=""
                     />
                     <div class="beach__background--sand-container">
-                        <span class="beach__background--sand"></span>
+                        <span
+                            class="beach__background--sand sand-scroll"
+                        ></span>
                     </div>
                 </div>
                 <crazy-beach-boat-component

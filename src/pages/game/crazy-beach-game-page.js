@@ -130,6 +130,7 @@ export class GamePage extends LitElement {
                 if (this.isLeftPressed) {
                     this.subtractPoint();
                 } else {
+                    this._sandmove();
                     this.addPoint();
                     this.isRightPressed = false;
                     this.isLeftPressed = true;
@@ -138,6 +139,7 @@ export class GamePage extends LitElement {
                 if (this.isRightPressed) {
                     this.subtractPoint();
                 } else {
+                    this._sandmove();
                     this.addPoint();
                     this.isLeftPressed = false;
                     this.isRightPressed = true;
@@ -235,6 +237,24 @@ export class GamePage extends LitElement {
     _stopCounter() {
         clearTimeout(this.counter);
         this.beachAnimation = false;
+
+        const sand = this._getSandElement();
+        sand.style.animationPlayState = 'paused';
+    }
+
+    _sandmove() {
+        const sand = this._getSandElement();
+        sand.style.animationPlayState = 'paused';
+        sand.style.animationPlayState = 'running';
+        setTimeout(() => {
+            sand.style.animationPlayState = 'paused';
+        }, 1000);
+    }
+
+    _getSandElement() {
+        return this.shadowRoot
+            .querySelector('crazy-beach-beach-component')
+            .shadowRoot.querySelector('.beach__background--sand');
     }
 
     static get styles() {
