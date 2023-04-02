@@ -11,6 +11,7 @@ export class Ranking extends LitElement {
             players: { type: Array },
             currentPoints: { type: Number },
             currentMaxPoints: { type: Number },
+            isRankingCollapsed: { type: Boolean, reflect: true },
         };
     }
 
@@ -25,14 +26,28 @@ export class Ranking extends LitElement {
     firstUpdated() {
         this.currentPlayer = playerService.getCurrentPlayer();
         this.players = playerService.getAllPlayers();
+        this.isRankingCollapsed = false;
     }
 
     render() {
         return html`
-            <section class="ranking">
-                <h3 class="ranking__title">
-                    ${CRAZY_BEACH.MAIN_APP.RANKING.TITLE}
-                </h3>
+            <section
+                class="ranking ${this.isRankingCollapsed
+                    ? 'ranking-hide'
+                    : 'ranking-show'}"
+            >
+                <div class="ranking__header">
+                    <a
+                        href="#"
+                        class="ranking__header--link"
+                        @click="${this.onRankingClick}"
+                    >
+                        <h3 class="ranking__title">
+                            ${CRAZY_BEACH.MAIN_APP.RANKING.TITLE}
+                        </h3>
+                        ${this.getArrow()}
+                    </a>
+                </div>
                 <ul class="ranking__stats">
                     <li>
                         <fa-icon class="fas fa-trophy" size="1.20em"></fa-icon>
@@ -41,9 +56,18 @@ export class Ranking extends LitElement {
                     <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_POINTS}</li>
                     <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_MAX_POINTS}</li>
                 </ul>
-                ${this.renderPlayers()}
+                <div class="ranking__data">${this.renderPlayers()}</div>
             </section>
         `;
+    }
+
+    onRankingClick() {
+        this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
+        this.dispatchEvent(
+            new CustomEvent('cb-ranking-click', {
+                detail: this.isRankingCollapsed,
+            })
+        );
     }
 
     renderPlayers() {
@@ -67,6 +91,19 @@ export class Ranking extends LitElement {
                     </ul>
                 `;
             })}`;
+    }
+
+    getArrow() {
+        if (this.isRankingCollapsed)
+            return html` <fa-icon
+                class="fas fa-caret-down ranking__arrow"
+                size="1.2em"
+            ></fa-icon>`;
+        else
+            return html` <fa-icon
+                class="fas fa-caret-up ranking__arrow"
+                size="1.2em"
+            ></fa-icon>`;
     }
 
     static get styles() {

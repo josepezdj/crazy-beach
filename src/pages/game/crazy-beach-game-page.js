@@ -25,6 +25,7 @@ export class GamePage extends LitElement {
             isStartButtonDisabled: { type: Boolean },
             beachAnimation: { type: Boolean },
             feetDisabled: { type: Boolean },
+            isRankingCollapsed: { type: Boolean },
         };
     }
 
@@ -46,6 +47,7 @@ export class GamePage extends LitElement {
         this.isStartButtonDisabled = false;
         this.beachAnimation = false;
         this.feetDisabled = true;
+        this.isRankingCollapsed = false;
     }
 
     firstUpdated() {
@@ -55,9 +57,17 @@ export class GamePage extends LitElement {
                 : CRAZY_BEACH.GAME.BTN_START.START;
     }
 
+    onRankingClick(e) {
+        this.isRankingCollapsed = e.detail;
+    }
+
     render() {
         return html`
-            <section class="gamepage">
+            <section
+                class="gamepage ${this.isRankingCollapsed
+                    ? 'ranking-hide'
+                    : 'ranking-show'}"
+            >
                 <crazy-beach-header-component
                     currentPlayer="${JSON.stringify(this.currentPlayer)}"
                 ></crazy-beach-header-component>
@@ -66,6 +76,8 @@ export class GamePage extends LitElement {
                     currentMaxPoints="${this.currentMaxPoints}"
                     currentPlayer="${JSON.stringify(this.currentPlayer)}"
                     players="${JSON.stringify(this.players)}"
+                    ?isRankingCollapsed="${this.isRankingCollapsed}"
+                    @cb-ranking-click="${this.onRankingClick}"
                 ></crazy-beach-ranking-component>
                 <crazy-beach-beach-component
                     color="${this.color}"
@@ -75,6 +87,7 @@ export class GamePage extends LitElement {
                     ?beach-animation="${this.beachAnimation}"
                     currentLevel="${JSON.stringify(this.currentLevel)}"
                     ?feetDisabled="${this.feetDisabled}"
+                    ?isRankingCollapsed="${this.isRankingCollapsed}"
                     @cb-beach-feet-click="${this.onFeetClick}"
                 ></crazy-beach-beach-component>
                 <div class="gamepage__button">

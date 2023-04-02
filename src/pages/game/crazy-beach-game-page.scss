@@ -3,7 +3,6 @@
 .gamepage {
     font-family: $font-main;
     max-width: $app-max-width;
-    max-height: $game-page-height;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -19,4 +18,12 @@
         margin: 0 auto;
         z-index: 10;
     }
+}
+
+.ranking-show {
+    max-height: unset;
+}
+
+.ranking-hide {
+    max-height: $game-page-height;
 }

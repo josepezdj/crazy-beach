@@ -2,7 +2,6 @@
 
 .ranking {
     font-family: $font-game;
-    position: fixed;
     top: $header-height;
     height: $ranking-height;
     width: 100%;
@@ -10,22 +9,47 @@
     margin: 0 auto;
     background-color: $col-pink;
     z-index: 1;
+    overflow-y: scroll;
+    transition: all 0.3s;
+
+    &__header {
+        cursor: pointer;
+        background-color: inherit;
+        position: fixed;
+        top: $header-height;
+        height: calc($header-height - $md);
+        width: 100%;
+        max-width: $app-max-width;
+        z-index: 2;
+    }
+
+    &__arrow {
+        color: $col-white;
+        position: fixed;
+        top: calc($header-height + 9px);
+        left: 50%;
+        transform: translateX(-50%);
+
+        animation: arrow-move infinite 1.5s ease-in-out;
+    }
 
     &__title {
         font-family: $font-main;
         color: $col-white;
         font-size: $md;
         text-align: center;
-        padding: $sm 0;
+        padding: $xs 0 $md;
         font-weight: normal;
         text-transform: uppercase;
         letter-spacing: $xs;
     }
 
     &__stats {
+        margin-top: calc($header-height - $md);
         color: $col-blue-black;
         text-align: center;
         width: 100%;
+        max-width: $app-max-width;
         font-family: $font-main;
         font-size: $md;
         font-weight: 700;
@@ -34,7 +58,18 @@
         grid-template-columns: $xxl repeat(3, 1fr);
         grid-template-rows: auto;
         padding: 2px 0;
-        background-color: $col-text-light;
+        background-color: $col-yellow;
+        position: fixed;
+        top: $header-height;
+        z-index: 1;
+        transition: all 0.3s;
+    }
+
+    &__data {
+        position: relative;
+        margin-top: calc($header-height + $sm);
+        transition: all 0.3s;
+        z-index: 0;
     }
 
     &__players {
@@ -55,5 +90,37 @@
         &:nth-child(even) {
             background-color: $col-text-light;
         }
+    }
+}
+
+@keyframes arrow-move {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, 2px);
+    }
+    100% {
+        transform: translate(-50%, 0);
+    }
+}
+
+.ranking-hide {
+    height: 0;
+    .ranking__data {
+        margin-top: 0;
+    }
+    .ranking__stats {
+        top: -$header-height;
+    }
+}
+
+.ranking-show {
+    height: calc($ranking-height * 1.35);
+    .ranking__data {
+        margin-top: calc($header-height + $xxl * 2);
+    }
+    .ranking__stats {
+        top: $header-height;
     }
 }

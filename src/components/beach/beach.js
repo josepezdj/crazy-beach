@@ -17,6 +17,7 @@ class Beach extends LitElement {
             score: { type: Number },
             beachAnimation: { type: Boolean, attribute: 'beach-animation' },
             feetDisabled: { type: Boolean },
+            isRankingCollapsed: { type: Boolean },
         };
     }
 
@@ -29,6 +30,7 @@ class Beach extends LitElement {
         this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints);
         this.color = 'red';
         this.beachAnimation = false;
+        this.isRankingCollapsed = false;
     }
 
     firstUpdated() {
@@ -36,18 +38,28 @@ class Beach extends LitElement {
         if (this.currentPlayer === -1) {
             this.currentLevel = getLevelByPoints(0);
         }
-
         this.shadowRoot.querySelector('.sand-scroll').style.animationPlayState =
             'paused';
     }
 
     render() {
         return html`
-            <section class="beach level-${this.getCurrentLevel().id}">
+            <section
+                class="beach level-${this.getCurrentLevel().id} ${this
+                    .isRankingCollapsed
+                    ? 'ranking-hide'
+                    : 'ranking-show'}"
+            >
                 <div class="beach__title--container">
-                    <h2 class="beach__title--text">
+                    <h2 class="beach__title--name">
                         ${this.getCurrentLevel().name}
                     </h2>
+                    <p class="beach__title--location">
+                        ${this.getCurrentLevel().location}
+                    </p>
+                    <p class="beach__title--country">
+                        ${this.getCurrentLevel().country}
+                    </p>
                 </div>
                 <crazy-beach-boat-component
                     color=${this.color}

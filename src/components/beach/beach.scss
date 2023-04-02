@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: all 0.2s;
 
     &__title {
         &--container {
@@ -20,12 +21,32 @@
             text-align: center;
             margin: calc($header-height + $ranking-height + $md) $xs 0;
             height: $beach-title-height;
+            transition: margin 0.3s;
         }
 
-        &--text {
+        &--name {
             height: 100%;
             display: flex;
             align-items: center;
+        }
+
+        &--location {
+            font-size: $md;
+            text-transform: capitalize;
+            position: absolute;
+            bottom: -50%;
+            left: 0;
+        }
+
+        &--country {
+            font-size: calc($sm * 1.3);
+            text-transform: capitalize;
+            font-style: italic;
+            position: absolute;
+            bottom: -40%;
+            right: 0;
+            max-width: 55px;
+            text-align: center;
         }
     }
 
@@ -67,19 +88,27 @@
     &__flash-message {
         text-transform: capitalize;
         text-align: center;
+        height: 300px;
         width: 100%;
         position: absolute;
         left: 0;
-        bottom: 32%;
+        bottom: 0;
         z-index: 20;
         text-shadow: none;
+
+        p {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         &--levelup {
             color: $col-success;
         }
 
         &--countdown {
-            color: $col-success;
+            color: $col-blue-black;
             font-size: calc($xxl * 2);
             font-family: $font-level1;
         }
@@ -164,4 +193,19 @@
 
 .sand-scroll {
     animation: sand-scroll infinite 4s linear;
+}
+
+//
+.ranking-hide {
+    max-height: $game-page-height;
+    .beach__title--container {
+        margin: calc($header-height + $xxl * 2) $xs 0;
+    }
+}
+
+.ranking-show {
+    height: calc($game-page-height - ($ranking-height * 2.48));
+    .beach__title--container {
+        margin: $md $xs 0;
+    }
 }
