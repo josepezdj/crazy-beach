@@ -10,6 +10,8 @@ export const CRAZY_BEACH = {
             COL_MAX_POINTS: 'Max. puntos',
         },
         PLAYERS: 'Jugadores',
+        ACCOUNT: 'Cuenta',
+        ABOUT: 'Sobre Crazy Beach',
     },
     LOGIN: {
         TITLE: 'Crear jugador',

@@ -205,7 +205,7 @@ export class GamePage extends LitElement {
     }
 
     gameOver() {
-        // Erase all points
+        // Erase current points
         this.currentPoints = 0;
         playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
         // Game over flash-message
@@ -275,11 +275,10 @@ export class GamePage extends LitElement {
 
     _sandmove() {
         const sand = this._getSandElement();
-        sand.style.animationPlayState = 'paused';
         sand.style.animationPlayState = 'running';
         setTimeout(() => {
             sand.style.animationPlayState = 'paused';
-        }, 1000);
+        }, 500);
     }
 
     _getSandElement() {

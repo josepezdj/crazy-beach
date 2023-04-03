@@ -11,6 +11,7 @@
     position: relative;
     box-shadow: 1px 2px 15px 3px rgba(0, 0, 0, 0.2);
     transition: all 0.3s;
+    overflow: hidden;
 
     &__button {
         position: absolute;

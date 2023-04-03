@@ -29,7 +29,7 @@ export const LEVELS = [
     },
     {
         id: 5,
-        name: 'Copacapana',
+        name: 'Copacabana',
         location: 'Río de Janeiro',
         country: 'Brasil',
         points: 50,
