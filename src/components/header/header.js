@@ -54,11 +54,21 @@ export class Header extends LitElement {
                                 <span class="header__account--name"
                                     >${this.currentPlayer?.name}</span
                                 >
-                                <a href="#">
-                                    <fa-icon
-                                        class="fas fa-bars header__account--icon"
-                                    ></fa-icon>
-                                </a>
+                                <div class="header__account--icon">
+                                    <input
+                                        type="checkbox"
+                                        class="header__menu--input"
+                                        id="header__menu--input"
+                                    />
+                                    <label
+                                        for="header__menu--input"
+                                        class="header__menu--label"
+                                    >
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </label>
+                                </div>
                             </div>
                         </li>
                     </ul>

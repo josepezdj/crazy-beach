@@ -58,7 +58,6 @@
         display: flex;
         align-items: center;
         column-gap: $xs;
-        // padding: 0 $sm;
     }
 
     &__item {
@@ -73,23 +72,61 @@
         align-items: center;
         justify-content: center;
         margin: $sm 0 0 $xs;
+        transition: all 0.2s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 
     &__account {
         font-size: $md;
+        padding: 0 $xs;
         display: flex;
         align-items: center;
-        column-gap: $sm;
-        padding: 1px $xs;
-
-        & > * {
-            width: 100%;
-            display: inline-flex;
-        }
+        column-gap: $md;
 
         &--icon {
-            margin-top: $xs;
-            color: $col-pink;
+            position: relative;
+            width: 20px;
+            height: 20px;
+
+            .header__menu--input {
+                display: none;
+
+                &:checked + .header__menu--label div:first-child {
+                    transform: translateY(6px) rotate(45deg);
+                }
+
+                &:checked + .header__menu--label div:last-child {
+                    transform: translateY(-7px) rotate(-45deg);
+                }
+
+                &:checked + .header__menu--label div:nth-child(2) {
+                    opacity: 0;
+                }
+            }
+
+            .header__menu--label {
+                height: 16px;
+                width: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-radius: 100%x;
+                transition: all 0.3s;
+                cursor: pointer;
+
+                & div {
+                    height: 3px;
+                    width: 100%;
+                    display: block;
+                    position: relative;
+                    background-color: $col-pink;
+                    border-radius: 10px;
+                    transition: all 0.4s;
+                }
+            }
         }
 
         &--name {
@@ -97,5 +134,34 @@
             text-transform: capitalize;
             margin-bottom: calc($xs * 0.5);
         }
+    }
+}
+
+/* Animations */
+
+@keyframes rotateR {
+    from {
+        transform: translateY(0px) rotate(0);
+    }
+    to {
+        transform: translateY(20px) rotate(45deg);
+    }
+}
+
+@keyframes rotateL {
+    from {
+        transform: translateY(0px) rotate(0);
+    }
+    to {
+        transform: translateY(0) rotate(-45deg);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
