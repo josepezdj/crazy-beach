@@ -1,6 +1,11 @@
+html {
+    box-sizing: border-box;
+}
+
 *,
-*::after,
-*::before {
+*:before,
+*:after {
+    box-sizing: inherit;
     margin: 0;
     padding: 0;
 }
@@ -23,6 +28,7 @@ a {
 
 .app {
     min-height: 100vh;
+    min-width: $app-min-width;
     width: 100%;
     background: linear-gradient(
         150deg,

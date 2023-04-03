@@ -39,11 +39,18 @@ $xxl: calc($base-size * 3);
 
 $header-height: 40px;
 $ranking-height: 118px;
-$game-page-height: 800px;
+$ranking-title-height: 28px;
+$game-page-max-height: 800px;
 $beach-title-height: 95px;
 $app-max-width: 500px;
+$app-min-width: 375px;
 
 // Fonts
+
+$font-gravitas: 'Gravitas One', cursive;
+$font-mogra: 'Mogra', cursive;
+$font-ceviche: 'Ceviche One', cursive;
+$font-shrikhand: 'Shrikhand', cursive;
 
 $font-main: 'Lato', sans-serif;
 $font-game: 'Pacifico', cursive;
@@ -51,9 +58,5 @@ $font-level1: 'Slackey', cursive;
 $font-level2: 'Sunshiney', cursive;
 $font-level3: 'ZCOOL KuaiLe', sans-serif;
 $font-level4: 'Bungee Shade', cursive;
-$font-level5: 'Monoton', cursive;
-$font-bungee: 'Bungee', cursive;
-$font-gravitas: 'Gravitas One', cursive;
-$font-mogra: 'Mogra', cursive;
-$font-ceviche: 'Ceviche One', cursive;
-$font-shrikhand: 'Shrikhand', cursive;
+$font-level5: 'Bungee', cursive;
+$font-level6: 'Monoton', cursive;

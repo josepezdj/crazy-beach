@@ -1,13 +1,16 @@
 @import '../../styles/index.scss';
 
 .gamepage {
+    box-sizing: border-box;
     font-family: $font-main;
     max-width: $app-max-width;
+    min-width: $app-min-width;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     position: relative;
     box-shadow: 1px 2px 15px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
 
     &__button {
         position: absolute;
@@ -20,10 +23,56 @@
     }
 }
 
+.beach__flash-message {
+    text-transform: capitalize;
+    text-align: center;
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    text-shadow: none;
+
+    p {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &--levelup {
+        color: $col-success;
+    }
+
+    &--countdown {
+        color: $col-blue-black;
+        font-size: calc($xxl * 2);
+        font-family: $font-level1;
+    }
+
+    &--gameover {
+        color: $col-alert;
+    }
+
+    &--ranking3 {
+        color: $col-success;
+    }
+
+    &--ranking2 {
+        color: $col-orange;
+    }
+
+    &--ranking1 {
+        color: $col-pink-light;
+        text-shadow: 1px 1px 1px $col-black;
+    }
+}
+
 .ranking-show {
     max-height: unset;
 }
 
 .ranking-hide {
-    max-height: $game-page-height;
+    max-height: $game-page-max-height;
 }

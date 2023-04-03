@@ -36,9 +36,16 @@ export const LEVELS = [
     },
     {
         id: 6,
-        name: 'The End',
-        location: 'Congratulations!',
-        country: 'You finished the game!',
+        name: 'Canaveral Beach',
+        location: 'Santa Marta',
+        country: 'Colombia',
         points: 60,
+    },
+    {
+        id: 7,
+        name: 'Fin del juego',
+        location: '¡¡Enhorabuena,',
+        country: 'llegaste al barco!!',
+        points: 61,
     },
 ];

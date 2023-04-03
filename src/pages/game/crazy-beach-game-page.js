@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import styles from './crazy-beach-game-page.scss';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { getLevelByPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
 import { CRAZY_BEACH } from '../../data/constants';
@@ -13,8 +14,8 @@ export class GamePage extends LitElement {
             currentMaxPoints: { type: Number },
             players: { type: Array },
             currentLevel: { type: Object },
-            score: { type: Number },
             color: { type: String },
+            score: { type: Number },
             counter: { type: Function },
             flashMessage: { type: String },
             messageType: { type: String },
@@ -80,16 +81,33 @@ export class GamePage extends LitElement {
                     @cb-ranking-click="${this.onRankingClick}"
                 ></crazy-beach-ranking-component>
                 <crazy-beach-beach-component
-                    color="${this.color}"
                     score="${this.currentPoints}"
-                    flashMessage="${this.flashMessage}"
-                    messageType="${this.messageType}"
                     ?beach-animation="${this.beachAnimation}"
                     currentLevel="${JSON.stringify(this.currentLevel)}"
                     ?feetDisabled="${this.feetDisabled}"
                     ?isRankingCollapsed="${this.isRankingCollapsed}"
-                    @cb-beach-feet-click="${this.onFeetClick}"
                 ></crazy-beach-beach-component>
+                <crazy-beach-sand-component
+                    color="${this.color}"
+                    ?beachAnimation="${this.beachAnimation}"
+                    ?isRankingCollapsed="${this.isRankingCollapsed}"
+                ></crazy-beach-sand-component>
+                <crazy-beach-feet-component
+                    ?isDisabled="${ifDefined(this.feetDisabled)}"
+                    @cb-feet-click="${this.onFeetClick}"
+                ></crazy-beach-feet-component>
+                ${this.flashMessage !== ''
+                    ? html` <div
+                          class="beach__flash-message beach__flash-message--${this
+                              .messageType}"
+                      >
+                          <p>${this.flashMessage}</p>
+                      </div>`
+                    : null}
+                <crazy-beach-score-component
+                    score="${this.currentPoints}"
+                    ?isRankingCollapsed="${this.isRankingCollpased}"
+                ></crazy-beach-score-component>
                 <div class="gamepage__button">
                     <crazy-beach-button-widget
                         color="blue"
@@ -132,7 +150,6 @@ export class GamePage extends LitElement {
                 : CRAZY_BEACH.GAME.BTN_START.START;
         this._stopCounter();
     }
-
     onFeetClick(e) {
         const side = e.detail;
 
@@ -267,7 +284,7 @@ export class GamePage extends LitElement {
 
     _getSandElement() {
         return this.shadowRoot
-            .querySelector('crazy-beach-beach-component')
+            .querySelector('crazy-beach-sand-component')
             .shadowRoot.querySelector('.beach__background--sand');
     }
 

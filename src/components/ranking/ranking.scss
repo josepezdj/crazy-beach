@@ -8,7 +8,7 @@
     max-width: $app-max-width;
     margin: 0 auto;
     background-color: $col-pink;
-    z-index: 1;
+    z-index: 3;
     overflow-y: scroll;
     transition: all 0.3s;
 
@@ -20,7 +20,7 @@
         height: calc($header-height - $md);
         width: 100%;
         max-width: $app-max-width;
-        z-index: 2;
+        z-index: 3;
     }
 
     &__arrow {
@@ -38,10 +38,11 @@
         color: $col-white;
         font-size: $md;
         text-align: center;
-        padding: $xs 0 $md;
+        padding: $xs 0;
         font-weight: normal;
         text-transform: uppercase;
         letter-spacing: $xs;
+        height: $ranking-title-height;
     }
 
     &__stats {
@@ -61,7 +62,7 @@
         background-color: $col-yellow;
         position: fixed;
         top: $header-height;
-        z-index: 1;
+        z-index: 2;
         transition: all 0.3s;
     }
 
@@ -69,7 +70,7 @@
         position: relative;
         margin-top: calc($header-height + $sm);
         transition: all 0.3s;
-        z-index: 0;
+        z-index: 1;
     }
 
     &__players {
