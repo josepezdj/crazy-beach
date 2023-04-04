@@ -10,11 +10,11 @@
     align-items: end;
 
     &__container {
-        max-width: 150px;
+        max-width: 200px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        column-gap: $xxl;
+        column-gap: calc($xxl * 2);
         margin-bottom: calc($md * 5);
     }
 }

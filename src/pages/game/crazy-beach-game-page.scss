@@ -23,11 +23,11 @@
     left: 0;
     bottom: 0;
     z-index: 20;
-    text-shadow: none;
+    // text-shadow: none;
 
     p {
         position: absolute;
-        top: 5%;
+        top: 35%;
         left: 50%;
         transform: translateX(-50%);
     }

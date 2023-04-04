@@ -52,6 +52,7 @@ class HomePage extends LitElement {
                         <crazy-beach-input-widget
                             id="cb-login-input"
                             type="text"
+                            isRequired="true"
                             legend="${CRAZY_BEACH.LOGIN.INPUT_LEGEND}"
                             maxLength="${CRAZY_BEACH.LOGIN.INPUT_MAX_LENGTH}"
                             ?isInvalid="${this.isInvalid}"

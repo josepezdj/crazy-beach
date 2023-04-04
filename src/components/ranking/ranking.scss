@@ -2,6 +2,7 @@
 
 .ranking {
     font-family: $font-main;
+    color: $col-blue-black;
     height: $ranking-height;
     width: 100%;
     max-width: $app-max-width;
@@ -44,6 +45,12 @@
         width: 100%;
         max-width: $app-max-width;
         z-index: 3;
+        height: $ranking-title-height;
+
+        &--link {
+            display: block;
+            height: 100%;
+        }
     }
 
     &__arrow {
@@ -64,12 +71,12 @@
         font-weight: normal;
         text-transform: uppercase;
         letter-spacing: $xs;
-        height: $ranking-title-height;
+        transition: all 0.2s;
     }
 
     &__stats {
-        margin-top: calc($header-height - $md);
-        color: $col-blue-black;
+        margin-top: calc($ranking-title-height);
+        color: $col-black;
         text-align: center;
         width: 100%;
         height: $ranking-player-height;
@@ -89,6 +96,7 @@
     }
 
     &__data {
+        font-family: $font-game;
         position: relative;
         transition: all 0.3s;
         z-index: 1;
@@ -142,6 +150,10 @@
     height: calc(
         $header-height + $ranking-title-height + ($ranking-player-height * 4)
     );
+    .ranking__title {
+        transition: all 0.3s;
+        padding: $xxl 0;
+    }
     .ranking__data {
         margin-top: calc(
             $header-height + $ranking-title-height + $ranking-player-height

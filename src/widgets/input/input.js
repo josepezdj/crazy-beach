@@ -13,6 +13,7 @@ export class Input extends LitElement {
             size: { type: String },
             isFullWidth: { type: Boolean, attribute: 'fullwidth' },
             isInvalid: { type: Boolean },
+            isRequired: { type: Boolean },
         };
     }
 
@@ -23,6 +24,7 @@ export class Input extends LitElement {
         this.placeholder = '';
         this.isFullWidth = false;
         this.isInvalid = false;
+        this.isRequired = false;
     }
 
     firstUpdated() {
@@ -39,9 +41,13 @@ export class Input extends LitElement {
                 <fieldset
                     class="input-fieldset${this.isInvalid ? '--invalid' : ''}"
                 >
-                    <legend class="input-fieldset__legend" align="left">
-                        ${this.legend}*
-                    </legend>
+                    <legend
+                        class="input-fieldset__legend"
+                        align="left"
+                        .innerHTML="${this.legend}${this.isRequired
+                            ? '&nbsp;*'
+                            : ''}"
+                    ></legend>
                     <input
                         class="input-input"
                         id="${this.id}"

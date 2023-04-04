@@ -5,6 +5,8 @@ $col-text-dark: #0e0c0b;
 $col-white: #eff1fa;
 $col-black: #3c3d3d;
 
+$col-bg-sky: #21bcff;
+$col-bg-sand: #fddc7f;
 $col-blue: #33869d;
 $col-blue-accent: #36626a;
 $col-blue-sky: #b7dcea;
@@ -20,11 +22,16 @@ $col-purple: rgb(113, 69, 113);
 $col-success: #339175;
 $col-alert: #e15933;
 
-$col-beach-bg: linear-gradient(
-    to bottom,
-    $col-blue-sky 35%,
-    $col-sand 35%,
-    $col-sand 100%
+$col-bg-main: linear-gradient(
+    150deg,
+    $col-orange 5%,
+    $col-yellow 30%,
+    $col-text-light 32%,
+    $col-text-light 33%,
+    $col-blue 34%,
+    $col-blue 36%,
+    $col-blue-sky 55%,
+    $col-white
 );
 
 // Sizes
@@ -38,7 +45,7 @@ $xl: calc($base-size * 2.5);
 $xxl: calc($base-size * 3);
 
 $header-height: 40px;
-$ranking-title-height: 28px;
+$ranking-title-height: 40px;
 $ranking-player-height: 24px;
 // $ranking-height: 116px;
 $ranking-height: calc($ranking-title-height + ($ranking-player-height * 4));
@@ -54,11 +61,13 @@ $font-mogra: 'Mogra', cursive;
 $font-ceviche: 'Ceviche One', cursive;
 $font-shrikhand: 'Shrikhand', cursive;
 
-$font-main: 'Lato', sans-serif;
-$font-game: 'Pacifico', cursive;
-$font-level1: 'Slackey', cursive;
-$font-level2: 'Sunshiney', cursive;
+$font-main: 'ZCOOL KuaiLe', sans-serif;
+$font-game: 'Slackey', cursive, sans-serif;
+$font-level1: 'Slackey', cursive, sans-serif;
+$font-level2: 'Sunshiney', cursive, sans-serif;
 $font-level3: 'ZCOOL KuaiLe', sans-serif;
-$font-level4: 'Bungee Shade', cursive;
-$font-level5: 'Bungee', cursive;
-$font-level6: 'Monoton', cursive;
+$font-level4: 'Pacifico', cursive, sans-serif;
+$font-level5: 'Bungee', cursive, sans-serif;
+$font-level6: 'Monoton', cursive, sans-serif;
+$font-bungee-shade: 'Bungee Shade', cursive, sans-serif;
+$font-lato: 'Lato', sans-serif;

@@ -278,7 +278,7 @@ export class GamePage extends LitElement {
         sand.style.animationPlayState = 'running';
         setTimeout(() => {
             sand.style.animationPlayState = 'paused';
-        }, 500);
+        }, 200);
     }
 
     _getSandElement() {

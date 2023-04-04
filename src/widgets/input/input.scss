@@ -5,7 +5,7 @@
 
     &-fieldset {
         border-radius: $sm;
-        border: 1px solid $col-blue-accent;
+        border: 2px solid $col-blue-accent;
 
         &__legend {
             padding: 0 $sm;
@@ -14,14 +14,14 @@
 
         &--invalid {
             border-radius: $sm;
-            border: 1px solid $col-pink;
+            border: 2px solid $col-pink;
         }
     }
 
     &-input,
     &-input:active {
         color: $col-blue-black;
-        font-family: inherit;
+        font-family: $font-level3;
         font-size: $xl;
         display: block;
         border: none;

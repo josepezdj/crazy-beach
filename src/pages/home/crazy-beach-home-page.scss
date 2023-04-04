@@ -3,9 +3,9 @@
 .homepage {
     @extend .main-section;
     height: 100vh;
-    background-color: transparent;
+    background: $col-bg-main;
     text-align: center;
-    padding: 0 $md calc($xxl * 2);
+    padding: 0 $xl calc($xxl * 2);
 
     &__logo {
         padding-top: $xxl;
@@ -32,16 +32,17 @@
 
 .login {
     color: $col-blue-black;
-    font-family: $font-main;
+    font-family: $font-game;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: calc($xxl * 3);
+    padding: 0 calc($xxl * 2);
 
     &__title {
-        font-size: calc($xxl * 1.5);
+        font-size: $xxl;
         font-weight: 500;
-        margin: calc($xxl * 1.5) 0;
+        margin: calc($xxl * 1.5) 0 0;
     }
 
     &__input {
@@ -49,6 +50,7 @@
         margin-top: $xxl;
 
         &--messages {
+            color: $col-pink;
             width: 100%;
             text-align: center;
         }
@@ -61,6 +63,7 @@
     }
 
     &__button {
+        padding: 0 calc($xxl * 2);
         width: 100%;
         margin-top: calc($xl * 2);
         border-radius: $sm;

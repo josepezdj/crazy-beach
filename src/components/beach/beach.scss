@@ -94,7 +94,7 @@
     font-family: $font-level4;
     color: $col-black;
     text-shadow: 1px 1px 1px $col-white;
-    font-size: calc($xxl * 1.2);
+    font-size: calc($xxl * 1.5);
     letter-spacing: $xs;
     background: linear-gradient(
         170deg,
@@ -107,7 +107,8 @@
     .beach__title--location,
     .beach__title--country {
         color: $col-white;
-        font-size: $md;
+        text-shadow: 1px 1px 1px $col-black;
+        font-size: $lg;
     }
 }
 
