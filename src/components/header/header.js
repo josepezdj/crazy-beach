@@ -73,7 +73,7 @@ export class Header extends LitElement {
                             <li class="header__menu--off-canvas__item">
                                 <a
                                     class="header__menu--off-canvas__link"
-                                    href="#"
+                                    href="/instrucciones"
                                 >
                                     <fa-icon
                                         class="fas fa-scroll"
@@ -85,7 +85,7 @@ export class Header extends LitElement {
                             <li class="header__menu--off-canvas__item">
                                 <a
                                     class="header__menu--off-canvas__link"
-                                    href="#"
+                                    href="/ranking"
                                 >
                                     <fa-icon
                                         class="fas fa-medal"
@@ -97,7 +97,7 @@ export class Header extends LitElement {
                             <li class="header__menu--off-canvas__item">
                                 <a
                                     class="header__menu--off-canvas__link"
-                                    href="#"
+                                    href="/cuenta"
                                 >
                                     <fa-icon
                                         class="far fa-user"
@@ -110,7 +110,7 @@ export class Header extends LitElement {
                             <li class="header__menu--off-canvas__item">
                                 <a
                                     class="header__menu--off-canvas__link"
-                                    href="#"
+                                    href="acerca"
                                 >
                                     <fa-icon
                                         class="far fa-question-circle"
