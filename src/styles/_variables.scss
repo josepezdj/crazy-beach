@@ -38,8 +38,10 @@ $xl: calc($base-size * 2.5);
 $xxl: calc($base-size * 3);
 
 $header-height: 40px;
-$ranking-height: 116px;
 $ranking-title-height: 28px;
+$ranking-player-height: 24px;
+// $ranking-height: 116px;
+$ranking-height: calc($ranking-title-height + ($ranking-player-height * 4));
 $game-page-max-height: 800px;
 $beach-title-height: 95px;
 $app-max-width: 500px;

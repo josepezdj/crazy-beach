@@ -2,6 +2,7 @@
 
 .beach {
     width: 100%;
+    height: 100vh;
     max-height: $game-page-max-height;
     position: relative;
     display: flex;
@@ -20,13 +21,11 @@
             justify-content: center;
             text-align: center;
             height: $beach-title-height;
-            // transition: all 1.5s;
             transition: height 0.75s;
             margin: $lg 0;
         }
 
         &--name {
-            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -166,11 +165,14 @@
 }
 
 .ranking-show {
-    height: calc(100vh - $ranking-height - $header-height);
+    height: calc(
+        100vh - $header-height - $ranking-title-height -
+            ($ranking-player-height * 4)
+    );
     max-height: calc($game-page-max-height - $ranking-height - $header-height);
     .beach__title--container {
         transition: height 1.5s;
-        height: calc($beach-title-height);
+        height: $beach-title-height;
     }
 
     .beach__title--location,

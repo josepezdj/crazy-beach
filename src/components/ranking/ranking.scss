@@ -1,8 +1,7 @@
 @import '../../styles/index.scss';
 
 .ranking {
-    font-family: $font-game;
-    top: $header-height;
+    font-family: $font-main;
     height: $ranking-height;
     width: 100%;
     max-width: $app-max-width;
@@ -19,7 +18,6 @@
 
     /* Track */
     &::-webkit-scrollbar-track {
-        // box-shadow: inset 0 0 5px $col-white;
         background-color: $col-sand;
         border-radius: 10px;
         margin-top: calc($header-height + $ranking-title-height + $xxl);
@@ -59,11 +57,10 @@
     }
 
     &__title {
-        font-family: $font-main;
         color: $col-white;
         font-size: $md;
         text-align: center;
-        padding: $xs 0;
+        padding: 2px 0;
         font-weight: normal;
         text-transform: uppercase;
         letter-spacing: $xs;
@@ -75,15 +72,15 @@
         color: $col-blue-black;
         text-align: center;
         width: 100%;
+        height: $ranking-player-height;
         max-width: $app-max-width;
-        font-family: $font-main;
         font-size: $md;
         font-weight: 700;
         text-transform: capitalize;
         display: grid;
         grid-template-columns: $xxl repeat(3, 1fr);
         grid-template-rows: auto;
-        padding: 2px 0;
+        align-items: center;
         background-color: $col-yellow;
         position: fixed;
         top: $header-height;
@@ -93,20 +90,20 @@
 
     &__data {
         position: relative;
-        margin-top: calc($header-height + $sm);
         transition: all 0.3s;
         z-index: 1;
     }
 
     &__players {
+        height: $ranking-player-height;
         font-size: $md;
         display: grid;
         grid-template-columns: $xxl repeat(3, 1fr);
         grid-template-rows: auto;
+        align-items: center;
 
         &--player {
             text-align: center;
-            padding: 1px 0;
         }
 
         &:nth-child(odd) {
@@ -142,9 +139,13 @@
 }
 
 .ranking-show {
-    height: calc($ranking-height * 1.35);
+    height: calc(
+        $header-height + $ranking-title-height + ($ranking-player-height * 4)
+    );
     .ranking__data {
-        margin-top: calc($header-height + $xxl * 2);
+        margin-top: calc(
+            $header-height + $ranking-title-height + $ranking-player-height
+        );
     }
     .ranking__stats {
         top: $header-height;
