@@ -4,6 +4,7 @@ import 'fa-icons';
 import { localstorageService } from '../../services/localstorage-service';
 import { playerService } from '../../services/player-service';
 import { Router } from '@vaadin/router';
+import beach from '../../assets/images/beach-main.png';
 import { CRAZY_BEACH } from '../../data/constants';
 import './import';
 
@@ -39,6 +40,7 @@ class HomePage extends LitElement {
     render() {
         return html`
             <section class="homepage">
+                <img src="${beach}" class="homepage__bg" />
                 <div class="homepage__logo">
                     <fa-icon class="fas fa-umbrella-beach" size="5em"></fa-icon>
                     <div class="homepage__logo--text">
