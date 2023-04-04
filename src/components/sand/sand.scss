@@ -20,7 +20,8 @@
         height: 100%;
         background-image: url('/lib/assets/images/sand.jpg');
         background-repeat: repeat;
-        background-position: center;
+        // background-position: center;
+        background-position: 0 0;
 
         &-container {
             width: 100%;
@@ -46,16 +47,13 @@
     0% {
         background-position: 0 0;
     }
-    50% {
-        background-position: 0 -100%;
-    }
     100% {
-        background-position: 0 0;
+        background-position: 0 -100%;
     }
 }
 
 .sand-scroll {
-    animation: sand-scroll infinite 4s linear;
+    animation: sand-scroll infinite forwards 4s linear;
 }
 
 .ranking-show {

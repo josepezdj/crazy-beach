@@ -1,6 +1,8 @@
 @import '../../styles/index.scss';
 
 .ranking {
+    @extend .scroll-bar;
+
     font-family: $font-main;
     color: $col-blue-black;
     height: $ranking-height;
@@ -12,28 +14,8 @@
     overflow-y: scroll;
     transition: all 0.3s;
 
-    /* width */
-    &::-webkit-scrollbar {
-        width: $sm;
-    }
-
-    /* Track */
     &::-webkit-scrollbar-track {
-        background-color: $col-sand;
-        border-radius: 10px;
         margin-top: calc($header-height + $ranking-title-height + $xxl);
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: $col-pink;
-        border-radius: 10px;
-        transition: all 0.2s;
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: darken($col-pink, 5%);
     }
 
     &__header {

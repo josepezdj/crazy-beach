@@ -136,13 +136,13 @@ export class Header extends LitElement {
             '.header__menu--off-canvas__list'
         );
         if (value) {
-            target.style.height = '200px';
-            target.style.padding = '16px 0';
+            target.style.height = '150px';
+            // target.style.padding = '16px 0';
             menuList.style.fontSize = '12px';
             hr.style.opacity = '1';
         } else {
             target.style.height = '0';
-            target.style.padding = '0';
+            // target.style.padding = '0';
             menuList.style.fontSize = '0';
             hr.style.opacity = '0';
         }

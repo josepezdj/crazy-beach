@@ -49,6 +49,9 @@ $ranking-title-height: 40px;
 $ranking-player-height: 24px;
 // $ranking-height: 116px;
 $ranking-height: calc($ranking-title-height + ($ranking-player-height * 4));
+$ranking-page-ranking-height: calc(
+    $ranking-title-height + ($ranking-player-height * 4)
+);
 $game-page-max-height: 800px;
 $beach-title-height: 95px;
 $app-max-width: 500px;

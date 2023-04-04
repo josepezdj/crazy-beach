@@ -61,15 +61,6 @@ export class Ranking extends LitElement {
         `;
     }
 
-    onRankingClick() {
-        this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
-        this.dispatchEvent(
-            new CustomEvent('cb-ranking-click', {
-                detail: this.isRankingCollapsed,
-            })
-        );
-    }
-
     renderPlayers() {
         this.players = playerService.getAllPlayers();
         if (this.players !== -1)
@@ -79,18 +70,23 @@ export class Ranking extends LitElement {
                         <li class="ranking__players--player">${i + 1}</li>
                         <li class="ranking__players--player">${player.name}</li>
                         <li class="ranking__players--player">
-                            ${player.id === this.currentPlayer.id
-                                ? this.currentPoints
-                                : player.currentPoints}
+                            ${player.currentPoints}
                         </li>
                         <li class="ranking__players--player">
-                            ${player.id === this.currentPlayer.id
-                                ? this.currentMaxPoints
-                                : player.maxPoints}
+                            ${player.maxPoints}
                         </li>
                     </ul>
                 `;
             })}`;
+    }
+
+    onRankingClick() {
+        this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
+        this.dispatchEvent(
+            new CustomEvent('cb-ranking-click', {
+                detail: this.isRankingCollapsed,
+            })
+        );
     }
 
     getArrow() {

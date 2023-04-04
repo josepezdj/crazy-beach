@@ -3,4 +3,99 @@
 .ranking-page {
     @extend .main-section;
     height: 100vh;
+    background: linear-gradient(to bottom, $col-bg-sky 50%, #74ae04 50%);
+
+    &__bg {
+        position: absolute;
+        width: 100%;
+        // height: 100%;
+        object-fit: cover;
+        left: 0;
+    }
+
+    &__content {
+        width: 100%;
+        color: $col-text-dark;
+        margin-top: $header-height;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 calc($xxl * 2);
+    }
+
+    &__title {
+        text-align: center;
+        font-size: calc($xxl * 2);
+        font-family: $font-game;
+        color: $col-black;
+        text-shadow: $col-white 1px 1px 2px;
+        margin-top: $xl;
+
+        &--container {
+            height: calc($ranking-title-height * 2);
+        }
+    }
+
+    &__stats {
+        color: $col-black;
+        text-align: center;
+        width: 100%;
+        height: $ranking-player-height;
+        max-width: $app-max-width;
+        font-size: $md;
+        font-weight: 700;
+        text-transform: capitalize;
+        display: grid;
+        grid-template-columns: $xxl repeat(3, 1fr);
+        grid-template-rows: auto;
+        align-items: center;
+        background-color: $col-yellow;
+        transform: skewY(-2deg);
+        z-index: 2;
+        transition: all 0.3s;
+        margin-top: $xl;
+
+        & li {
+            transform: skewY(2deg);
+        }
+    }
+
+    &__data {
+        @extend .scroll-bar;
+        font-family: $font-game;
+        position: relative;
+        transition: all 0.3s;
+        z-index: 1;
+        transform: skewY(-2deg);
+        overflow-y: scroll;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+            0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+            0 16px 16px rgba(0, 0, 0, 0.12);
+        margin-bottom: calc($header-height * 2.3);
+    }
+
+    &__players {
+        height: $ranking-player-height;
+        font-size: $md;
+        display: grid;
+        grid-template-columns: $xxl repeat(3, 1fr);
+        grid-template-rows: auto;
+        align-items: center;
+
+        &--player {
+            text-align: center;
+            transform: skewY(2deg);
+        }
+
+        &:nth-child(odd) {
+            // color: $col-text-light;
+            background-color: rgba(193, 227, 193, 0.646);
+        }
+
+        &:nth-child(even) {
+            background-color: rgba(221, 255, 254, 0.742);
+        }
+    }
 }

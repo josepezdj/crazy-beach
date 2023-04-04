@@ -150,8 +150,7 @@
         background-color: $col-blue-accent;
         color: $col-text-light;
         height: 0;
-        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
-
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5%), 0 100%);
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
             0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
             0 16px 16px rgba(0, 0, 0, 0.12);

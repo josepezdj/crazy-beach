@@ -53,3 +53,28 @@ a {
     overflow: hidden;
     border-radius: $xs;
 }
+
+.scroll-bar {
+    /* width */
+    &::-webkit-scrollbar {
+        width: $sm;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: $col-pink;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $col-sand;
+        border-radius: 10px;
+        transition: all 0.2s;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: darken($col-pink, 5%);
+    }
+}
