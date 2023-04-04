@@ -55,6 +55,10 @@ export const CRAZY_BEACH = {
         AUTHOR: 'Autor',
         LICENSE: 'Licencia',
     },
+    ACCOUNT: {
+        ID: 'Número de jugador',
+        STATS: 'Estadísticas',
+    },
 };
 
 //levelup / gameover / ranking3 / ranking2 / ranking1 / countdown
