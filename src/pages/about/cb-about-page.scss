@@ -3,4 +3,86 @@
 .about-page {
     @extend .main-section;
     height: 100vh;
+    color: $col-blue-black;
+    background: linear-gradient(to bottom, $col-bg-sky 30%, $col-bg-sand 30%);
+
+    &__bg {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        left: 0;
+        top: calc($header-height + ($xxl * 2));
+    }
+
+    &__content {
+        width: 100%;
+        color: $col-text-dark;
+        margin-top: $header-height;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transform: skewY(-7deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__title {
+        text-align: center;
+        font-family: $font-game;
+        color: $col-text-light;
+        text-shadow: $col-black 2px 1px 2px;
+        transform: skewY(7deg);
+
+        &--container {
+            padding: calc($header-height) calc($xxl * 3);
+            margin-top: -$xxl;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+            background-color: rgba(66, 129, 151, 0.4);
+        }
+    }
+
+    &__list {
+        color: $col-black;
+        background-color: rgba(70, 155, 158, 0.6);
+        padding: $xl calc($xxl * 2);
+        margin-bottom: calc($header-height * 3);
+    }
+
+    &__item {
+        display: flex;
+        transform: skewY(7deg);
+        align-items: center;
+        justify-content: center;
+        column-gap: $md;
+        margin-bottom: $xxl;
+
+        & p:first-child {
+            font-weight: 700;
+            font-family: $font-game;
+            font-size: $lg;
+            text-shadow: $col-white 1px 1px 2px;
+        }
+
+        & p:last-child {
+            font-family: $font-level1;
+            font-size: $md;
+            color: $col-white;
+            text-shadow: $col-black 1px 1px 2px;
+        }
+    }
+
+    &__version {
+        letter-spacing: 2px;
+    }
+
+    &__description,
+    &__author {
+        letter-spacing: 1px;
+    }
+
+    &__license {
+        letter-spacing: 2px;
+    }
 }

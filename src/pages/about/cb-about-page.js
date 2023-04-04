@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit';
 import styles from './cb-about-page.scss';
 import 'fa-icons';
 import { playerService } from '../../services/player-service';
-import { Router } from '@vaadin/router';
 import { CRAZY_BEACH } from '../../data/constants';
+import beach from '../../assets/images/beach-bg-small.jpg';
 import packageJson from '../../../package.json';
 
 class AboutPage extends LitElement {
@@ -22,25 +22,42 @@ class AboutPage extends LitElement {
     render() {
         return html`
             <section class="about-page">
+                <img src="${beach}" class="about-page__bg" />
                 <crazy-beach-header-component
                     currentPlayer="${JSON.stringify(this.currentPlayer)}"
                     goBackUrl="${this.goBackUrl}"
                 ></crazy-beach-header-component>
-                <h1 class="about-page__title">${CRAZY_BEACH.MAIN_APP.ABOUT}</h1>
-                <article>
-                    <h2 class="about-page__subtitle"></h2>
-                    <ul>
-                        <li>
+                <article class="about-page__content">
+                    <div class="about-page__title--container">
+                        <h1 class="about-page__title">
+                            ${CRAZY_BEACH.MAIN_APP.ABOUT}
+                        </h1>
+                    </div>
+                    <ul class="about-page__list">
+                        <li class="about-page__item">
                             <p>${CRAZY_BEACH.ABOUT.VERSION}</p>
+                            <p class="about-page__version">
+                                ${packageJson.version}
+                            </p>
                         </li>
-
-                        <p class="about-page__description">
-                            ${packageJson.description}
-                        </p>
-                        <p class="about-page__author">${packageJson.author}</p>
-                        <p class="about-page__license">
-                            ${packageJson.license}
-                        </p>
+                        <li class="about-page__item">
+                            <p>${CRAZY_BEACH.ABOUT.DESCRIPTION}</p>
+                            <p class="about-page__description">
+                                ${packageJson.description}
+                            </p>
+                        </li>
+                        <li class="about-page__item">
+                            <p>${CRAZY_BEACH.ABOUT.AUTHOR}</p>
+                            <p class="about-page__author">
+                                ${packageJson.author}
+                            </p>
+                        </li>
+                        <li class="about-page__item">
+                            <p>${CRAZY_BEACH.ABOUT.LICENSE}</p>
+                            <p class="about-page__license">
+                                ${packageJson.license}
+                            </p>
+                        </li>
                     </ul>
                 </article>
             </section>
