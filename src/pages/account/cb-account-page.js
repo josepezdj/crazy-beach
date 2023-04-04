@@ -9,23 +9,23 @@ import { CRAZY_BEACH } from '../../data/constants';
 class AccountPage extends LitElement {
     static get properties() {
         return {
-            messages: { type: Array },
-            name: { type: String },
             currentPlayer: { type: Object },
-            players: { type: Array },
-            isInvalid: { type: Boolean },
         };
     }
 
     constructor() {
         super();
-        this.messages = [];
-        this.isInvalid = true;
+        this.currentPlayer = playerService.getCurrentPlayer();
+        this.goBackUrl = '/juego';
     }
 
     render() {
         return html`
-            <section>
+            <section class="account-page">
+                <crazy-beach-header-component
+                    currentPlayer="${JSON.stringify(this.currentPlayer)}"
+                    goBackUrl="${this.goBackUrl}"
+                ></crazy-beach-header-component>
                 <h1>${CRAZY_BEACH.MAIN_APP.ACCOUNT}</h1>
             </section>
         `;

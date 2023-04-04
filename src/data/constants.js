@@ -49,6 +49,12 @@ export const CRAZY_BEACH = {
             GAME_OVER: 'Juego terminado',
         },
     },
+    ABOUT: {
+        DESCRIPTION: 'Descripción',
+        VERSION: 'Versión',
+        AUTHOR: 'Autor',
+        LICENSE: 'Licencia',
+    },
 };
 
 //levelup / gameover / ranking3 / ranking2 / ranking1 / countdown

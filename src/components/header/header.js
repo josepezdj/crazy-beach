@@ -8,19 +8,21 @@ export class Header extends LitElement {
     static get properties() {
         return {
             currentPlayer: { type: Object, reflect: true },
+            goBackUrl: { type: String },
         };
     }
 
     constructor() {
         super();
         this.currentPlayer = playerService.getCurrentPlayer();
+        this.goBackUrl = '/';
     }
 
     render() {
         return html`
             <div class="header">
                 <nav class="header__nav">
-                    <a class="header__goback" href="/">
+                    <a class="header__goback" href="${this.goBackUrl}">
                         <fa-icon
                             class="fas fa-arrow-left"
                             size="1.2em"

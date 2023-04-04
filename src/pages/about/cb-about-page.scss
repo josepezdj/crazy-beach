@@ -1,1 +1,6 @@
 @import '../../styles/index.scss';
+
+.about-page {
+    @extend .main-section;
+    height: 100vh;
+}

@@ -1,14 +1,11 @@
 @import '../../styles/index.scss';
 
 .homepage {
-    text-align: center;
-    height: 100%;
-    max-height: $game-page-max-height;
-    max-width: $app-max-width;
-    margin: 0 auto;
-    padding: 0 $md;
+    @extend .main-section;
+    height: 100vh;
     background-color: transparent;
-    border-radius: $xs;
+    text-align: center;
+    padding: 0 $md calc($xxl * 2);
 
     &__logo {
         padding-top: $xxl;
