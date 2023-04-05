@@ -3,4 +3,53 @@
 .instructions-page {
     @extend .main-section;
     height: 100vh;
+    color: $col-blue-black;
+    background-color: $col-blue-sky;
+    font-family: $font-game;
+
+    &__bg {
+        margin-top: calc($header-height + ($xxl * 2));
+        object-fit: contain;
+        z-index: 0;
+        height: auto;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+
+        &--container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        font-size: calc($xxl * 1.5);
+        position: relative;
+        margin-top: calc($header-height + $xxl);
+        z-index: 1;
+    }
+
+    &__content {
+        margin-top: $xxl;
+        font-size: $lg;
+        color: $col-text-light;
+        text-shadow: rgb(60, 61, 61) 1px 1px 2px;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+        padding: calc($xxl * 2) $lg $xxl calc($lg * 2);
+        background-color: rgba(70, 155, 158, 0.5);
+        transform: skewY(-5deg);
+        list-style-type: circle;
+
+        & > * {
+            transform: skewY(5deg);
+            margin-bottom: $lg;
+            letter-spacing: 1px;
+        }
+    }
 }

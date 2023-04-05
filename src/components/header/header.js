@@ -136,7 +136,7 @@ export class Header extends LitElement {
             '.header__menu--off-canvas__list'
         );
         if (value) {
-            target.style.height = '150px';
+            target.style.height = '200px';
             // target.style.padding = '16px 0';
             menuList.style.fontSize = '12px';
             hr.style.opacity = '1';

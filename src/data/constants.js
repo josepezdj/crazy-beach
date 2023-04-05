@@ -59,6 +59,13 @@ export const CRAZY_BEACH = {
         ID: 'Número de jugador',
         STATS: 'Estadísticas',
     },
+    INSTRUCTIONS: {
+        P1: 'El juego consiste en andar mientras hay <strong><i>"bandera verde"</i></strong>',
+        P2: 'Para ello, debes pulsar los pies alternativamente, y cada paso summará 1 punto',
+        P3: 'Si pulsas el mismo pie consecutivamente, pierdes 1 punto',
+        P4: 'Si pulsas cualquier pie mientras hay bandera roja, el juego termina',
+        P5: 'Dale al botón <strong><i>"Empezar"</i></strong> y consigue tantos puntos como puedas!',
+    },
 };
 
 //levelup / gameover / ranking3 / ranking2 / ranking1 / countdown

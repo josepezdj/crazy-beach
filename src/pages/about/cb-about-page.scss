@@ -22,7 +22,7 @@
         position: absolute;
         top: 0;
         height: 100%;
-        transform: skewY(-7deg);
+        transform: skewY(-5deg);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -33,10 +33,10 @@
         font-family: $font-game;
         color: $col-text-light;
         text-shadow: $col-black 2px 1px 2px;
-        transform: skewY(7deg);
+        transform: skewY(5deg);
 
         &--container {
-            padding: calc($header-height) calc($xxl * 3);
+            padding: calc($header-height) calc($xxl * 3) calc($xxl * 3);
             margin-top: -$xxl;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
             background-color: rgba(66, 129, 151, 0.4);
@@ -52,7 +52,7 @@
 
     &__item {
         display: flex;
-        transform: skewY(7deg);
+        transform: skewY(5deg);
         align-items: center;
         justify-content: center;
         column-gap: $md;

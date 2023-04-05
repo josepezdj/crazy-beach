@@ -35,9 +35,7 @@ export const playerService = (() => {
     };
     services.updateCurrentPlayer = (prop, value) => {
         let state = localstorageService.getStateFromLocalStorage();
-        let currentPlayer;
         if (state !== -1 && state.currentPlayer !== '') {
-            currentPlayer = state.currentPlayer;
             // Update currentPlayer
             state.currentPlayer[prop] = value;
             // Update player in players list

@@ -179,11 +179,11 @@
             display: flex;
             align-items: center;
             column-gap: $md;
-            margin-bottom: $md;
+            padding-bottom: $lg;
         }
 
         &__link:last-child {
-            margin-top: $md;
+            padding-top: $md;
         }
     }
 }
