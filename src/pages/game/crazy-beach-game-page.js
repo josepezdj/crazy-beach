@@ -28,6 +28,8 @@ export class GamePage extends LitElement {
             feetDisabled: { type: Boolean },
             isRankingCollapsed: { type: Boolean },
             scoreColor: { type: String },
+            musicElement: { type: Object },
+            firstTime: { type: Boolean },
         };
     }
 
@@ -51,6 +53,8 @@ export class GamePage extends LitElement {
         this.beachAnimation = false;
         this.feetDisabled = true;
         this.isRankingCollapsed = false;
+        this.levelMusicUrl = '/lib/assets/music/level1.wav';
+        this.firstTime = true;
     }
 
     firstUpdated() {
@@ -61,6 +65,7 @@ export class GamePage extends LitElement {
     }
 
     onRankingClick(e) {
+        e.stopPropagation();
         this.isRankingCollapsed = e.detail;
     }
 
@@ -119,11 +124,33 @@ export class GamePage extends LitElement {
                         @cb-button-click="${this.onStartButtonClick}"
                     ></crazy-beach-button-widget>
                 </div>
+                <audio
+                    style="display: none;"
+                    src="${this.levelMusicUrl}"
+                    type="audio/wav"
+                    loop
+                ></audio>
             </section>
         `;
     }
 
+    setupAudio() {
+        this.musicElement = this.shadowRoot.querySelector('audio');
+        if (
+            this.musicElement !== '' &&
+            this.musicElement !== undefined &&
+            this.musicElement !== null
+        ) {
+            this.musicElement.play();
+            this.musicElement.pause();
+        }
+    }
+
     onStartButtonClick() {
+        if (this.firstTime) {
+            this.setupAudio();
+        }
+
         if (!this.isGameOn) {
             this.isGameOn = true;
             this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.STOP;
@@ -145,6 +172,7 @@ export class GamePage extends LitElement {
 
     stopGame() {
         this.color = 'red';
+        this.musicElement.pause();
         this.scoreColor = 'green';
         this.feetDisabled = true;
         this.buttonLabel =
@@ -201,6 +229,7 @@ export class GamePage extends LitElement {
             this.scoreColor = 'green';
         }, 500);
     }
+
     recordCurrentPoints() {
         playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
     }
@@ -227,8 +256,6 @@ export class GamePage extends LitElement {
         setTimeout(() => {
             this._setMessage('');
         }, 4000);
-        // Change score color to 'alert'
-
         // Stop counter
         this.stopGame();
     }
@@ -239,12 +266,14 @@ export class GamePage extends LitElement {
             CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE,
             'countdown'
         );
-        const countdownTimer = setTimeout(() => {
+        setTimeout(() => {
             this._setGreenCounter();
             this.isStartButtonDisabled = false;
             this._setMessage('');
             this.beachAnimation = true;
             this.feetDisabled = false;
+            this.musicElement.load();
+            this.musicElement.play();
         }, 3000);
         setTimeout(() => {
             this._setMessage(
@@ -276,9 +305,12 @@ export class GamePage extends LitElement {
     }
 
     _setRedCounter() {
+        this.musicElement.pause();
         this.color = 'red';
         this.counter = setTimeout(() => {
             this._setGreenCounter();
+            this.musicElement.load();
+            this.musicElement.play();
         }, 3000);
     }
 
