@@ -23,7 +23,7 @@
     left: 0;
     bottom: 0;
     z-index: 20;
-    // text-shadow: none;
+    transition: all 0.4s;
 
     p {
         position: absolute;
@@ -37,13 +37,17 @@
     }
 
     &--countdown {
-        color: $col-blue-black;
+        color: $col-success;
         font-size: calc($xxl * 2);
         font-family: $font-level1;
     }
 
     &--gameover {
         color: $col-alert;
+        font-size: $xxl;
+        font-family: $font-level6;
+        font-weight: 700;
+        animation: fade-out 4s ease-out forwards;
     }
 
     &--ranking3 {

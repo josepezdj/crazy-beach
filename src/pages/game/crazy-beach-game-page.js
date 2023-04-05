@@ -27,6 +27,7 @@ export class GamePage extends LitElement {
             beachAnimation: { type: Boolean },
             feetDisabled: { type: Boolean },
             isRankingCollapsed: { type: Boolean },
+            scoreColor: { type: String },
         };
     }
 
@@ -38,6 +39,7 @@ export class GamePage extends LitElement {
         this.players = playerService.getAllPlayers();
         this.currentLevel = getLevelByPoints(this.currentMaxPoints);
         this.color = 'red';
+        this.scoreColor = 'green';
         this.flashMessage = '';
         this.messageType = '';
         // MessageType Values:
@@ -106,6 +108,7 @@ export class GamePage extends LitElement {
                     : null}
                 <crazy-beach-score-component
                     score="${this.currentPoints}"
+                    color="${this.scoreColor}"
                     ?isRankingCollapsed="${this.isRankingCollpased}"
                 ></crazy-beach-score-component>
                 <div class="gamepage__button">
@@ -141,8 +144,8 @@ export class GamePage extends LitElement {
     }
 
     stopGame() {
-        this.isGameOn = false;
         this.color = 'red';
+        this.scoreColor = 'green';
         this.feetDisabled = true;
         this.buttonLabel =
             this.currentPoints > 0
@@ -179,17 +182,25 @@ export class GamePage extends LitElement {
     }
 
     addPoint() {
+        this.scoreColor = 'green';
         this.currentPoints = this.currentPoints += 1;
         this.recordCurrentPoints();
         this.recordMaxPoints();
     }
 
     subtractPoint() {
+        this.scoreRedColorEffect();
         this.currentPoints =
             this.currentPoints !== 0 ? (this.currentPoints -= 1) : 0;
         this.recordCurrentPoints();
     }
 
+    scoreRedColorEffect() {
+        this.scoreColor = 'red';
+        setTimeout(() => {
+            this.scoreColor = 'green';
+        }, 500);
+    }
     recordCurrentPoints() {
         playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
     }
@@ -207,9 +218,15 @@ export class GamePage extends LitElement {
     gameOver() {
         // Erase current points
         this.currentPoints = 0;
+        // Throw red color effect on score
+        this.scoreRedColorEffect();
+        // Set current player points to zero
         playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
         // Game over flash-message
-
+        this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.GAME_OVER, 'gameover');
+        setTimeout(() => {
+            this._setMessage('');
+        }, 4000);
         // Change score color to 'alert'
 
         // Stop counter

@@ -78,3 +78,18 @@ a {
         background: darken($col-pink, 5%);
     }
 }
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}

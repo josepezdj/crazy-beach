@@ -7,12 +7,14 @@ export class Score extends LitElement {
         return {
             score: { type: Number },
             isRankingCollapsed: { type: Boolean },
+            color: { type: String, reflect: true },
         };
     }
 
     constructor() {
         super();
         this.score = 0;
+        this.color = 'green';
         this.isRankingCollapsed = false;
     }
 
@@ -24,7 +26,9 @@ export class Score extends LitElement {
                     : 'show'}"
             >
                 <div class="score__content">
-                    <div class="score__number">
+                    <div
+                        class="score__number score__number--color-${this.color}"
+                    >
                         <span>${this.score}</span>
                     </div>
                     <h3 class="score__title">Puntos</h3>
