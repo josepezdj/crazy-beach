@@ -44,7 +44,7 @@
     }
 
     &__list {
-        color: $col-black;
+        color: $col-blue-black;
         background-color: rgba(70, 155, 158, 0.6);
         padding: $xl calc($xxl * 2);
         margin-bottom: calc($header-height * 3);
@@ -62,7 +62,6 @@
             font-weight: 700;
             font-family: $font-game;
             font-size: $lg;
-            text-shadow: $col-white 1px 1px 2px;
         }
 
         & p:last-child {

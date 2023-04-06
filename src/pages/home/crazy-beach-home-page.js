@@ -59,7 +59,7 @@ class HomePage extends LitElement {
                             maxLength="${CRAZY_BEACH.LOGIN.INPUT_MAX_LENGTH}"
                             ?isInvalid="${this.isInvalid}"
                             @cb-input-value="${this.onInputValue}"
-                            @cb-input-focusout="${this.onInputFocussout}"
+                            @cb-input-focusout="${this.onInputFocusout}"
                         ></crazy-beach-input-widget>
                         ${this.messages.length > 0
                             ? html`
@@ -97,7 +97,8 @@ class HomePage extends LitElement {
         if (checkCharacters) {
             this.messages = this.messages.filter(
                 (msg) =>
-                    msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS
+                    msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS &&
+                    msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
             );
 
             if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
@@ -135,7 +136,26 @@ class HomePage extends LitElement {
         this.validate();
     }
 
-    onInputFocussout() {}
+    onInputFocusout(e) {
+        const value = e.detail;
+        if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
+            this.isInvalid = true;
+            const msgAlreadyDisplaying = this.messages.find(
+                (msg) => msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+            );
+            if (!msgAlreadyDisplaying)
+                this.messages = [
+                    ...this.messages,
+                    CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME,
+                ];
+        } else {
+            this.isInvalid = false;
+            this.messages = this.messages.filter(
+                (msg) => msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+            );
+            this.name = value;
+        }
+    }
 
     validate() {
         const input = this.shadowRoot.querySelectorAll('#cb-login-input')[0];

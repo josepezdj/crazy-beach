@@ -40,6 +40,7 @@ export class Ranking extends LitElement {
                     <a
                         href="#"
                         class="ranking__header--link"
+                        id="ranking__header--link"
                         @click="${this.onRankingClick}"
                     >
                         <h3 class="ranking__title">
@@ -80,13 +81,16 @@ export class Ranking extends LitElement {
             })}`;
     }
 
-    onRankingClick() {
-        this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
-        this.dispatchEvent(
-            new CustomEvent('cb-ranking-click', {
-                detail: this.isRankingCollapsed,
-            })
-        );
+    onRankingClick(e) {
+        e.stopPropagation();
+        if (e.currentTarget.id === 'ranking__header--link') {
+            this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
+            this.dispatchEvent(
+                new CustomEvent('cb-ranking-click', {
+                    detail: this.isRankingCollapsed,
+                })
+            );
+        }
     }
 
     getArrow() {

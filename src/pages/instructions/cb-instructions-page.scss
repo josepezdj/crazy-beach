@@ -3,7 +3,7 @@
 .instructions-page {
     @extend .main-section;
     height: 100vh;
-    color: $col-blue-black;
+    color: $col-orange;
     background-color: $col-blue-sky;
     font-family: $font-game;
 
@@ -28,6 +28,7 @@
     &__title {
         text-align: center;
         font-size: calc($xxl * 1.5);
+        text-shadow: 1px 1px 1px $col-blue-black;
         position: relative;
         margin-top: calc($header-height + $xxl);
         z-index: 1;

@@ -21,7 +21,7 @@
     &__header {
         cursor: pointer;
         background-color: inherit;
-        position: fixed;
+        position: absolute;
         top: $header-height;
         height: calc($header-height - $md);
         width: 100%;

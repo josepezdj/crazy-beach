@@ -40,7 +40,6 @@
 
             & span:first-child {
                 color: $col-blue-black;
-                text-shadow: 1px 1px 1px $col-blue-sky;
             }
 
             & span:last-child {
@@ -65,7 +64,6 @@
     &__title {
         font-size: $xxl;
         font-weight: 500;
-        text-shadow: 2px 1px 1px $col-white;
     }
 
     &__input {
