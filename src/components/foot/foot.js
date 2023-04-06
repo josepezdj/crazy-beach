@@ -15,6 +15,9 @@ class Foot extends LitElement {
     constructor() {
         super();
         this.isDisabled = false;
+        this.firstTime = true;
+        this.leftSoundPath = '/lib/assets/sounds/step1.mp3';
+        this.rightSoundPath = '/lib/assets/sounds/step2.mp3';
     }
 
     render() {
@@ -33,12 +36,26 @@ class Foot extends LitElement {
                             alt="dibujo de un pie"
                         />
                     </figure>
+                    <audio
+                        style="display: none;"
+                        src="${this.side === 'left'
+                            ? this.leftSoundPath
+                            : this.rightSoundPath}"
+                        type="audio/mp3"
+                    ></audio>
                 </button>
             </div>
         `;
     }
 
     onButtonClick() {
+        if (this.firstTime) {
+            this.soundElement = this.shadowRoot.querySelector('audio');
+            this.soundElement.play();
+            this.soundElement.pause();
+        }
+        this.soundElement.play();
+
         this.dispatchEvent(
             new CustomEvent('cb-foot-click', {
                 detail: this.side,

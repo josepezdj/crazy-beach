@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 calc($xxl * 2);
+    padding: 0 $xxl;
     z-index: 2;
     flex: 1;
     justify-content: end;
@@ -86,7 +86,7 @@
     }
 
     &__button {
-        padding: 0 calc($xxl * 2);
+        padding: 0 $xxl;
         margin-top: $header-height;
         width: 100%;
         border-radius: $sm;

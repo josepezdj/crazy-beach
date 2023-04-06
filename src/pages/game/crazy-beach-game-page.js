@@ -29,7 +29,6 @@ export class GamePage extends LitElement {
             isRankingCollapsed: { type: Boolean },
             scoreColor: { type: String },
             musicElement: { type: Object },
-            firstTime: { type: Boolean },
         };
     }
 
@@ -44,8 +43,6 @@ export class GamePage extends LitElement {
         this.scoreColor = 'green';
         this.flashMessage = '';
         this.messageType = '';
-        // MessageType Values:
-        // levelup / gameover / ranking3 / ranking2 / ranking1 / countdown
         this.isLeftPressed = false;
         this.isRightPressed = false;
         this.isGameOn = false;
@@ -53,8 +50,11 @@ export class GamePage extends LitElement {
         this.beachAnimation = false;
         this.feetDisabled = true;
         this.isRankingCollapsed = false;
-        this.levelMusicUrl = '/lib/assets/music/level1.wav';
-        this.firstTime = true;
+
+        this.levelMusicPath = '/lib/assets/music/level1.mp3';
+        this.levelSoundscapePath = '/lib/assets/music/soundscape-beach.mp3';
+        this.gameoverSoundPath = '/lib/assets/sounds/gameover.mp3';
+        this.countdownSoundPath = '/lib/assets/sounds/countdown-beep.mp3';
     }
 
     firstUpdated() {
@@ -62,6 +62,7 @@ export class GamePage extends LitElement {
             this.currentPoints > 0
                 ? CRAZY_BEACH.GAME.BTN_START.RESTART
                 : CRAZY_BEACH.GAME.BTN_START.START;
+        this.setupAudio();
     }
 
     onRankingClick(e) {
@@ -125,17 +126,43 @@ export class GamePage extends LitElement {
                     ></crazy-beach-button-widget>
                 </div>
                 <audio
+                    id="level-music"
                     style="display: none;"
-                    src="${this.levelMusicUrl}"
-                    type="audio/wav"
+                    src="${this.levelMusicPath}"
+                    type="audio/mp3"
                     loop
+                ></audio>
+                <audio
+                    id="level-soundscape"
+                    style="display: none;"
+                    src="${this.levelSoundscapePath}"
+                    type="audio/mp3"
+                    loop
+                ></audio>
+                <audio
+                    id="countdown-beep"
+                    style="display: none;"
+                    src="${this.countdownSoundPath}"
+                    type="audio/mp3"
+                ></audio>
+                <audio
+                    id="gameover-sound"
+                    style="display: none;"
+                    src="${this.gameoverSoundPath}"
+                    type="audio/mp3"
                 ></audio>
             </section>
         `;
     }
 
     setupAudio() {
-        this.musicElement = this.shadowRoot.querySelector('audio');
+        this.musicElement = this.shadowRoot.querySelector('#level-music');
+        this.soundscapeElement =
+            this.shadowRoot.querySelector('#level-soundscape');
+        this.countdownFxElement =
+            this.shadowRoot.querySelector('#countdown-beep');
+        this.gameoverFxElement =
+            this.shadowRoot.querySelector('#gameover-sound');
         if (
             this.musicElement !== '' &&
             this.musicElement !== undefined &&
@@ -144,13 +171,33 @@ export class GamePage extends LitElement {
             this.musicElement.play();
             this.musicElement.pause();
         }
+        if (
+            this.soundscapeElement !== '' &&
+            this.soundscapeElement !== undefined &&
+            this.soundscapeElement !== null
+        ) {
+            this.soundscapeElement.play();
+            this.soundscapeElement.volume = '0.2';
+        }
+        if (
+            this.countdownFxElement !== '' &&
+            this.countdownFxElement !== undefined &&
+            this.countdownFxElement !== null
+        ) {
+            this.countdownFxElement.play();
+            this.countdownFxElement.pause();
+        }
+        if (
+            this.gameoverFxElement !== '' &&
+            this.gameoverFxElement !== undefined &&
+            this.gameoverFxElement !== null
+        ) {
+            this.gameoverFxElement.play();
+            this.gameoverFxElement.pause();
+        }
     }
 
     onStartButtonClick() {
-        if (this.firstTime) {
-            this.setupAudio();
-        }
-
         if (!this.isGameOn) {
             this.isGameOn = true;
             this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.STOP;
@@ -256,6 +303,8 @@ export class GamePage extends LitElement {
         setTimeout(() => {
             this._setMessage('');
         }, 4000);
+        // Play game over sound
+        this.gameoverFxElement.play();
         // Stop counter
         this.stopGame();
     }
@@ -266,6 +315,8 @@ export class GamePage extends LitElement {
             CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE,
             'countdown'
         );
+        this.countdownFxElement.play();
+
         setTimeout(() => {
             this._setGreenCounter();
             this.isStartButtonDisabled = false;
@@ -280,12 +331,14 @@ export class GamePage extends LitElement {
                 CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.ONE,
                 'countdown'
             );
+            this.countdownFxElement.play();
         }, 2000);
         setTimeout(() => {
             this._setMessage(
                 CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.TWO,
                 'countdown'
             );
+            this.countdownFxElement.play();
         }, 1000);
     }
 
