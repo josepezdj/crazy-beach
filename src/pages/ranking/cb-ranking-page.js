@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit';
 import styles from './cb-ranking-page.scss';
-import 'fa-icons';
 import { playerService } from '../../services/player-service';
 import ranking from '../../assets/images/ranking-bg.jpg';
+import iconTrophy from '../../assets/icons/icon-trophy.png';
 import { CRAZY_BEACH } from '../../data/constants';
 
 class RankingPage extends LitElement {
@@ -36,10 +36,7 @@ class RankingPage extends LitElement {
                     </div>
                     <ul class="ranking-page__stats">
                         <li>
-                            <fa-icon
-                                class="fas fa-trophy"
-                                size="1.20em"
-                            ></fa-icon>
+                            <img src="${iconTrophy}" alt="icono de un trofeo" />
                         </li>
                         <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_NAME}</li>
                         <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_POINTS}</li>

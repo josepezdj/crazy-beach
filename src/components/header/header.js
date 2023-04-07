@@ -1,7 +1,12 @@
 import { LitElement, html } from 'lit';
 import styles from './header.scss';
 import { playerService } from '../../services/player-service';
-import 'fa-icons';
+import logo from '../../assets/icons/favicon-72x72.png';
+import iconArrowLeft from '../../assets/icons/icon-arrow-left.png';
+import iconInstructions from '../../assets/icons/icon-instructions.png';
+import iconInfo from '../../assets/icons/icon-info.png';
+import iconMedal from '../../assets/icons/icon-medal.png';
+import iconUser from '../../assets/icons/icon-user.png';
 import { CRAZY_BEACH } from '../../data/constants';
 
 export class Header extends LitElement {
@@ -23,20 +28,15 @@ export class Header extends LitElement {
             <div class="header">
                 <nav class="header__nav">
                     <a class="header__goback" href="${this.goBackUrl}">
-                        <fa-icon
-                            class="fas fa-arrow-left"
-                            size="1.2em"
-                        ></fa-icon>
+                        <img src="${iconArrowLeft}" alt"icono de una sombrilla
+                        de playa">
                     </a>
 
                     <div class="header__icon-app">
                         <div class="header__icon-text">
                             <span>${CRAZY_BEACH.MAIN_APP.TITLE1}</span>
                         </div>
-                        <fa-icon
-                            class="fas fa-umbrella-beach"
-                            size="2em"
-                        ></fa-icon>
+                        <img src="${logo}" alt"icono de una sombrilla de playa">
                         <div class="header__icon-text">
                             <span>${CRAZY_BEACH.MAIN_APP.TITLE2}</span>
                         </div>
@@ -75,10 +75,8 @@ export class Header extends LitElement {
                                     class="header__menu--off-canvas__link"
                                     href="/instrucciones"
                                 >
-                                    <fa-icon
-                                        class="fas fa-scroll"
-                                        size="1em"
-                                    ></fa-icon>
+                                    <img src="${iconInstructions}" alt"icono de
+                                    un documento">
                                     ${CRAZY_BEACH.MAIN_APP.INSTRUCTIONS}
                                 </a>
                             </li>
@@ -87,10 +85,8 @@ export class Header extends LitElement {
                                     class="header__menu--off-canvas__link"
                                     href="/ranking"
                                 >
-                                    <fa-icon
-                                        class="fas fa-medal"
-                                        size="1em"
-                                    ></fa-icon>
+                                    <img src="${iconMedal}" alt"icono de una
+                                    medalla">
                                     ${CRAZY_BEACH.MAIN_APP.RANKING.TITLE}
                                 </a>
                             </li>
@@ -99,11 +95,8 @@ export class Header extends LitElement {
                                     class="header__menu--off-canvas__link"
                                     href="/cuenta"
                                 >
-                                    <fa-icon
-                                        class="far fa-user"
-                                        size="1em"
-                                    ></fa-icon>
-                                    ${CRAZY_BEACH.MAIN_APP.ACCOUNT}
+                                    <img src="${iconUser}" alt"icono de una
+                                    persona"> ${CRAZY_BEACH.MAIN_APP.ACCOUNT}
                                 </a>
                             </li>
                             <hr />
@@ -112,10 +105,8 @@ export class Header extends LitElement {
                                     class="header__menu--off-canvas__link"
                                     href="acerca"
                                 >
-                                    <fa-icon
-                                        class="far fa-question-circle"
-                                        size="1em"
-                                    ></fa-icon>
+                                    <img src="${iconInfo}" alt"icono de un
+                                    símbolo de interrogación">
                                     ${CRAZY_BEACH.MAIN_APP.ABOUT}
                                 </a>
                             </li>

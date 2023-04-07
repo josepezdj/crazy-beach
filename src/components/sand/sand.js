@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './sand.scss';
-import 'fa-icons';
 import gradient from '../../assets/images/gradient.png';
 import './import';
 

@@ -36,12 +36,11 @@
     }
 
     &__arrow {
-        color: $col-white;
-        position: fixed;
-        top: calc($header-height + 9px);
+        display: block;
+        height: 30%;
+        width: auto;
+        position: absolute;
         left: 50%;
-        transform: translateX(-50%);
-
         animation: arrow-move infinite 1.5s ease-in-out;
     }
 
@@ -49,11 +48,14 @@
         color: $col-white;
         font-size: $md;
         text-align: center;
-        padding: 2px 0;
         font-weight: normal;
         text-transform: uppercase;
         letter-spacing: $xs;
         transition: all 0.2s;
+        position: absolute;
+        left: 50%;
+        top: $xs;
+        transform: translateX(-50%);
     }
 
     &__stats {
@@ -75,9 +77,23 @@
         top: $header-height;
         z-index: 2;
         transition: all 0.3s;
+
+        &--item {
+            display: block;
+            position: relative;
+        }
+
+        &--icon {
+            display: block;
+            height: 20px;
+            width: auto;
+            object-fit: contain;
+            margin-left: $xs;
+        }
     }
 
     &__data {
+        color: $col-blue-black;
         font-family: $font-game;
         position: relative;
         transition: all 0.3s;
@@ -120,6 +136,9 @@
 
 .ranking-hide {
     height: 0;
+    .ranking__arrow {
+        bottom: $xs;
+    }
     .ranking__data {
         margin-top: 0;
     }
@@ -133,8 +152,10 @@
         $header-height + $ranking-title-height + ($ranking-player-height * 4)
     );
     .ranking__title {
-        transition: all 0.3s;
-        padding: $xxl 0;
+        transform: translateX(-50%) translateY($xl);
+    }
+    .ranking__arrow {
+        top: $xs;
     }
     .ranking__data {
         margin-top: calc(

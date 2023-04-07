@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit';
 import styles from './crazy-beach-home-page.scss';
-import 'fa-icons';
 import { localstorageService } from '../../services/localstorage-service';
 import { playerService } from '../../services/player-service';
 import { Router } from '@vaadin/router';
 import beach from '../../assets/images/beach-main.png';
+import logo from '../../assets/icons/favicon-72x72.png';
 import { CRAZY_BEACH } from '../../data/constants';
 import './import';
 
@@ -42,7 +42,7 @@ class HomePage extends LitElement {
             <section class="homepage">
                 <img src="${beach}" class="homepage__bg" />
                 <div class="homepage__logo">
-                    <fa-icon class="fas fa-umbrella-beach" size="5em"></fa-icon>
+                    <img src="${logo}" alt"icono de una sombrilla de playa">
                     <div class="homepage__logo--text">
                         <span>${CRAZY_BEACH.MAIN_APP.TITLE1}</span>
                         <span>${CRAZY_BEACH.MAIN_APP.TITLE2}</span>

@@ -1,7 +1,9 @@
 import { LitElement, html } from 'lit';
 import styles from './ranking.scss';
 import { playerService } from '../../services/player-service';
-import 'fa-icons';
+import iconArrowDown from '../../assets/icons/icon-arrow-down.png';
+import iconArrowUp from '../../assets/icons/icon-arrow-up.png';
+import iconTrophy from '../../assets/icons/icon-trophy.png';
 import { CRAZY_BEACH } from '../../data/constants';
 
 export class Ranking extends LitElement {
@@ -46,16 +48,36 @@ export class Ranking extends LitElement {
                         <h3 class="ranking__title">
                             ${CRAZY_BEACH.MAIN_APP.RANKING.TITLE}
                         </h3>
-                        ${this.getArrow()}
                     </a>
+                    <img
+                        src="${this.isRankingCollapsed
+                            ? iconArrowDown
+                            : iconArrowUp}"
+                        alt="icono de flecha hacia
+                        abajo"
+                        class="ranking__arrow
+                        ranking__arrow--${this.isRankingCollapsed
+                            ? 'down'
+                            : 'up'}"
+                    />
                 </div>
                 <ul class="ranking__stats">
-                    <li>
-                        <fa-icon class="fas fa-trophy" size="1.20em"></fa-icon>
+                    <li class="ranking__stats--item">
+                        <img
+                            src="${iconTrophy}"
+                            alt="icono de un trofeo"
+                            class="ranking__stats--icon"
+                        />
                     </li>
-                    <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_NAME}</li>
-                    <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_POINTS}</li>
-                    <li>${CRAZY_BEACH.MAIN_APP.RANKING.COL_MAX_POINTS}</li>
+                    <li class="ranking__stats--item">
+                        ${CRAZY_BEACH.MAIN_APP.RANKING.COL_NAME}
+                    </li>
+                    <li class="ranking__stats--item">
+                        ${CRAZY_BEACH.MAIN_APP.RANKING.COL_POINTS}
+                    </li>
+                    <li class="ranking__stats--item">
+                        ${CRAZY_BEACH.MAIN_APP.RANKING.COL_MAX_POINTS}
+                    </li>
                 </ul>
                 <div class="ranking__data">${this.renderPlayers()}</div>
             </section>
@@ -91,19 +113,6 @@ export class Ranking extends LitElement {
                 })
             );
         }
-    }
-
-    getArrow() {
-        if (this.isRankingCollapsed)
-            return html` <fa-icon
-                class="fas fa-caret-down ranking__arrow"
-                size="1.2em"
-            ></fa-icon>`;
-        else
-            return html` <fa-icon
-                class="fas fa-caret-up ranking__arrow"
-                size="1.2em"
-            ></fa-icon>`;
     }
 
     static get styles() {

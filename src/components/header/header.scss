@@ -32,6 +32,11 @@
         display: flex;
         align-items: center;
         padding: 0 $sm;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
     }
 
     &__icon-text {
@@ -67,12 +72,17 @@
     }
 
     &__goback {
-        color: $col-blue-black;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: $sm 0 0 $xs;
+        padding: $sm;
         transition: all 0.2s;
+
+        img {
+            height: 100%;
+            width: auto;
+        }
 
         &:hover {
             transform: scale(1.1);
@@ -180,6 +190,11 @@
             align-items: center;
             column-gap: $md;
             padding-bottom: $lg;
+
+            img {
+                height: calc($sm * 2);
+                width: auto;
+            }
         }
 
         &__link:last-child {

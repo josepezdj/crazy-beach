@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './cb-account-page.scss';
-import 'fa-icons';
 import { playerService } from '../../services/player-service';
 import beach from '../../assets/images/beach-bg-small.jpg';
 import player from '../../assets/images/player.png';

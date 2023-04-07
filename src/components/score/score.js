@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import styles from './score.scss';
-import 'fa-icons';
 
 export class Score extends LitElement {
     static get properties() {
