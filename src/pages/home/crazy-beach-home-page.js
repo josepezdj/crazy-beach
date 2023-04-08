@@ -3,10 +3,11 @@ import styles from './crazy-beach-home-page.scss';
 import { localstorageService } from '../../services/localstorage-service';
 import { playerService } from '../../services/player-service';
 import { Router } from '@vaadin/router';
-import beach from '../../assets/images/beach-main.png';
-import logo from '../../assets/icons/favicon-72x72.png';
 import { CRAZY_BEACH } from '../../data/constants';
 import './import';
+
+import beach from '../../../assets/images/beach-main.png';
+import logo from '../../../assets/icons/favicon-72x72.png';
 
 class HomePage extends LitElement {
     static get properties() {

@@ -1,10 +1,11 @@
 import { LitElement, html } from 'lit';
 import styles from './ranking.scss';
 import { playerService } from '../../services/player-service';
-import iconArrowDown from '../../assets/icons/icon-arrow-down.png';
-import iconArrowUp from '../../assets/icons/icon-arrow-up.png';
-import iconTrophy from '../../assets/icons/icon-trophy.png';
 import { CRAZY_BEACH } from '../../data/constants';
+
+import iconArrowDown from '../../../assets/icons/icon-arrow-down.png';
+import iconArrowUp from '../../../assets/icons/icon-arrow-up.png';
+import iconTrophy from '../../../assets/icons/icon-trophy.png';
 
 export class Ranking extends LitElement {
     static get properties() {

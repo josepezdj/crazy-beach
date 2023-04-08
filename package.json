@@ -2,7 +2,7 @@
     "name": "crazy-beach",
     "version": "1.0.0",
     "description": "Pequeño juego basado en el clásico Luz roja, Luz verde",
-    "main": "index.js",
+    "main": "main.js",
     "scripts": {
         "build": "rollup --config rollup.config.js",
         "build:watch": "npm run build -- --watch",

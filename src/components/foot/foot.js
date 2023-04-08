@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import styles from './foot.scss';
-import left from '../../assets/images/left.png';
-import right from '../../assets/images/right.png';
+import left from '../../../assets/images/left.png';
+import right from '../../../assets/images/right.png';
 
 class Foot extends LitElement {
     static get properties() {
@@ -16,8 +16,8 @@ class Foot extends LitElement {
         super();
         this.isDisabled = false;
         this.firstTime = true;
-        this.leftSoundPath = '/lib/assets/sounds/step1.mp3';
-        this.rightSoundPath = '/lib/assets/sounds/step2.mp3';
+        this.leftSoundPath = '../../../assets/sounds/step1.mp3';
+        this.rightSoundPath = '../../../assets/sounds/step2.mp3';
     }
 
     render() {

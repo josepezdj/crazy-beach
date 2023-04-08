@@ -1,8 +1,9 @@
 import { LitElement, html } from 'lit';
 import styles from './cb-instructions-page.scss';
 import { playerService } from '../../services/player-service';
-import instructions from '../../assets/images/instructions-page-bg.jpg';
 import { CRAZY_BEACH } from '../../data/constants';
+
+import instructions from '../../../assets/images/instructions-page-bg.jpg';
 
 class InstructionsPage extends LitElement {
     static get properties() {

@@ -6,10 +6,10 @@ import copy from 'rollup-plugin-copy';
 import json from '@rollup/plugin-json';
 
 export default {
-    input: 'src/main.js',
+    input: 'main.js',
     output: [
         {
-            dir: 'lib',
+            dir: 'build',
             format: 'es',
             sourcemap: true,
         },
@@ -25,7 +25,11 @@ export default {
         image(),
         json(),
         copy({
-            targets: [{ src: 'src/assets/*', dest: 'lib/assets' }],
+            targets: [
+                { src: 'assets/*', dest: 'build/assets' },
+                { src: 'manifest.webmanifest', dest: 'build' },
+                { src: 'index.html', dest: 'build' },
+            ],
         }),
     ],
     preserveEntrySignatures: false,

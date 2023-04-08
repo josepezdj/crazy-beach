@@ -1,13 +1,14 @@
 import { LitElement, html } from 'lit';
 import styles from './header.scss';
 import { playerService } from '../../services/player-service';
-import logo from '../../assets/icons/favicon-72x72.png';
-import iconArrowLeft from '../../assets/icons/icon-arrow-left.png';
-import iconInstructions from '../../assets/icons/icon-instructions.png';
-import iconInfo from '../../assets/icons/icon-info.png';
-import iconMedal from '../../assets/icons/icon-medal.png';
-import iconUser from '../../assets/icons/icon-user.png';
 import { CRAZY_BEACH } from '../../data/constants';
+
+import logo from '../../../assets/icons/favicon-72x72.png';
+import iconArrowLeft from '../../../assets/icons/icon-arrow-left.png';
+import iconInstructions from '../../../assets/icons/icon-instructions.png';
+import iconInfo from '../../../assets/icons/icon-info.png';
+import iconMedal from '../../../assets/icons/icon-medal.png';
+import iconUser from '../../../assets/icons/icon-user.png';
 
 export class Header extends LitElement {
     static get properties() {

@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import styles from './cb-about-page.scss';
 import { playerService } from '../../services/player-service';
 import { CRAZY_BEACH } from '../../data/constants';
-import beach from '../../assets/images/beach-bg-small.jpg';
+import beach from '../../../assets/images/beach-bg-small.jpg';
 import packageJson from '../../../package.json';
 
 class AboutPage extends LitElement {

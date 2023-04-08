@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import styles from './sand.scss';
-import gradient from '../../assets/images/gradient.png';
+import gradient from '../../../assets/images/gradient.png';
 import './import';
 
 export class Sand extends LitElement {

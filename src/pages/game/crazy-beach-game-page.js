@@ -51,10 +51,10 @@ export class GamePage extends LitElement {
         this.feetDisabled = true;
         this.isRankingCollapsed = false;
 
-        this.levelMusicPath = '/lib/assets/music/level1.mp3';
-        this.levelSoundscapePath = '/lib/assets/music/soundscape-beach.mp3';
-        this.gameoverSoundPath = '/lib/assets/sounds/gameover.mp3';
-        this.countdownSoundPath = '/lib/assets/sounds/countdown-beep.mp3';
+        this.levelMusicPath = '../../../assets/music/level1.mp3';
+        this.levelSoundscapePath = '../../../assets/music/soundscape-beach.mp3';
+        this.gameoverSoundPath = '../../../assets/sounds/gameover.mp3';
+        this.countdownSoundPath = '../../../assets/sounds/countdown-beep.mp3';
     }
 
     firstUpdated() {

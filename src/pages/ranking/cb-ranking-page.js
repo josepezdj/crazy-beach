@@ -1,9 +1,10 @@
 import { LitElement, html } from 'lit';
 import styles from './cb-ranking-page.scss';
 import { playerService } from '../../services/player-service';
-import ranking from '../../assets/images/ranking-bg.jpg';
-import iconTrophy from '../../assets/icons/icon-trophy.png';
 import { CRAZY_BEACH } from '../../data/constants';
+
+import ranking from '../../../assets/images/ranking-bg.jpg';
+import iconTrophy from '../../../assets/icons/icon-trophy.png';
 
 class RankingPage extends LitElement {
     static get properties() {

@@ -1,9 +1,10 @@
 import { LitElement, html } from 'lit';
 import styles from './cb-account-page.scss';
 import { playerService } from '../../services/player-service';
-import beach from '../../assets/images/beach-bg-small.jpg';
-import player from '../../assets/images/player.png';
 import { CRAZY_BEACH } from '../../data/constants';
+
+import beach from '../../../assets/images/beach-bg-small.jpg';
+import player from '../../../assets/images/player.png';
 
 class AccountPage extends LitElement {
     static get properties() {

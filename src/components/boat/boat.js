@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './boat.scss';
-import boat from '../../assets/images/boat.png';
-import waves from '../../assets/images/waves.png';
+import boat from '../../../assets/images/boat.png';
+import waves from '../../../assets/images/waves.png';
 
 class Boat extends LitElement {
     static get properties() {
