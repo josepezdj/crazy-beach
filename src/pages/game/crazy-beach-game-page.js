@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './crazy-beach-game-page.scss';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { getLevelByPoints } from '../../data/levels-api';
+import { getLevelByPoints, getGameMaxPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
 import { CRAZY_BEACH } from '../../data/constants';
 import './import';
@@ -50,11 +50,13 @@ export class GamePage extends LitElement {
         this.beachAnimation = false;
         this.feetDisabled = true;
         this.isRankingCollapsed = false;
+        this.gameMaxPoints = getGameMaxPoints();
 
         this.levelMusicPath = '../../../assets/music/level1.mp3';
         this.levelSoundscapePath = '../../../assets/music/soundscape-beach.mp3';
-        this.gameoverSoundPath = '../../../assets/sounds/gameover.mp3';
         this.countdownSoundPath = '../../../assets/sounds/countdown-beep.mp3';
+        this.gameOverSoundPath = '../../../assets/sounds/gameover.mp3';
+        this.gameFinaleSoundPath = '../../../assets/sounds/final.mp3';
     }
 
     firstUpdated() {
@@ -63,11 +65,6 @@ export class GamePage extends LitElement {
                 ? CRAZY_BEACH.GAME.BTN_START.RESTART
                 : CRAZY_BEACH.GAME.BTN_START.START;
         this.setupAudio();
-    }
-
-    onRankingClick(e) {
-        e.stopPropagation();
-        this.isRankingCollapsed = e.detail;
     }
 
     render() {
@@ -148,7 +145,13 @@ export class GamePage extends LitElement {
                 <audio
                     id="gameover-sound"
                     style="display: none;"
-                    src="${this.gameoverSoundPath}"
+                    src="${this.gameOverSoundPath}"
+                    type="audio/mp3"
+                ></audio>
+                <audio
+                    id="final-sound"
+                    style="display: none;"
+                    src="${this.gameFinaleSoundPath}"
                     type="audio/mp3"
                 ></audio>
             </section>
@@ -161,8 +164,10 @@ export class GamePage extends LitElement {
             this.shadowRoot.querySelector('#level-soundscape');
         this.countdownFxElement =
             this.shadowRoot.querySelector('#countdown-beep');
-        this.gameoverFxElement =
+        this.gameOverFxElement =
             this.shadowRoot.querySelector('#gameover-sound');
+        this.gameFinaleFxElement =
+            this.shadowRoot.querySelector('#final-sound');
         if (
             this.musicElement !== '' &&
             this.musicElement !== undefined &&
@@ -188,13 +193,26 @@ export class GamePage extends LitElement {
             this.countdownFxElement.pause();
         }
         if (
-            this.gameoverFxElement !== '' &&
-            this.gameoverFxElement !== undefined &&
-            this.gameoverFxElement !== null
+            this.gameOverFxElement !== '' &&
+            this.gameOverFxElement !== undefined &&
+            this.gameOverFxElement !== null
         ) {
-            this.gameoverFxElement.play();
-            this.gameoverFxElement.pause();
+            this.gameOverFxElement.play();
+            this.gameOverFxElement.pause();
         }
+        if (
+            this.gameFinaleFxElement !== '' &&
+            this.gameFinaleFxElement !== undefined &&
+            this.gameFinaleFxElement !== null
+        ) {
+            this.gameFinaleFxElement.play();
+            this.gameFinaleFxElement.pause();
+        }
+    }
+
+    onRankingClick(e) {
+        e.stopPropagation();
+        this.isRankingCollapsed = e.detail;
     }
 
     onStartButtonClick() {
@@ -238,7 +256,7 @@ export class GamePage extends LitElement {
                 if (this.isLeftPressed) {
                     this.subtractPoint();
                 } else {
-                    this._sandmove();
+                    this._sandMove();
                     this.addPoint();
                     this.isRightPressed = false;
                     this.isLeftPressed = true;
@@ -247,7 +265,7 @@ export class GamePage extends LitElement {
                 if (this.isRightPressed) {
                     this.subtractPoint();
                 } else {
-                    this._sandmove();
+                    this._sandMove();
                     this.addPoint();
                     this.isLeftPressed = false;
                     this.isRightPressed = true;
@@ -259,12 +277,16 @@ export class GamePage extends LitElement {
     addPoint() {
         this.scoreColor = 'green';
         this.currentPoints = this.currentPoints += 1;
+
+        // Reach the game end
+        if (this.currentPoints === this.gameMaxPoints) this.gameFinale();
         this.recordCurrentPoints();
         this.recordMaxPoints();
     }
 
     subtractPoint() {
         this.scoreRedColorEffect();
+        this._vibrate();
         this.currentPoints =
             this.currentPoints !== 0 ? (this.currentPoints -= 1) : 0;
         this.recordCurrentPoints();
@@ -292,10 +314,11 @@ export class GamePage extends LitElement {
     }
 
     gameOver() {
-        // Erase current points
+        // Reset current points
         this.currentPoints = 0;
         // Throw red color effect on score
         this.scoreRedColorEffect();
+        this._vibrate();
         // Set current player points to zero
         playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
         // Game over flash-message
@@ -304,7 +327,16 @@ export class GamePage extends LitElement {
             this._setMessage('');
         }, 4000);
         // Play game over sound
-        this.gameoverFxElement.play();
+        this.gameOverFxElement.play();
+        // Stop counter
+        this.stopGame();
+    }
+
+    gameFinale() {
+        // Reset player points
+        this.currentPoints = 0;
+        // Play game finale sound
+        this.gameFinaleFxElement.play();
         // Stop counter
         this.stopGame();
     }
@@ -325,6 +357,7 @@ export class GamePage extends LitElement {
             this.feetDisabled = false;
             this.musicElement.load();
             this.musicElement.play();
+            this.musicElement.playbackRate = this._getMusicSpeed();
         }, 3000);
         setTimeout(() => {
             this._setMessage(
@@ -364,6 +397,7 @@ export class GamePage extends LitElement {
             this._setGreenCounter();
             this.musicElement.load();
             this.musicElement.play();
+            this.musicElement.playbackRate = this._getMusicSpeed();
         }, 3000);
     }
 
@@ -375,7 +409,22 @@ export class GamePage extends LitElement {
         sand.style.animationPlayState = 'paused';
     }
 
-    _sandmove() {
+    _vibrate() {
+        if (!window) return;
+        if (!window.navigator) return;
+        if (!window.navigator.vibrate) return;
+
+        window.navigator.vibrate(100);
+    }
+
+    _getMusicSpeed() {
+        const newMusicSpeed =
+            1 + Math.min((this.currentPoints * 10) / 3000, 0.7);
+        console.log(newMusicSpeed);
+        return newMusicSpeed;
+    }
+
+    _sandMove() {
         const sand = this._getSandElement();
         sand.style.animationPlayState = 'running';
         setTimeout(() => {
