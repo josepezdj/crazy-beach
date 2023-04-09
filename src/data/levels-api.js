@@ -10,3 +10,7 @@ export const getLevelByPoints = (level_points) => {
     const foundLevel = LEVELS.find((level) => level.points >= level_points);
     return foundLevel;
 };
+
+export const getGameMaxPoints = () => {
+    return LEVELS[LEVELS.length - 1].points;
+};
