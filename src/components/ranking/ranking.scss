@@ -15,7 +15,7 @@
     transition: all 0.3s;
 
     &::-webkit-scrollbar-track {
-        margin-top: calc($header-height + $ranking-title-height + $xxl);
+        margin-top: $header-height + $ranking-title-height + $xxl;
     }
 
     &__header {
@@ -23,7 +23,7 @@
         background-color: inherit;
         position: absolute;
         top: $header-height;
-        height: calc($header-height - $md);
+        height: $header-height - $md;
         width: 100%;
         max-width: $app-max-width;
         z-index: 3;
@@ -59,7 +59,7 @@
     }
 
     &__stats {
-        margin-top: calc($ranking-title-height);
+        margin-top: $ranking-title-height;
         color: $col-black;
         text-align: center;
         width: 100%;
@@ -73,7 +73,7 @@
         grid-template-rows: auto;
         align-items: center;
         background-color: $col-yellow;
-        position: fixed;
+        position: absolute;
         top: $header-height;
         z-index: 2;
         transition: all 0.3s;
@@ -148,19 +148,17 @@
 }
 
 .ranking-show {
-    height: calc(
-        $header-height + $ranking-title-height + ($ranking-player-height * 4)
-    );
+    height: $header-height + $ranking-title-height +
+        ($ranking-player-height * 4);
     .ranking__title {
-        transform: translateX(-50%) translateY($xl);
+        top: $ranking-title-height * 0.6;
     }
     .ranking__arrow {
         top: $xs;
     }
     .ranking__data {
-        margin-top: calc(
-            $header-height + $ranking-title-height + $ranking-player-height
-        );
+        margin-top: $header-height + $ranking-title-height +
+            $ranking-player-height;
     }
     .ranking__stats {
         top: $header-height;

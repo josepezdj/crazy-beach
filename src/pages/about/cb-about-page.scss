@@ -12,7 +12,7 @@
         height: auto;
         object-fit: cover;
         left: 0;
-        top: calc($header-height + ($xxl * 2));
+        top: $header-height + ($xxl * 2);
     }
 
     &__content {
@@ -36,7 +36,7 @@
         transform: skewY(5deg);
 
         &--container {
-            padding: calc($header-height) calc($xxl * 3) calc($xxl * 3);
+            padding: $header-height $xxl * 3 $xxl * 3;
             margin-top: -$xxl;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
             background-color: rgba(66, 129, 151, 0.4);
@@ -46,8 +46,8 @@
     &__list {
         color: $col-blue-black;
         background-color: rgba(70, 155, 158, 0.6);
-        padding: $xl calc($xxl * 2);
-        margin-bottom: calc($header-height * 3);
+        padding: $xl $xxl * 2;
+        margin-bottom: $header-height * 3;
     }
 
     &__item {

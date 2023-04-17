@@ -3,6 +3,8 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import styles from './foot.scss';
 import left from '../../../assets/images/left.png';
 import right from '../../../assets/images/right.png';
+import leftSound from '../../../assets/sounds/step1.mp3';
+import rightSound from '../../../assets/sounds/step2.mp3';
 
 class Foot extends LitElement {
     static get properties() {
@@ -16,8 +18,8 @@ class Foot extends LitElement {
         super();
         this.isDisabled = false;
         this.firstTime = true;
-        this.leftSoundPath = '../../../assets/sounds/step1.mp3';
-        this.rightSoundPath = '../../../assets/sounds/step2.mp3';
+        this.leftSound = leftSound;
+        this.rightSound = rightSound;
     }
 
     render() {
@@ -39,8 +41,8 @@ class Foot extends LitElement {
                     <audio
                         style="display: none;"
                         src="${this.side === 'left'
-                            ? this.leftSoundPath
-                            : this.rightSoundPath}"
+                            ? this.leftSound
+                            : this.rightSound}"
                         type="audio/mp3"
                     ></audio>
                 </button>

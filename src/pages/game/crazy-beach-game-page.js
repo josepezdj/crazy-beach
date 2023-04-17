@@ -4,6 +4,11 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { getLevelByPoints, getGameMaxPoints } from '../../data/levels-api';
 import { playerService } from '../../services/player-service';
 import { CRAZY_BEACH } from '../../data/constants';
+import levelMusic from '../../../assets/music/level1.mp3';
+import levelSoundscape from '../../../assets/music/soundscape-beach.mp3';
+import countdownSound from '../../../assets/sounds/countdown-beep.mp3';
+import gameOverSound from '../../../assets/sounds/gameover.mp3';
+import gameFinaleSound from '../../../assets/sounds/final.mp3';
 import './import';
 
 export class GamePage extends LitElement {
@@ -52,11 +57,11 @@ export class GamePage extends LitElement {
         this.isRankingCollapsed = false;
         this.gameMaxPoints = getGameMaxPoints();
 
-        this.levelMusicPath = '../../../assets/music/level1.mp3';
-        this.levelSoundscapePath = '../../../assets/music/soundscape-beach.mp3';
-        this.countdownSoundPath = '../../../assets/sounds/countdown-beep.mp3';
-        this.gameOverSoundPath = '../../../assets/sounds/gameover.mp3';
-        this.gameFinaleSoundPath = '../../../assets/sounds/final.mp3';
+        this.levelMusic = levelMusic;
+        this.levelSoundscape = levelSoundscape;
+        this.countdownSound = countdownSound;
+        this.gameOverSound = gameOverSound;
+        this.gameFinaleSound = gameFinaleSound;
     }
 
     firstUpdated() {
@@ -125,33 +130,33 @@ export class GamePage extends LitElement {
                 <audio
                     id="level-music"
                     style="display: none;"
-                    src="${this.levelMusicPath}"
+                    src="${this.levelMusic}"
                     type="audio/mp3"
                     loop
                 ></audio>
                 <audio
                     id="level-soundscape"
                     style="display: none;"
-                    src="${this.levelSoundscapePath}"
+                    src="${this.levelSoundscape}"
                     type="audio/mp3"
                     loop
                 ></audio>
                 <audio
                     id="countdown-beep"
                     style="display: none;"
-                    src="${this.countdownSoundPath}"
+                    src="${this.countdownSound}"
                     type="audio/mp3"
                 ></audio>
                 <audio
                     id="gameover-sound"
                     style="display: none;"
-                    src="${this.gameOverSoundPath}"
+                    src="${this.gameOverSound}"
                     type="audio/mp3"
                 ></audio>
                 <audio
                     id="final-sound"
                     style="display: none;"
-                    src="${this.gameFinaleSoundPath}"
+                    src="${this.gameFinaleSound}"
                     type="audio/mp3"
                 ></audio>
             </section>

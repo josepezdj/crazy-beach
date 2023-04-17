@@ -7,14 +7,14 @@
     z-index: 10;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
 
     &__container {
         max-width: 200px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        column-gap: calc($xxl * 2);
-        margin-bottom: calc($md * 5);
+        column-gap: $xxl * 2;
+        margin-bottom: $md * 5;
     }
 }

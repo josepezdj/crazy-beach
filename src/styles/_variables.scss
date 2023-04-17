@@ -37,20 +37,19 @@ $col-bg-main: linear-gradient(
 // Sizes
 
 $base-size: 8px;
-$xs: calc($base-size * 0.5);
+$xs: $base-size * 0.5;
 $sm: $base-size;
-$md: calc($base-size * 1.5);
-$lg: calc($base-size * 2);
-$xl: calc($base-size * 2.5);
-$xxl: calc($base-size * 3);
+$md: $base-size * 1.5;
+$lg: $base-size * 2;
+$xl: $base-size * 2.5;
+$xxl: $base-size * 3;
 
 $header-height: 40px;
 $ranking-title-height: 40px;
 $ranking-player-height: 24px;
-$ranking-height: calc($ranking-title-height + ($ranking-player-height * 4));
-$ranking-page-ranking-height: calc(
-    $ranking-title-height + ($ranking-player-height * 4)
-);
+$ranking-height: $ranking-title-height + ($ranking-player-height * 4);
+$ranking-page-ranking-height: $ranking-title-height +
+    ($ranking-player-height * 4);
 $game-page-max-height: 800px;
 $beach-title-height: 95px;
 $app-max-width: 500px;

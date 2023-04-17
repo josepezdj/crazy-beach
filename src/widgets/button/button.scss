@@ -2,14 +2,14 @@
 
 .btn {
     font-family: $font-game;
-    box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.2);
+    box-shadow: 0 0.5em 0.5em -0.4em rgba(0, 0, 0, 0.2);
     width: fit-content;
     z-index: 10;
 
     &-normal {
         button {
             font-size: $lg;
-            padding: $md calc($xl * 2);
+            padding: $md $xl * 2;
         }
     }
 
@@ -30,7 +30,7 @@
         &:focus {
             filter: hue-rotate(-15deg);
             transform: translateY(-1px);
-            box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 0, 0, 0.7);
+            box-shadow: 0 0.5em 0.5em -0.4em rgba(0, 0, 0, 0.7);
         }
     }
 

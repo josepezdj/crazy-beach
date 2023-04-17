@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import styles from './sand.scss';
 import gradient from '../../../assets/images/gradient.png';
-import './import';
+import sand from '../../../assets/images/sand.jpg';
 
 export class Sand extends LitElement {
     static get properties() {
@@ -43,14 +43,16 @@ export class Sand extends LitElement {
                     alt=""
                 />
                 <div class="beach__background--sand-container">
-                    <div class="beach__background--sand sand-scroll"></div>
+                    <div
+                        class="beach__background--sand sand-scroll"
+                    ></div>
                 </div>
             </div>
         `;
     }
 
     static get styles() {
-        return styles;
+        return [styles];
     }
 }
 

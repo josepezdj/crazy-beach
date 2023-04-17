@@ -8,7 +8,7 @@
     font-family: $font-game;
 
     &__bg {
-        margin-top: calc($header-height + ($xxl * 2));
+        margin-top: $header-height + ($xxl * 2);
         object-fit: contain;
         z-index: 0;
         height: auto;
@@ -27,10 +27,10 @@
 
     &__title {
         text-align: center;
-        font-size: calc($xxl * 1.5);
+        font-size: $xxl * 1.5;
         text-shadow: 1px 1px 1px $col-blue-black;
         position: relative;
-        margin-top: calc($header-height + $xxl);
+        margin-top: $header-height + $xxl;
         z-index: 1;
     }
 
@@ -42,7 +42,7 @@
         position: relative;
         width: 100%;
         z-index: 1;
-        padding: calc($xxl * 2) $lg $xxl calc($lg * 2);
+        padding: $xxl * 2 $lg $xxl $lg * 2;
         background-color: rgba(70, 155, 158, 0.5);
         transform: skewY(-5deg);
         list-style-type: circle;

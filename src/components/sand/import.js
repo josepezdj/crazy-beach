@@ -1,1 +1,0 @@
-import '../boat/boat';

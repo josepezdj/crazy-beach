@@ -12,13 +12,13 @@
         height: auto;
         object-fit: cover;
         left: 0;
-        top: calc($header-height + ($xxl * 2));
+        top: $header-height + ($xxl * 2);
 
         &--player {
             width: 100%;
             position: absolute;
             right: 0;
-            top: calc($header-height + ($xxl * 4));
+            top: $header-height + ($xxl * 4);
         }
     }
 
@@ -37,13 +37,13 @@
 
     &__title {
         text-align: center;
-        font-size: calc($xxl * 2);
+        font-size: $xxl * 2;
         font-family: $font-game;
         color: $col-blue-black;
         transform: skewY(7deg);
 
         &--container {
-            padding: calc($header-height) calc($xxl * 3);
+            padding: $header-height $xxl * 3;
             margin-top: -$xxl;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
         }
@@ -52,8 +52,8 @@
     &__list {
         color: $col-blue-black;
         background-color: rgba(70, 155, 158, 0.6);
-        padding: $xl calc($xxl * 2);
-        margin-bottom: calc($header-height * 3);
+        padding: $xl $xxl * 2;
+        margin-bottom: $header-height * 3;
     }
 
     &__item {

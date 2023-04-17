@@ -38,7 +38,7 @@
 
     &--countdown {
         color: $col-success;
-        font-size: calc($xxl * 2);
+        font-size: $xxl * 2;
         font-family: $font-level1;
     }
 

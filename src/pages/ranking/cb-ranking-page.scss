@@ -22,18 +22,18 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        padding: 0 calc($xxl * 2);
+        padding: 0 $xxl * 2;
     }
 
     &__title {
         text-align: center;
-        font-size: calc($xxl * 2);
+        font-size: $xxl * 2;
         font-family: $font-game;
         color: $col-pink;
         margin-top: $xl;
 
         &--container {
-            height: calc($ranking-title-height * 2);
+            height: $ranking-title-height * 2;
         }
     }
 
@@ -81,7 +81,7 @@
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
             0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
             0 16px 16px rgba(0, 0, 0, 0.12);
-        margin-bottom: calc($header-height * 2.3);
+        margin-bottom: $header-height * 2.3;
     }
 
     &__players {

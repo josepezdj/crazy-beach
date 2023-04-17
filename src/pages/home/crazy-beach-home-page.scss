@@ -4,7 +4,7 @@
     @extend .main-section;
     height: 100vh;
     text-align: center;
-    padding: $xl;
+    padding: $xl $xl $xl * 2;
     background: linear-gradient(
         190deg,
         $col-orange,
@@ -24,7 +24,7 @@
         height: auto;
         object-fit: cover;
         left: 0;
-        top: calc($header-height + ($xxl * 5));
+        top: $header-height * 4;
     }
 
     &__logo {
@@ -35,7 +35,7 @@
         &--text {
             color: $col-text-light;
             font-family: $font-game;
-            font-size: calc($xxl * 2);
+            font-size: $xxl * 2;
             text-transform: capitalize;
 
             & span:first-child {
@@ -59,7 +59,7 @@
     padding: 0 $xxl;
     z-index: 2;
     flex: 1;
-    justify-content: end;
+    justify-content: flex-end;
 
     &__title {
         font-size: $xxl;
@@ -86,7 +86,6 @@
     &__button {
         padding: 0 $xxl;
         margin-top: $header-height;
-        width: 100%;
         border-radius: $sm;
     }
 }
