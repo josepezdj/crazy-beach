@@ -8,40 +8,40 @@ import iconArrowUp from '../../../assets/icons/icon-arrow-up.png';
 import iconTrophy from '../../../assets/icons/icon-trophy.png';
 
 export class Ranking extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object },
-            players: { type: Array },
-            currentPoints: { type: Number },
-            currentMaxPoints: { type: Number },
-            isRankingCollapsed: { type: Boolean, reflect: true },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object },
+			players: { type: Array },
+			currentPoints: { type: Number },
+			currentMaxPoints: { type: Number },
+			isRankingCollapsed: { type: Boolean, reflect: true },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.players = playerService.getAllPlayers();
-        this.currentPoints = 0;
-        this.currentMaxPoints = 0;
-    }
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.players = playerService.getAllPlayers();
+		this.currentPoints = 0;
+		this.currentMaxPoints = 0;
+	}
 
-    firstUpdated() {
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.players = playerService.getAllPlayers();
-        this.isRankingCollapsed = false;
-    }
+	firstUpdated() {
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.players = playerService.getAllPlayers();
+		this.isRankingCollapsed = false;
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section
                 class="ranking ${this.isRankingCollapsed
-                    ? 'ranking-hide'
-                    : 'ranking-show'}"
+		? 'ranking-hide'
+		: 'ranking-show'}"
             >
                 <div class="ranking__header">
-                    <a
-                        href="#"
+                    <button
+                        type="button"
                         class="ranking__header--link"
                         id="ranking__header--link"
                         @click="${this.onRankingClick}"
@@ -49,17 +49,17 @@ export class Ranking extends LitElement {
                         <h3 class="ranking__title">
                             ${CRAZY_BEACH.MAIN_APP.RANKING.TITLE}
                         </h3>
-                    </a>
+                    </button>
                     <img
                         src="${this.isRankingCollapsed
-                            ? iconArrowDown
-                            : iconArrowUp}"
+		? iconArrowDown
+		: iconArrowUp}"
                         alt="icono de flecha hacia
                         abajo"
                         class="ranking__arrow
                         ranking__arrow--${this.isRankingCollapsed
-                            ? 'down'
-                            : 'up'}"
+		? 'down'
+		: 'up'}"
                     />
                 </div>
                 <ul class="ranking__stats">
@@ -83,13 +83,13 @@ export class Ranking extends LitElement {
                 <div class="ranking__data">${this.renderPlayers()}</div>
             </section>
         `;
-    }
+	}
 
-    renderPlayers() {
-        this.players = playerService.getAllPlayers();
-        if (this.players !== -1)
-            return html` ${this.players.map((player, i) => {
-                return html`
+	renderPlayers() {
+		this.players = playerService.getAllPlayers();
+		if (this.players !== -1)
+			return html` ${this.players.map((player, i) => {
+				return html`
                     <ul class="ranking__players">
                         <li class="ranking__players--player">${i + 1}</li>
                         <li class="ranking__players--player">${player.name}</li>
@@ -101,24 +101,24 @@ export class Ranking extends LitElement {
                         </li>
                     </ul>
                 `;
-            })}`;
-    }
+			})}`;
+	}
 
-    onRankingClick(e) {
-        e.stopPropagation();
-        if (e.currentTarget.id === 'ranking__header--link') {
-            this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
-            this.dispatchEvent(
-                new CustomEvent('cb-ranking-click', {
-                    detail: this.isRankingCollapsed,
-                })
-            );
-        }
-    }
+	onRankingClick(e) {
+		e.stopPropagation();
+		if (e.currentTarget.id === 'ranking__header--link') {
+			this.isRankingCollapsed = this.isRankingCollapsed ? false : true;
+			this.dispatchEvent(
+				new CustomEvent('cb-ranking-click', {
+					detail: this.isRankingCollapsed,
+				})
+			);
+		}
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-ranking-component', Ranking);

@@ -32,6 +32,10 @@
         &--link {
             display: block;
             height: 100%;
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
         }
     }
 
@@ -40,6 +44,7 @@
         height: 30%;
         width: auto;
         position: absolute;
+        pointer-events: none;
         left: 50%;
         animation: arrow-move infinite 1.5s ease-in-out;
     }

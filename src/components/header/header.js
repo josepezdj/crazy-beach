@@ -11,21 +11,21 @@ import iconMedal from '../../../assets/icons/icon-medal.png';
 import iconUser from '../../../assets/icons/icon-user.png';
 
 export class Header extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object, reflect: true },
-            goBackUrl: { type: String },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object, reflect: true },
+			goBackUrl: { type: String },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.goBackUrl = '/';
-    }
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.goBackUrl = '/';
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <div class="header">
                 <nav class="header__nav">
                     <a class="header__goback" href="${this.goBackUrl}">
@@ -47,7 +47,7 @@ export class Header extends LitElement {
                         <div class="header__item">
                             <div class="header__account">
                                 <span class="header__account--name"
-                                    >${this.currentPlayer?.name}</span
+                                    >${this.currentPlayer.name}</span
                                 >
                                 <div class="header__account--icon">
                                     <input
@@ -116,33 +116,33 @@ export class Header extends LitElement {
                 </nav>
             </div>
         `;
-    }
+	}
 
-    onMenuClick(e) {
-        const value = e.target.checked;
-        const target = this.shadowRoot.querySelector(
-            '.header__menu--off-canvas'
-        );
-        const hr = target.querySelector('hr');
-        const menuList = target.querySelector(
-            '.header__menu--off-canvas__list'
-        );
-        if (value) {
-            target.style.height = '200px';
-            // target.style.padding = '16px 0';
-            menuList.style.fontSize = '12px';
-            hr.style.opacity = '1';
-        } else {
-            target.style.height = '0';
-            // target.style.padding = '0';
-            menuList.style.fontSize = '0';
-            hr.style.opacity = '0';
-        }
-    }
+	onMenuClick(e) {
+		const value = e.target.checked;
+		const target = this.shadowRoot.querySelector(
+			'.header__menu--off-canvas'
+		);
+		const hr = target.querySelector('hr');
+		const menuList = target.querySelector(
+			'.header__menu--off-canvas__list'
+		);
+		if (value) {
+			target.style.height = '200px';
+			// target.style.padding = '16px 0';
+			menuList.style.fontSize = '12px';
+			hr.style.opacity = '1';
+		} else {
+			target.style.height = '0';
+			// target.style.padding = '0';
+			menuList.style.fontSize = '0';
+			hr.style.opacity = '0';
+		}
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-header-component', Header);

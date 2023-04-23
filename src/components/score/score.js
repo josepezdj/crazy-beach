@@ -2,27 +2,27 @@ import { LitElement, html } from 'lit';
 import styles from './score.scss';
 
 export class Score extends LitElement {
-    static get properties() {
-        return {
-            score: { type: Number },
-            isRankingCollapsed: { type: Boolean },
-            color: { type: String, reflect: true },
-        };
-    }
+	static get properties() {
+		return {
+			score: { type: Number },
+			isRankingCollapsed: { type: Boolean },
+			color: { type: String, reflect: true },
+		};
+	}
 
-    constructor() {
-        super();
-        this.score = 0;
-        this.color = 'green';
-        this.isRankingCollapsed = false;
-    }
+	constructor() {
+		super();
+		this.score = 0;
+		this.color = 'green';
+		this.isRankingCollapsed = false;
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section
                 class="score ranking-${this.isRankingCollapsed
-                    ? 'hide'
-                    : 'show'}"
+		? 'hide'
+		: 'show'}"
             >
                 <div class="score__content">
                     <div
@@ -34,11 +34,11 @@ export class Score extends LitElement {
                 </div>
             </section>
         `;
-    }
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-score-component', Score);

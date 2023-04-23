@@ -7,20 +7,20 @@ import beach from '../../../assets/images/beach-bg-small.jpg';
 import player from '../../../assets/images/player.png';
 
 class AccountPage extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.goBackUrl = '/juego';
-    }
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.goBackUrl = '/juego';
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section class="account-page">
                 <img src="${beach}" class="account-page__bg" />
                 <img src="${player}" class="account-page__bg--player" />
@@ -53,11 +53,11 @@ class AccountPage extends LitElement {
                 </article>
             </section>
         `;
-    }
+	}
 
-    static get styles() {
-        return [styles];
-    }
+	static get styles() {
+		return [styles];
+	}
 }
 
 customElements.define('crazy-beach-account-page', AccountPage);

@@ -4,35 +4,35 @@ import boat from '../../../assets/images/boat.png';
 import waves from '../../../assets/images/waves.png';
 
 class Boat extends LitElement {
-    static get properties() {
-        return {
-            color: { type: String },
-            isMoving: { type: Boolean },
-            isRankingCollapsed: { type: Boolean },
-        };
-    }
+	static get properties() {
+		return {
+			color: { type: String },
+			isMoving: { type: Boolean },
+			isRankingCollapsed: { type: Boolean },
+		};
+	}
 
-    constructor() {
-        super();
-        this.color = 'red';
-        this.isMoving = false;
-        this.isRankingCollapsed = false;
-    }
+	constructor() {
+		super();
+		this.color = 'red';
+		this.isMoving = false;
+		this.isRankingCollapsed = false;
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <div
                 class="boat ranking-${this.isRankingCollapsed
-                    ? 'hide'
-                    : 'show'}"
+		? 'hide'
+		: 'show'}"
                 id="boat"
             >
                 <div class="boat__image-container">
                     <figure
                         class="boat__figure boat__figure--${this.color} ${this
-                            .isMoving
-                            ? 'boat-move'
-                            : ''}"
+	.isMoving
+	? 'boat-move'
+	: ''}"
                     >
                         <img
                             class="boat__figure--img"
@@ -52,15 +52,11 @@ class Boat extends LitElement {
                 </div>
             </div>
         `;
-    }
+	}
 
-    getCurrentLevel() {
-        return getLevelByPoints(this.currentPlayer.maxPoints);
-    }
-
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-boat-component', Boat);

@@ -7,72 +7,70 @@ import { CRAZY_BEACH } from '../../data/constants';
 import './import';
 
 export class GamePage extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object },
-            currentPoints: { type: Number },
-            currentMaxPoints: { type: Number },
-            players: { type: Array },
-            currentLevel: { type: Object },
-            color: { type: String },
-            score: { type: Number },
-            counter: { type: Function },
-            flashMessage: { type: String },
-            messageType: { type: String },
-            buttonLabel: { type: String },
-            isLeftPressed: { type: Boolean },
-            isRightPressed: { type: Boolean },
-            isGameOn: { type: Boolean },
-            isStartButtonDisabled: { type: Boolean },
-            beachAnimation: { type: Boolean },
-            feetDisabled: { type: Boolean },
-            isRankingCollapsed: { type: Boolean },
-            scoreColor: { type: String },
-            musicElement: { type: Object },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object },
+			currentPoints: { type: Number },
+			currentMaxPoints: { type: Number },
+			players: { type: Array },
+			currentLevel: { type: Object },
+			color: { type: String },
+			score: { type: Number },
+			counter: { type: Function },
+			flashMessage: { type: String },
+			messageType: { type: String },
+			buttonLabel: { type: String },
+			isLeftPressed: { type: Boolean },
+			isRightPressed: { type: Boolean },
+			isGameOn: { type: Boolean },
+			isStartButtonDisabled: { type: Boolean },
+			beachAnimation: { type: Boolean },
+			feetDisabled: { type: Boolean },
+			isRankingCollapsed: { type: Boolean },
+			scoreColor: { type: String },
+			musicElement: { type: Object },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.currentPoints = this.currentPlayer.currentPoints;
-        this.currentMaxPoints = this.currentPlayer.maxPoints;
-        this.players = playerService.getAllPlayers();
-        this.currentLevel = getLevelByPoints(this.currentMaxPoints);
-        this.color = 'red';
-        this.scoreColor = 'green';
-        this.flashMessage = '';
-        this.messageType = '';
-        this.isLeftPressed = false;
-        this.isRightPressed = false;
-        this.isGameOn = false;
-        this.isStartButtonDisabled = false;
-        this.beachAnimation = false;
-        this.feetDisabled = true;
-        this.isRankingCollapsed = false;
-        this.gameMaxPoints = getGameMaxPoints();
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.currentPoints = this.currentPlayer.currentPoints;
+		this.currentMaxPoints = this.currentPlayer.maxPoints;
+		this.players = playerService.getAllPlayers();
+		this.currentLevel = getLevelByPoints(this.currentMaxPoints);
+		this.color = 'red';
+		this.scoreColor = 'green';
+		this.flashMessage = '';
+		this.messageType = '';
+		this.isLeftPressed = false;
+		this.isRightPressed = false;
+		this.isGameOn = false;
+		this.isStartButtonDisabled = false;
+		this.beachAnimation = false;
+		this.feetDisabled = true;
+		this.isRankingCollapsed = false;
+		this.gameMaxPoints = getGameMaxPoints();
 
-        this.levelMusicPath = '../../../assets/music/level1.mp3';
-        this.levelSoundscapePath = '../../../assets/music/soundscape-beach.mp3';
-        this.countdownSoundPath = '../../../assets/sounds/countdown-beep.mp3';
-        this.gameOverSoundPath = '../../../assets/sounds/gameover.mp3';
-        this.gameFinaleSoundPath = '../../../assets/sounds/final.mp3';
-    }
+		this.levelMusicPath = '../../../assets/music/level1.mp3';
+		this.levelSoundscapePath = '../../../assets/music/soundscape-beach.mp3';
+		this.countdownSoundPath = '../../../assets/sounds/countdown-beep.mp3';
+		this.gameOverSoundPath = '../../../assets/sounds/gameover.mp3';
+		this.gameFinaleSoundPath = '../../../assets/sounds/final.mp3';
+	}
 
-    firstUpdated() {
-        this.buttonLabel =
-            this.currentPoints > 0
-                ? CRAZY_BEACH.GAME.BTN_START.RESTART
-                : CRAZY_BEACH.GAME.BTN_START.START;
-        this.setupAudio();
-    }
+	firstUpdated() {
+		this.buttonLabel =
+            this.currentPoints > 0 ? CRAZY_BEACH.GAME.BTN_START.RESTART : CRAZY_BEACH.GAME.BTN_START.START;
+		this.setupAudio();
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section
                 class="gamepage ${this.isRankingCollapsed
-                    ? 'ranking-hide'
-                    : 'ranking-show'}"
+		? 'ranking-hide'
+		: 'ranking-show'}"
             >
                 <crazy-beach-header-component
                     currentPlayer="${JSON.stringify(this.currentPlayer)}"
@@ -102,13 +100,13 @@ export class GamePage extends LitElement {
                     @cb-feet-click="${this.onFeetClick}"
                 ></crazy-beach-feet-component>
                 ${this.flashMessage !== ''
-                    ? html` <div
+		? html` <div
                           class="beach__flash-message beach__flash-message--${this
-                              .messageType}"
+		.messageType}"
                       >
                           <p>${this.flashMessage}</p>
                       </div>`
-                    : null}
+		: null}
                 <crazy-beach-score-component
                     score="${this.currentPoints}"
                     color="${this.scoreColor}"
@@ -156,291 +154,287 @@ export class GamePage extends LitElement {
                 ></audio>
             </section>
         `;
-    }
+	}
 
-    setupAudio() {
-        this.musicElement = this.shadowRoot.querySelector('#level-music');
-        this.soundscapeElement =
+	setupAudio() {
+		this.musicElement = this.shadowRoot.querySelector('#level-music');
+		this.soundscapeElement =
             this.shadowRoot.querySelector('#level-soundscape');
-        this.countdownFxElement =
+		this.countdownFxElement =
             this.shadowRoot.querySelector('#countdown-beep');
-        this.gameOverFxElement =
+		this.gameOverFxElement =
             this.shadowRoot.querySelector('#gameover-sound');
-        this.gameFinaleFxElement =
+		this.gameFinaleFxElement =
             this.shadowRoot.querySelector('#final-sound');
-        if (
-            this.musicElement !== '' &&
+		if (
+			this.musicElement !== '' &&
             this.musicElement !== undefined &&
             this.musicElement !== null
-        ) {
-            this.musicElement.play();
-            this.musicElement.pause();
-        }
-        if (
-            this.soundscapeElement !== '' &&
+		) {
+			this.musicElement.play();
+			this.musicElement.pause();
+		}
+		if (
+			this.soundscapeElement !== '' &&
             this.soundscapeElement !== undefined &&
             this.soundscapeElement !== null
-        ) {
-            this.soundscapeElement.play();
-            this.soundscapeElement.volume = '0.2';
-        }
-        if (
-            this.countdownFxElement !== '' &&
+		) {
+			this.soundscapeElement.play();
+			this.soundscapeElement.volume = '0.2';
+		}
+		if (
+			this.countdownFxElement !== '' &&
             this.countdownFxElement !== undefined &&
             this.countdownFxElement !== null
-        ) {
-            this.countdownFxElement.play();
-            this.countdownFxElement.pause();
-        }
-        if (
-            this.gameOverFxElement !== '' &&
+		) {
+			this.countdownFxElement.play();
+			this.countdownFxElement.pause();
+		}
+		if (
+			this.gameOverFxElement !== '' &&
             this.gameOverFxElement !== undefined &&
             this.gameOverFxElement !== null
-        ) {
-            this.gameOverFxElement.play();
-            this.gameOverFxElement.pause();
-        }
-        if (
-            this.gameFinaleFxElement !== '' &&
+		) {
+			this.gameOverFxElement.play();
+			this.gameOverFxElement.pause();
+		}
+		if (
+			this.gameFinaleFxElement !== '' &&
             this.gameFinaleFxElement !== undefined &&
             this.gameFinaleFxElement !== null
-        ) {
-            this.gameFinaleFxElement.play();
-            this.gameFinaleFxElement.pause();
-        }
-    }
+		) {
+			this.gameFinaleFxElement.play();
+			this.gameFinaleFxElement.pause();
+		}
+	}
 
-    onRankingClick(e) {
-        e.stopPropagation();
-        this.isRankingCollapsed = e.detail;
-    }
+	onRankingClick(e) {
+		e.stopPropagation();
+		this.isRankingCollapsed = e.detail;
+	}
 
-    onStartButtonClick() {
-        if (!this.isGameOn) {
-            this.isGameOn = true;
-            this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.STOP;
-            this.startGame();
-        } else {
-            this.isGameOn = false;
-            this.buttonLabel =
-                this.currentPoints > 0
-                    ? CRAZY_BEACH.GAME.BTN_START.RESTART
-                    : CRAZY_BEACH.GAME.BTN_START.START;
-            this.stopGame();
-        }
-    }
+	onStartButtonClick() {
+		if (!this.isGameOn) {
+			this.isGameOn = true;
+			this.buttonLabel = CRAZY_BEACH.GAME.BTN_START.STOP;
+			this.startGame();
+		} else {
+			this.isGameOn = false;
+			this.buttonLabel =
+                this.currentPoints > 0 ? CRAZY_BEACH.GAME.BTN_START.RESTART : CRAZY_BEACH.GAME.BTN_START.START;
+			this.stopGame();
+		}
+	}
 
-    startGame() {
-        // Count to 3
-        this._fireCountdown();
-    }
+	startGame() {
+		// Count to 3
+		this._fireCountdown();
+	}
 
-    stopGame() {
-        this.color = 'red';
-        this.musicElement.pause();
-        this.scoreColor = 'green';
-        this.feetDisabled = true;
-        this.buttonLabel =
-            this.currentPoints > 0
-                ? CRAZY_BEACH.GAME.BTN_START.RESTART
-                : CRAZY_BEACH.GAME.BTN_START.START;
-        this._stopCounter();
-    }
-    onFeetClick(e) {
-        const side = e.detail;
+	stopGame() {
+		this.color = 'red';
+		this.musicElement.pause();
+		this.scoreColor = 'green';
+		this.feetDisabled = true;
+		this.buttonLabel =
+            this.currentPoints > 0 ? CRAZY_BEACH.GAME.BTN_START.RESTART : CRAZY_BEACH.GAME.BTN_START.START;
+		this._stopCounter();
+	}
+	onFeetClick(e) {
+		const side = e.detail;
 
-        if (this.color === 'red') {
-            this.gameOver();
-        } else {
-            if (side === 'left') {
-                if (this.isLeftPressed) {
-                    this.subtractPoint();
-                } else {
-                    this._sandMove();
-                    this.addPoint();
-                    this.isRightPressed = false;
-                    this.isLeftPressed = true;
-                }
-            } else if (side === 'right') {
-                if (this.isRightPressed) {
-                    this.subtractPoint();
-                } else {
-                    this._sandMove();
-                    this.addPoint();
-                    this.isLeftPressed = false;
-                    this.isRightPressed = true;
-                }
-            }
-        }
-    }
+		if (this.color === 'red') {
+			this.gameOver();
+		} else {
+			if (side === 'left') {
+				if (this.isLeftPressed) {
+					this.subtractPoint();
+				} else {
+					this._sandMove();
+					this.addPoint();
+					this.isRightPressed = false;
+					this.isLeftPressed = true;
+				}
+			} else if (side === 'right') {
+				if (this.isRightPressed) {
+					this.subtractPoint();
+				} else {
+					this._sandMove();
+					this.addPoint();
+					this.isLeftPressed = false;
+					this.isRightPressed = true;
+				}
+			}
+		}
+	}
 
-    addPoint() {
-        this.scoreColor = 'green';
-        this.currentPoints = this.currentPoints += 1;
+	addPoint() {
+		this.scoreColor = 'green';
+		this.currentPoints = this.currentPoints += 1;
 
-        // Reach the game end
-        if (this.currentPoints === this.gameMaxPoints) this.gameFinale();
-        this.recordCurrentPoints();
-        this.recordMaxPoints();
-    }
+		// Reach the game end
+		if (this.currentPoints === this.gameMaxPoints) this.gameFinale();
+		this.recordCurrentPoints();
+		this.recordMaxPoints();
+	}
 
-    subtractPoint() {
-        this.scoreRedColorEffect();
-        this._vibrate();
-        this.currentPoints =
+	subtractPoint() {
+		this.scoreRedColorEffect();
+		this._vibrate();
+		this.currentPoints =
             this.currentPoints !== 0 ? (this.currentPoints -= 1) : 0;
-        this.recordCurrentPoints();
-    }
+		this.recordCurrentPoints();
+	}
 
-    scoreRedColorEffect() {
-        this.scoreColor = 'red';
-        setTimeout(() => {
-            this.scoreColor = 'green';
-        }, 500);
-    }
+	scoreRedColorEffect() {
+		this.scoreColor = 'red';
+		setTimeout(() => {
+			this.scoreColor = 'green';
+		}, 500);
+	}
 
-    recordCurrentPoints() {
-        playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
-    }
+	recordCurrentPoints() {
+		playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
+	}
 
-    recordMaxPoints() {
-        if (this.currentPoints > this.currentMaxPoints) {
-            this.currentMaxPoints = this.currentPoints;
-            playerService.updateCurrentPlayer(
-                'maxPoints',
-                this.currentMaxPoints
-            );
-        }
-    }
+	recordMaxPoints() {
+		if (this.currentPoints > this.currentMaxPoints) {
+			this.currentMaxPoints = this.currentPoints;
+			playerService.updateCurrentPlayer(
+				'maxPoints',
+				this.currentMaxPoints
+			);
+		}
+	}
 
-    gameOver() {
-        // Reset current points
-        this.currentPoints = 0;
-        // Throw red color effect on score
-        this.scoreRedColorEffect();
-        this._vibrate();
-        // Set current player points to zero
-        playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
-        // Game over flash-message
-        this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.GAME_OVER, 'gameover');
-        setTimeout(() => {
-            this._setMessage('');
-        }, 4000);
-        // Play game over sound
-        this.gameOverFxElement.play();
-        // Stop counter
-        this.stopGame();
-    }
+	gameOver() {
+		// Reset current points
+		this.currentPoints = 0;
+		// Throw red color effect on score
+		this.scoreRedColorEffect();
+		this._vibrate();
+		// Set current player points to zero
+		playerService.updateCurrentPlayer('currentPoints', this.currentPoints);
+		// Game over flash-message
+		this._setMessage(CRAZY_BEACH.GAME.FLASH_MESSAGES.GAME_OVER, 'gameover');
+		setTimeout(() => {
+			this._setMessage('');
+		}, 4000);
+		// Play game over sound
+		this.gameOverFxElement.play();
+		// Stop counter
+		this.stopGame();
+	}
 
-    gameFinale() {
-        // Reset player points
-        this.currentPoints = 0;
-        // Play game finale sound
-        this.gameFinaleFxElement.play();
-        // Stop counter
-        this.stopGame();
-    }
+	gameFinale() {
+		// Reset player points
+		this.currentPoints = 0;
+		// Play game finale sound
+		this.gameFinaleFxElement.play();
+		// Stop counter
+		this.stopGame();
+	}
 
-    _fireCountdown() {
-        this.isStartButtonDisabled = true;
-        this._setMessage(
-            CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE,
-            'countdown'
-        );
-        this.countdownFxElement.play();
+	_fireCountdown() {
+		this.isStartButtonDisabled = true;
+		this._setMessage(
+			CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.THREE,
+			'countdown'
+		);
+		this.countdownFxElement.play();
 
-        setTimeout(() => {
-            this._setGreenCounter();
-            this.isStartButtonDisabled = false;
-            this._setMessage('');
-            this.beachAnimation = true;
-            this.feetDisabled = false;
-            this.musicElement.load();
-            this.musicElement.play();
-            this.musicElement.playbackRate = this._getMusicSpeed();
-        }, 3000);
-        setTimeout(() => {
-            this._setMessage(
-                CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.ONE,
-                'countdown'
-            );
-            this.countdownFxElement.play();
-        }, 2000);
-        setTimeout(() => {
-            this._setMessage(
-                CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.TWO,
-                'countdown'
-            );
-            this.countdownFxElement.play();
-        }, 1000);
-    }
+		setTimeout(() => {
+			this._setGreenCounter();
+			this.isStartButtonDisabled = false;
+			this._setMessage('');
+			this.beachAnimation = true;
+			this.feetDisabled = false;
+			this.musicElement.load();
+			this.musicElement.play();
+			this.musicElement.playbackRate = this._getMusicSpeed();
+		}, 3000);
+		setTimeout(() => {
+			this._setMessage(
+				CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.ONE,
+				'countdown'
+			);
+			this.countdownFxElement.play();
+		}, 2000);
+		setTimeout(() => {
+			this._setMessage(
+				CRAZY_BEACH.GAME.FLASH_MESSAGES.COUNTDOWN.TWO,
+				'countdown'
+			);
+			this.countdownFxElement.play();
+		}, 1000);
+	}
 
-    _setMessage(msg, type = 'levelup') {
-        this.flashMessage = msg;
-        this.messageType = type;
-    }
+	_setMessage(msg, type = 'levelup') {
+		this.flashMessage = msg;
+		this.messageType = type;
+	}
 
-    _setGreenCounter() {
-        this.color = 'green';
-        const time =
+	_setGreenCounter() {
+		this.color = 'green';
+		const time =
             Math.max(10000 - this.currentPoints * 100, 2000) +
             Math.random(-1500, 1500);
-        this.counter = setTimeout(() => {
-            this._setRedCounter();
-        }, time);
-    }
+		this.counter = setTimeout(() => {
+			this._setRedCounter();
+		}, time);
+	}
 
-    _setRedCounter() {
-        this.musicElement.pause();
-        this.color = 'red';
-        this.counter = setTimeout(() => {
-            this._setGreenCounter();
-            this.musicElement.load();
-            this.musicElement.play();
-            this.musicElement.playbackRate = this._getMusicSpeed();
-        }, 3000);
-    }
+	_setRedCounter() {
+		this.musicElement.pause();
+		this.color = 'red';
+		this.counter = setTimeout(() => {
+			this._setGreenCounter();
+			this.musicElement.load();
+			this.musicElement.play();
+			this.musicElement.playbackRate = this._getMusicSpeed();
+		}, 3000);
+	}
 
-    _stopCounter() {
-        clearTimeout(this.counter);
-        this.beachAnimation = false;
+	_stopCounter() {
+		clearTimeout(this.counter);
+		this.beachAnimation = false;
 
-        const sand = this._getSandElement();
-        sand.style.animationPlayState = 'paused';
-    }
+		const sand = this._getSandElement();
+		sand.style.animationPlayState = 'paused';
+	}
 
-    _vibrate() {
-        if (!window) return;
-        if (!window.navigator) return;
-        if (!window.navigator.vibrate) return;
+	_vibrate() {
+		if (!window) return;
+		if (!window.navigator) return;
+		if (!window.navigator.vibrate) return;
 
-        window.navigator.vibrate(100);
-    }
+		window.navigator.vibrate(100);
+	}
 
-    _getMusicSpeed() {
-        const newMusicSpeed =
+	_getMusicSpeed() {
+		const newMusicSpeed =
             1 + Math.min((this.currentPoints * 10) / 3000, 0.7);
-        console.log(newMusicSpeed);
-        return newMusicSpeed;
-    }
+		console.log(newMusicSpeed);
+		return newMusicSpeed;
+	}
 
-    _sandMove() {
-        const sand = this._getSandElement();
-        sand.style.animationPlayState = 'running';
-        setTimeout(() => {
-            sand.style.animationPlayState = 'paused';
-        }, 200);
-    }
+	_sandMove() {
+		const sand = this._getSandElement();
+		sand.style.animationPlayState = 'running';
+		setTimeout(() => {
+			sand.style.animationPlayState = 'paused';
+		}, 200);
+	}
 
-    _getSandElement() {
-        return this.shadowRoot
-            .querySelector('crazy-beach-sand-component')
-            .shadowRoot.querySelector('.beach__background--sand');
-    }
+	_getSandElement() {
+		return this.shadowRoot
+			.querySelector('crazy-beach-sand-component')
+			.shadowRoot.querySelector('.beach__background--sand');
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-game-page', GamePage);

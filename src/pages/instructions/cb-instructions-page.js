@@ -6,21 +6,21 @@ import { CRAZY_BEACH } from '../../data/constants';
 import instructions from '../../../assets/images/instructions-page-bg.jpg';
 
 class InstructionsPage extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.goBackUrl = '/juego';
-        this.instructionsText = CRAZY_BEACH.INSTRUCTIONS;
-    }
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.goBackUrl = '/juego';
+		this.instructionsText = CRAZY_BEACH.INSTRUCTIONS;
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section class="instructions-page">
                 <div class="instructions-page__bg--container">
                     <img src="${instructions}" class="instructions-page__bg" />
@@ -34,16 +34,16 @@ class InstructionsPage extends LitElement {
                 </h1>
                 <ul class="instructions-page__content">
                     ${Object.values(this.instructionsText).map((paragraph) => {
-                        return html` <li .innerHTML="${paragraph}"></li> `;
-                    })}
+		return html` <li .innerHTML="${paragraph}"></li> `;
+	})}
                 </ul>
             </section>
         `;
-    }
+	}
 
-    static get styles() {
-        return [styles];
-    }
+	static get styles() {
+		return [styles];
+	}
 }
 
 customElements.define('crazy-beach-instructions-page', InstructionsPage);

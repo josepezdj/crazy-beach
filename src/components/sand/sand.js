@@ -4,32 +4,32 @@ import gradient from '../../../assets/images/gradient.png';
 import './import';
 
 export class Sand extends LitElement {
-    static get properties() {
-        return {
-            color: { type: String, reflect: true },
-            beachAnimation: { type: Boolean, reflect: true },
-            isRankingCollapsed: { type: Boolean },
-        };
-    }
+	static get properties() {
+		return {
+			color: { type: String, reflect: true },
+			beachAnimation: { type: Boolean, reflect: true },
+			isRankingCollapsed: { type: Boolean },
+		};
+	}
 
-    constructor() {
-        super();
-        this.color = 'red';
-        this.beachAnimation = false;
-        this.isRankingCollapsed = false;
-    }
+	constructor() {
+		super();
+		this.color = 'red';
+		this.beachAnimation = false;
+		this.isRankingCollapsed = false;
+	}
 
-    firstUpdated() {
-        this.shadowRoot.querySelector('.sand-scroll').style.animationPlayState =
+	firstUpdated() {
+		this.shadowRoot.querySelector('.sand-scroll').style.animationPlayState =
             'paused';
-    }
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <div
                 class="beach__background ranking-${this.isRankingCollapsed
-                    ? 'hide'
-                    : 'show'}"
+		? 'hide'
+		: 'show'}"
             >
                 <crazy-beach-boat-component
                     color=${this.color}
@@ -47,11 +47,11 @@ export class Sand extends LitElement {
                 </div>
             </div>
         `;
-    }
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-sand-component', Sand);

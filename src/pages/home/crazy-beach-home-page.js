@@ -10,36 +10,36 @@ import beach from '../../../assets/images/beach-main.png';
 import logo from '../../../assets/icons/favicon-72x72.png';
 
 class HomePage extends LitElement {
-    static get properties() {
-        return {
-            messages: { type: Array },
-            name: { type: String },
-            currentPlayer: { type: Object },
-            players: { type: Array },
-            isInvalid: { type: Boolean },
-        };
-    }
+	static get properties() {
+		return {
+			messages: { type: Array },
+			name: { type: String },
+			currentPlayer: { type: Object },
+			players: { type: Array },
+			isInvalid: { type: Boolean },
+		};
+	}
 
-    constructor() {
-        super();
-        this.messages = [];
-        this.isInvalid = true;
-    }
+	constructor() {
+		super();
+		this.messages = [];
+		this.isInvalid = true;
+	}
 
-    firstUpdated() {
-        if (localstorageService.getStateFromLocalStorage() === -1) {
-            this.currentPlayer = '';
-            this.players = [];
-            this.name = '';
-        } else {
-            this.currentPlayer = playerService.getCurrentPlayer();
-            this.players = playerService.getAllPlayers();
-            this.name = this.currentPlayer.name;
-        }
-    }
+	firstUpdated() {
+		if (localstorageService.getStateFromLocalStorage() === -1) {
+			this.currentPlayer = '';
+			this.players = [];
+			this.name = '';
+		} else {
+			this.currentPlayer = playerService.getCurrentPlayer();
+			this.players = playerService.getAllPlayers();
+			this.name = this.currentPlayer.name;
+		}
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section class="homepage">
                 <img src="${beach}" class="homepage__bg" />
                 <div class="homepage__logo">
@@ -63,18 +63,18 @@ class HomePage extends LitElement {
                             @cb-input-focusout="${this.onInputFocusout}"
                         ></crazy-beach-input-widget>
                         ${this.messages.length > 0
-                            ? html`
+		? html`
                                   <div class="login__input--messages">
                                       ${this.messages.map((msg) => {
-                                          return html`
+		return html`
                                               <p class="login__input--message">
                                                   ${msg}
                                               </p>
                                           `;
-                                      })}
+	})}
                                   </div>
                               `
-                            : null}
+		: null}
                     </div>
                 </div>
                 <div class="login__button">
@@ -89,113 +89,113 @@ class HomePage extends LitElement {
                 </div>
             </section>
         `;
-    }
+	}
 
-    onInputValue(e) {
-        const value = e.detail;
-        const regExp = /^[A-Za-z0-9]*$/;
-        const checkCharacters = regExp.test(value);
-        if (checkCharacters) {
-            this.messages = this.messages.filter(
-                (msg) =>
-                    msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS &&
+	onInputValue(e) {
+		const value = e.detail;
+		const regExp = /^[A-Za-z0-9]*$/;
+		const checkCharacters = regExp.test(value);
+		if (checkCharacters) {
+			this.messages = this.messages.filter(
+				(msg) =>
+					msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS &&
                     msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
-            );
+			);
 
-            if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
-                this.isInvalid = true;
-                const msgAlreadyDisplaying = this.messages.find(
-                    (msg) =>
-                        msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
-                );
-                if (!msgAlreadyDisplaying)
-                    this.messages = [
-                        ...this.messages,
-                        CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME,
-                    ];
-            } else {
-                this.isInvalid = false;
-                this.messages = this.messages.filter(
-                    (msg) =>
-                        msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
-                );
-                this.name = value;
-            }
-        } else {
-            this.isInvalid = true;
-            const msgAlreadyDisplaying = this.messages.find(
-                (msg) =>
-                    msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS
-            );
-            if (!msgAlreadyDisplaying) {
-                this.messages = [
-                    ...this.messages,
-                    CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS,
-                ];
-            }
-        }
-        this.validate();
-    }
+			if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
+				this.isInvalid = true;
+				const msgAlreadyDisplaying = this.messages.find(
+					(msg) =>
+						msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+				);
+				if (!msgAlreadyDisplaying)
+					this.messages = [
+						...this.messages,
+						CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME,
+					];
+			} else {
+				this.isInvalid = false;
+				this.messages = this.messages.filter(
+					(msg) =>
+						msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+				);
+				this.name = value;
+			}
+		} else {
+			this.isInvalid = true;
+			const msgAlreadyDisplaying = this.messages.find(
+				(msg) =>
+					msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS
+			);
+			if (!msgAlreadyDisplaying) {
+				this.messages = [
+					...this.messages,
+					CRAZY_BEACH.LOGIN.ERR_MESSAGES.INVALID_CHARACTERS,
+				];
+			}
+		}
+		this.validate();
+	}
 
-    onInputFocusout(e) {
-        const value = e.detail;
-        if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
-            this.isInvalid = true;
-            const msgAlreadyDisplaying = this.messages.find(
-                (msg) => msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
-            );
-            if (!msgAlreadyDisplaying)
-                this.messages = [
-                    ...this.messages,
-                    CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME,
-                ];
-        } else {
-            this.isInvalid = false;
-            this.messages = this.messages.filter(
-                (msg) => msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
-            );
-            this.name = value;
-        }
-    }
+	onInputFocusout(e) {
+		const value = e.detail;
+		if (value.length < CRAZY_BEACH.LOGIN.INPUT_MIN_LENGTH) {
+			this.isInvalid = true;
+			const msgAlreadyDisplaying = this.messages.find(
+				(msg) => msg === CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+			);
+			if (!msgAlreadyDisplaying)
+				this.messages = [
+					...this.messages,
+					CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME,
+				];
+		} else {
+			this.isInvalid = false;
+			this.messages = this.messages.filter(
+				(msg) => msg !== CRAZY_BEACH.LOGIN.ERR_MESSAGES.TOO_SHORT_NAME
+			);
+			this.name = value;
+		}
+	}
 
-    validate() {
-        const input = this.shadowRoot.querySelectorAll('#cb-login-input')[0];
-        const button = this.shadowRoot.querySelectorAll('#cb-login-button')[0];
-        if (this.isInvalid) {
-            input.setAttribute('isInvalid', true);
-            button.setAttribute('isInvalid', true);
-        } else {
-            input.removeAttribute('isInvalid');
-            button.removeAttribute('isInvalid');
-        }
-    }
+	validate() {
+		const input = this.shadowRoot.querySelectorAll('#cb-login-input')[0];
+		const button = this.shadowRoot.querySelectorAll('#cb-login-button')[0];
+		if (this.isInvalid) {
+			input.setAttribute('isInvalid', true);
+			button.setAttribute('isInvalid', true);
+		} else {
+			input.removeAttribute('isInvalid');
+			button.removeAttribute('isInvalid');
+		}
+	}
 
-    onButtonClick() {
-        const state = localstorageService.getStateFromLocalStorage();
-        if (state !== -1) {
-            const foundPlayer = localstorageService.findPlayerInStatePlayers(
-                this.name
-            );
-            if (foundPlayer !== -1) playerService.setCurrentPlayer(foundPlayer);
-            else {
-                const player = playerService.createNewPlayer(this.name);
-                state.currentPlayer = player;
-                state.players.push(player);
-                localstorageService.saveStateToLocalStorage(state);
-            }
-        } else {
-            const newPlayer = playerService.createNewPlayer(this.name);
-            const newState = localstorageService.createNewEmptyState();
-            newState.currentPlayer = newPlayer;
-            newState.players.push(newPlayer);
-            localstorageService.saveStateToLocalStorage(newState);
-        }
-        Router.go('/juego');
-    }
+	onButtonClick() {
+		const state = localstorageService.getStateFromLocalStorage();
+		if (state !== -1) {
+			const foundPlayer = localstorageService.findPlayerInStatePlayers(
+				this.name
+			);
+			if (foundPlayer !== -1) playerService.setCurrentPlayer(foundPlayer);
+			else {
+				const player = playerService.createNewPlayer(this.name);
+				state.currentPlayer = player;
+				state.players.push(player);
+				localstorageService.saveStateToLocalStorage(state);
+			}
+		} else {
+			const newPlayer = playerService.createNewPlayer(this.name);
+			const newState = localstorageService.createNewEmptyState();
+			newState.currentPlayer = newPlayer;
+			newState.players.push(newPlayer);
+			localstorageService.saveStateToLocalStorage(newState);
+		}
+		Router.go('/juego');
+	}
 
-    static get styles() {
-        return [styles];
-    }
+	static get styles() {
+		return [styles];
+	}
 }
 
 customElements.define('crazy-beach-home-page', HomePage);

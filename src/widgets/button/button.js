@@ -2,35 +2,33 @@ import { LitElement, html } from 'lit';
 import styles from './button.scss';
 
 export class Button extends LitElement {
-    static get properties() {
-        return {
-            id: { type: String },
-            type: { type: String },
-            color: { type: String },
-            label: { type: String },
-            size: { type: String },
-            isFullWidth: { type: Boolean, attribute: 'fullwidth' },
-            isInvalid: { type: Boolean },
-        };
-    }
+	static get properties() {
+		return {
+			id: { type: String },
+			type: { type: String },
+			color: { type: String },
+			label: { type: String },
+			size: { type: String },
+			isFullWidth: { type: Boolean, attribute: 'fullwidth' },
+			isInvalid: { type: Boolean },
+		};
+	}
 
-    constructor() {
-        super();
-        this.id = 'cb-button';
-        this.type = 'button';
-        this.color = 'blue';
-        this.label = 'entrar';
-        this.size = 'normal';
-        this.isFullWidth = false;
-        this.isInvalid = false;
-    }
+	constructor() {
+		super();
+		this.id = 'cb-button';
+		this.type = 'button';
+		this.color = 'blue';
+		this.label = 'entrar';
+		this.size = 'normal';
+		this.isFullWidth = false;
+		this.isInvalid = false;
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <div
-                class="btn btn-${this.color} ${this.isFullWidth
-                    ? 'btn--w100'
-                    : ''} btn-${this.size} ${this.isInvalid ? 'invalid' : ''}"
+                class="btn btn-${this.color} ${this.isFullWidth	? 'btn--w100' : ''} btn-${this.size} ${this.isInvalid ? 'invalid' : ''}"
             >
                 <button
                     id="${this.id}"
@@ -42,16 +40,16 @@ export class Button extends LitElement {
                 </button>
             </div>
         `;
-    }
+	}
 
-    _handleClick(e) {
-        e.preventDefault();
-        this.dispatchEvent(new CustomEvent('cb-button-click'));
-    }
+	_handleClick(e) {
+		e.preventDefault();
+		this.dispatchEvent(new CustomEvent('cb-button-click'));
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-button-widget', Button);

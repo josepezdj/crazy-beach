@@ -4,20 +4,20 @@ import styles from './feet.scss';
 import './import';
 
 class Feet extends LitElement {
-    static get properties() {
-        return {
-            side: { type: String },
-            isDisabled: { type: Boolean },
-        };
-    }
+	static get properties() {
+		return {
+			side: { type: String },
+			isDisabled: { type: Boolean },
+		};
+	}
 
-    constructor() {
-        super();
-        this.side = 'left';
-    }
+	constructor() {
+		super();
+		this.side = 'left';
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section class="feet">
                 <div class="feet__container">
                     <crazy-beach-foot-component
@@ -33,20 +33,20 @@ class Feet extends LitElement {
                 </div>
             </section>
         `;
-    }
+	}
 
-    onFootClick(e) {
-        const side = e.detail;
-        this.dispatchEvent(
-            new CustomEvent('cb-feet-click', {
-                detail: side,
-            })
-        );
-    }
+	onFootClick(e) {
+		const side = e.detail;
+		this.dispatchEvent(
+			new CustomEvent('cb-feet-click', {
+				detail: side,
+			})
+		);
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-feet-component', Feet);

@@ -6,20 +6,20 @@ import beach from '../../../assets/images/beach-bg-small.jpg';
 import packageJson from '../../../package.json';
 
 class AboutPage extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.goBackUrl = '/juego';
-    }
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.goBackUrl = '/juego';
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section class="about-page">
                 <img src="${beach}" class="about-page__bg" />
                 <crazy-beach-header-component
@@ -61,11 +61,11 @@ class AboutPage extends LitElement {
                 </article>
             </section>
         `;
-    }
+	}
 
-    static get styles() {
-        return [styles];
-    }
+	static get styles() {
+		return [styles];
+	}
 }
 
 customElements.define('crazy-beach-about-page', AboutPage);

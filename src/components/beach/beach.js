@@ -5,40 +5,40 @@ import { playerService } from '../../services/player-service';
 import './import';
 
 class Beach extends LitElement {
-    static get properties() {
-        return {
-            currentLevel: { type: Object, reflect: true },
-            currentPlayer: { type: Object },
-            score: { type: Number },
-            beachAnimation: { type: Boolean, attribute: 'beach-animation' },
-            isRankingCollapsed: { type: Boolean },
-        };
-    }
+	static get properties() {
+		return {
+			currentLevel: { type: Object, reflect: true },
+			currentPlayer: { type: Object },
+			score: { type: Number },
+			beachAnimation: { type: Boolean, attribute: 'beach-animation' },
+			isRankingCollapsed: { type: Boolean },
+		};
+	}
 
-    constructor() {
-        super();
+	constructor() {
+		super();
 
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints);
-        this.beachAnimation = false;
-        this.isRankingCollapsed = false;
-        this.score = 0;
-    }
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.currentLevel = getLevelByPoints(this.currentPlayer.maxPoints);
+		this.beachAnimation = false;
+		this.isRankingCollapsed = false;
+		this.score = 0;
+	}
 
-    firstUpdated() {
-        this.currentPlayer = playerService.getCurrentPlayer();
-        if (this.currentPlayer === -1) {
-            this.currentLevel = getLevelByPoints(0);
-        }
-    }
+	firstUpdated() {
+		this.currentPlayer = playerService.getCurrentPlayer();
+		if (this.currentPlayer === -1) {
+			this.currentLevel = getLevelByPoints(0);
+		}
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section
                 class="beach level-${this.getCurrentLevel().id} ${this
-                    .isRankingCollapsed
-                    ? 'ranking-hide'
-                    : 'ranking-show'}"
+	.isRankingCollapsed
+	? 'ranking-hide'
+	: 'ranking-show'}"
             >
                 <div class="beach__title--container">
                     <h2 class="beach__title--name">
@@ -53,15 +53,15 @@ class Beach extends LitElement {
                 </div>
             </section>
         `;
-    }
+	}
 
-    getCurrentLevel() {
-        return getLevelByPoints(this.score);
-    }
+	getCurrentLevel() {
+		return getLevelByPoints(this.score);
+	}
 
-    static get styles() {
-        return styles;
-    }
+	static get styles() {
+		return styles;
+	}
 }
 
 customElements.define('crazy-beach-beach-component', Beach);

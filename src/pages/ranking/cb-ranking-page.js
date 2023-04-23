@@ -7,22 +7,22 @@ import ranking from '../../../assets/images/ranking-bg.jpg';
 import iconTrophy from '../../../assets/icons/icon-trophy.png';
 
 class RankingPage extends LitElement {
-    static get properties() {
-        return {
-            currentPlayer: { type: Object },
-            players: { type: Array },
-        };
-    }
+	static get properties() {
+		return {
+			currentPlayer: { type: Object },
+			players: { type: Array },
+		};
+	}
 
-    constructor() {
-        super();
-        this.currentPlayer = playerService.getCurrentPlayer();
-        this.players = playerService.getAllPlayers();
-        this.goBackUrl = '/juego';
-    }
+	constructor() {
+		super();
+		this.currentPlayer = playerService.getCurrentPlayer();
+		this.players = playerService.getAllPlayers();
+		this.goBackUrl = '/juego';
+	}
 
-    render() {
-        return html`
+	render() {
+		return html`
             <section class="ranking-page">
                 <img src="${ranking}" class="ranking-page__bg" />
                 <crazy-beach-header-component
@@ -49,13 +49,13 @@ class RankingPage extends LitElement {
                 </article>
             </section>
         `;
-    }
+	}
 
-    renderPlayers() {
-        this.players = playerService.getAllPlayers();
-        if (this.players !== -1)
-            return html` ${this.players.map((player, i) => {
-                return html`
+	renderPlayers() {
+		this.players = playerService.getAllPlayers();
+		if (this.players !== -1)
+			return html` ${this.players.map((player, i) => {
+				return html`
                     <ul class="ranking-page__players">
                         <li class="ranking-page__players--player">${i + 1}</li>
                         <li class="ranking-page__players--player">
@@ -69,12 +69,12 @@ class RankingPage extends LitElement {
                         </li>
                     </ul>
                 `;
-            })}`;
-    }
+			})}`;
+	}
 
-    static get styles() {
-        return [styles];
-    }
+	static get styles() {
+		return [styles];
+	}
 }
 
 customElements.define('crazy-beach-ranking-page', RankingPage);
