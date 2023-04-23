@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
+export const HTMLTemplate = `
+    <!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -47,6 +48,7 @@
     <body>
         <div id="app" class="app"></div>
         <!-- Main app script -->
-        <script type="module" src="./build/main.js"></script>
+		<script type="module" src="./main.js"></script>
     </body>
 </html>
+`;

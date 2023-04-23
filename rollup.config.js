@@ -8,14 +8,16 @@ import copy from 'rollup-plugin-copy';
 import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
+import html from '@open-wc/rollup-plugin-html';
+import { HTMLTemplate} from './html-build-template';
 
 export default {
 	input: 'main.js',
 	output: [
 		{
 			dir: 'build',
-			format: 'iife',
-			sourcemap: 'inline',
+			format: 'es',
+			sourcemap: 'true',
 		},
 	],
 	plugins: [
@@ -26,17 +28,23 @@ export default {
 		eslint({
 			exclude: ['src/**/*.scss', 'assets/**/*.*', 'package*.*', 'build/**/*.*']
 		}),
-		commonjs(),
+		html({
+			name: 'index.html',
+			inject: false,
+			template: HTMLTemplate
+		}),
 		babel({
 			presets: ['@babel/preset-env'],
 			exclude: 'node_modules/**',
 			babelHelpers: 'bundled',
+			// extensions: ['.js', '.html']
 		}),
 		resolve({
 			jsnext: true,
 			main: true,
 			browser: true,
 		}),
+		commonjs(),
 		terser(),
 		copy({
 			targets: [
