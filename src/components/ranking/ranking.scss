@@ -41,6 +41,7 @@
         width: auto;
         position: absolute;
         left: 50%;
+        pointer-events: none;
         animation: arrow-move infinite 1.5s ease-in-out;
     }
 
