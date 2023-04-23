@@ -19,25 +19,23 @@ export default {
 		},
 	],
 	plugins: [
-		resolve({
-			jsnext: true,
-			main: true,
-			browser: true,
-		}),
-		commonjs(),
-		postcss({
-			minimize: true,
-		}),
+		postcss(),
 		litcss(),
 		image(),
 		json(),
 		eslint({
-			exclude: ['src/**/*.scss', 'assets/**/*.*', 'package*.*']
+			exclude: ['src/**/*.scss', 'assets/**/*.*', 'package*.*', 'build/**/*.*']
 		}),
+		commonjs(),
 		babel({
 			presets: ['@babel/preset-env'],
 			exclude: 'node_modules/**',
 			babelHelpers: 'bundled',
+		}),
+		resolve({
+			jsnext: true,
+			main: true,
+			browser: true,
 		}),
 		terser(),
 		copy({
