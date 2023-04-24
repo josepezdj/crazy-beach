@@ -5,11 +5,11 @@
 
     font-family: $font-main;
     color: $col-blue-black;
+    background-color: $col-yellow;
     height: $ranking-height;
     width: 100%;
     max-width: $app-max-width;
     margin: 0 auto;
-    background-color: $col-pink;
     z-index: 3;
     overflow-y: scroll;
     transition: all 0.3s;
@@ -20,7 +20,7 @@
 
     &__header {
         cursor: pointer;
-        background-color: inherit;
+        background-color: $col-pink;
         position: absolute;
         top: $header-height;
         height: calc($header-height - $md);

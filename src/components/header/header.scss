@@ -76,7 +76,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: $sm;
+        padding: $lg $xs;
         transition: all 0.2s;
 
         img {
@@ -94,7 +94,7 @@
         padding: 0 $xs;
         display: flex;
         align-items: center;
-        column-gap: $md;
+        column-gap: $xs;
 
         &--icon {
             position: relative;
@@ -200,34 +200,5 @@
         &__link:last-child {
             padding-top: $md;
         }
-    }
-}
-
-/* Animations */
-
-@keyframes rotateR {
-    from {
-        transform: translateY(0px) rotate(0);
-    }
-    to {
-        transform: translateY(20px) rotate(45deg);
-    }
-}
-
-@keyframes rotateL {
-    from {
-        transform: translateY(0px) rotate(0);
-    }
-    to {
-        transform: translateY(0) rotate(-45deg);
-    }
-}
-
-@keyframes fade {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
     }
 }
